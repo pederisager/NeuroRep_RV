@@ -1,105 +1,105 @@
-DOI	source	study_number	sample_size	between_subjects	number_of_conditions	number_of_between_subjects_conditions	imaging_technique	open_data_url	open_materials_url	participant_characteristics	comments	
-10.1093/scan/nsv086	scan	1	23	no	4	0	fmri	NA	NA	healthy		
-10.1093/scan/nsv088	scan	1	24	no	2	0	fmri	NA	NA	healthy		
-10.1093/scan/nsv092	scan	1	194	yes	6	2	fnirs	NA	NA	healthy	Subjects tested in paris and some analyses receive one data point from each pair meaning sample size could also be listed as 97	
-10.1093/scan/nsv090	scan	1	60	yes	3	3	eeg	NA	NA	healthy	Neurofeedback	
-10.1093/scan/nsv085	scan	1	118	yes	2	2	eeg	NA	NA	"autism spectrum disorder, twins"		
-10.1093/scan/nsv091	scan	1	106	no	2	0	fnirs	NA	NA	healthy		
-10.1093/scan/nsv089	scan	1	37	no	correlation	0	fmri	NA	NA	healthy		
-10.1093/scan/nsv087	scan	1	37	yes	2	2	fmri	NA	NA	severe mood dysregulation	Replication.	
-10.1093/scan/nsv093	scan	1	78	yes	3	3	NA	NA	NA	Huntington's disease		
-10.1093/scan/nsv095	scan	1	19	no	3	0	fmri	NA	NA	"adolescent, healthy"		
-10.1093/scan/nsv094	scan	1	19	no	2	0	fmri	NA	NA	healthy		
-10.1093/scan/nsv096	scan	1	33	no	correlation	0	fmri	NA	NA	healthy	experience sampling	
-10.1093/scan/nsv103	scan	1	18	no	5	0	eeg	NA	NA	healthy		
-10.1093/scan/nsv098	scan	1	76	yes	2 + correlation	2	fmri	NA	NA	"5-HTTLPR carriers, healthy"	study includes a dichotomous and a continuous predictor which both seem central	
-10.1093/scan/nsv099	scan	1	18	no	2	0	NA	NA	NA	healthy		
-10.1093/scan/nsv099	scan	2	19	no	2	0	fmri	NA	NA	healthy		
-10.1093/scan/nsv100	scan	1	42	no	3	3	fmri	NA	NA	healthy		
-10.1093/scan/nsv101	scan	1	44	yes	18	2	fmri	NA	NA	"adolescent, healthy"		
-10.1093/scan/nsu042	scan	1	35	yes	4	2	fmri	NA	NA	"military, healthy"		
-10.1093/scan/nsv097	scan	1	8	no	4	0	eeg	NA	NA	"female, healthy"		
-10.1093/scan/nsv097	scan	2	8	no	4	0	eeg	NA	NA	"female, healthy"		
-10.1093/scan/nsv108	scan	1	45	no	correlation	0	fmri	NA	NA	smokers	Brain activation from n=50 used to predict health outcome in n=400000	
-10.1093/scan/nsv114	scan	1	26	no	4	0	fmri	NA	https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/scan/11/2/10.1093_scan_nsv114/4/nsv114_supplementary_data.zip?Expires=1548774489&Signature=W-PsXDOKg5lXb~cehOTxF8nKDU-KOR7Hj~VSqDwMOQT2wo~CE4hKx~4TYjnAXLVHjITLcDyrHf-M3jEMj2~WAhGJyLY~B01pQLEVsy3COJgRWvkSq6EWGApZ7wwaZ7bnhUE~2xhT4HSvvO4jEI1qbdRGDGbozA8IETaKiwe-MppQAJb4K5QUTOvSNSsr8aMygQMh9bXCWi-Z2Fe0TO28ZhXSplkzxeLnzeMYRVSgs1Ul49V7-8rHCPefVcb91qWo-tIGBVdNcgEEDLvLKjsJx34t1fTlHOQsYxJVMQE1LGvohmka2gv82adKHO75IWI503QOJ7gey4eQxou9LaPuog__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA	healthy	Literary stimuli used available in the supplementary materials	
-10.1093/scan/nsv104	scan	1	22	no	12	0	fmri	NA	NA	healthy		
-10.1093/scan/nsv102	scan	1	95	yes	4	4	pet	NA	NA	"PTSD, military"		
-10.1093/scan/nsv113	scan											
-10.1093/scan/nsv105	scan											
-10.1093/scan/nsv106	scan											
-10.1093/scan/nsv109	scan											
-10.1093/scan/nsv112	scan											
-10.1093/scan/nsv110	scan											
-10.1093/scan/nsv111	scan											
-10.1093/scan/nsv122	scan											
-10.1093/scan/nsv115	scan											
-10.1093/scan/nsv116	scan											
-10.1093/scan/nsv117	scan											
-10.1093/scan/nsv118	scan											
-10.1093/scan/nsv120	scan											
-10.1093/scan/nsv119	scan											
-10.1093/scan/nsv121	scan											
-10.1093/scan/nsv107	scan											
-10.1093/scan/nsv123	scan											
-10.1093/scan/nsv124	scan											
-10.1093/scan/nsv128	scan											
-10.1093/scan/nsv127	scan											
-10.1093/scan/nsv126	scan											
-10.1093/scan/nsv125	scan											
-10.1093/scan/nsv129	scan											
-10.1093/scan/nsv130	scan											
-10.1093/scan/nsv131	scan											
-10.1093/scan/nsv135	scan											
-10.1093/scan/nsv133	scan											
-10.1093/scan/nsv134	scan											
-10.1093/scan/nsv132	scan											
-10.1016/j.dcn.2018.01.012	sciencedirect	1	55	no	correlation	0	fmri	https://neurovault.org/collections/PMZPESDZ/	NA	"children, adolescent, healthy"		
-10.1016/j.bandc.2011.08.018	sciencedirect	1	14	no	4	0	fmri	NA	NA	healthy		
-10.1016/j.neuropsychologia.2017.12.009	sciencedirect	1	47	no	4	0	fmri	NA	NA	"adolescent, healthy"		
-10.1016/j.inat.2018.02.001	sciencedirect	1	206	yes	2	2	fmri	NA	NA	brain tumor	fmri used as predictor with mortality being the outcome measure	
-10.1016/j.bandc.2018.02.011	sciencedirect	1	16	no	2	0	fmri	NA	NA	"long term trancendental meditation practitioners, female"		
-10.1016/j.neuron.2018.06.027	sciencedirect	1	10	no	3	0	fmri	NA	NA	rhesus macaques	data and software can be aqcuired upon request	
-10.1016/j.addbeh.2018.09.015	sciencedirect	1	40	no	3	0	fmri	NA	"https://ars.els-cdn.com/content/image/1-s2.0-S0306460318305252-mmc3.docx, https://ars.els-cdn.com/content/image/1-s2.0-S0306460318305252-mmc4.pdf"	"adolescent, cannabis use"		"41 subjects had behavioral data, two material links reflect two supplementary material files"
-10.1016/j.neuroimage.2018.11.044	sciencedirect	1	5	no	unknown	0	fmri	NA	NA	"the paper is not about social neuroscience, conditions hard to estimate due to technical nature of the experiment"		
-10.1016/j.neuroimage.2016.05.046	sciencedirect											
-10.1016/j.euroneuro.2018.11.1109	sciencedirect											
-10.1016/j.cortex.2017.11.020	sciencedirect											
-10.1016/j.pscychresns.2015.03.005	sciencedirect											
-10.1016/j.dcn.2018.05.010	sciencedirect											
-10.1016/j.neuropsychologia.2015.10.039	sciencedirect											
-10.1016/j.neuroscience.2018.10.044	sciencedirect											
-10.1016/j.pscychresns.2018.08.012	sciencedirect											
-10.1016/j.neuropsychologia.2011.02.007	sciencedirect											
-10.1016/j.neucom.2018.09.066	sciencedirect											
-10.1016/j.neuropsychologia.2017.08.018	sciencedirect											
-10.1016/j.neuroimage.2018.01.082	sciencedirect											
-10.1016/j.dcn.2017.11.006	sciencedirect											
-10.1016/j.pnpbp.2018.05.020	sciencedirect											
-10.1016/j.neuroimage.2018.09.068	sciencedirect											
-10.1016/j.cortex.2018.08.019	sciencedirect											
-10.1016/j.schres.2018.07.042	sciencedirect											
-10.1016/j.neuroimage.2018.11.055	sciencedirect											
-10.1016/j.pscychresns.2014.10.019	sciencedirect											
-10.1016/j.psyneuen.2018.08.036	sciencedirect											
-10.1016/j.biopsycho.2018.08.012	sciencedirect											
-10.1016/j.euroneuro.2019.01.106	sciencedirect											
-10.1016/j.neuropsychologia.2018.12.003	sciencedirect											
-10.1016/j.neures.2010.09.008	sciencedirect											
-10.1016/j.neuroimage.2018.08.004	sciencedirect											
-10.1016/j.dcn.2017.02.005	sciencedirect											
-10.1016/j.bbr.2017.02.032	sciencedirect											
-10.1016/j.jaac.2018.06.026	sciencedirect											
-10.1016/j.pscychresns.2016.08.001	sciencedirect											
-10.1016/j.drugalcdep.2018.03.025	sciencedirect											
-10.1016/j.psyneuen.2018.04.005	sciencedirect											
-10.1016/j.nicl.2018.11.013	sciencedirect											
-10.1016/j.bandc.2018.06.004	sciencedirect											
-10.1016/j.ijpsycho.2018.02.005	sciencedirect											
-10.1016/j.neuroimage.2018.09.009	sciencedirect											
-10.1016/j.pmcj.2011.09.004	sciencedirect											
-10.1016/j.pscychresns.2018.08.011	sciencedirect											
-10.1016/j.neuropsychologia.2013.07.027	sciencedirect											
-10.1016/j.neuroimage.2018.09.070	sciencedirect											
-10.1016/j.pscychresns.2017.10.006	sciencedirect											
-10.1016/j.neuroimage.2018.04.015	sciencedirect											
-10.1016/j.neuropsychologia.2018.11.012	sciencedirect											
+DOI	source	study_number	sample_size	between_subjects	number_of_conditions	number_of_between_subjects_conditions	imaging_technique	open_data_url	open_materials_url	participant_characteristics	comments
+10.1093/scan/nsv086	scan	1	23	no	4	0	fmri	NA	NA	healthy	
+10.1093/scan/nsv088	scan	1	24	no	2	0	fmri	NA	NA	healthy	
+10.1093/scan/nsv092	scan	1	194	yes	6	2	fnirs	NA	NA	healthy	Subjects tested in paris and some analyses receive one data point from each pair meaning sample size could also be listed as 97
+10.1093/scan/nsv090	scan	1	60	yes	3	3	eeg	NA	NA	healthy	Neurofeedback
+10.1093/scan/nsv085	scan	1	118	yes	2	2	eeg	NA	NA	"autism spectrum disorder, twins"	
+10.1093/scan/nsv091	scan	1	106	no	2	0	fnirs	NA	NA	healthy	
+10.1093/scan/nsv089	scan	1	37	no	correlation	0	fmri	NA	NA	healthy	
+10.1093/scan/nsv087	scan	1	37	yes	2	2	fmri	NA	NA	severe mood dysregulation	Replication.
+10.1093/scan/nsv093	scan	1	78	yes	3	3	NA	NA	NA	Huntington's disease	
+10.1093/scan/nsv095	scan	1	19	no	3	0	fmri	NA	NA	"adolescent, healthy"	
+10.1093/scan/nsv094	scan	1	19	no	2	0	fmri	NA	NA	healthy	
+10.1093/scan/nsv096	scan	1	33	no	correlation	0	fmri	NA	NA	healthy	experience sampling
+10.1093/scan/nsv103	scan	1	18	no	5	0	eeg	NA	NA	healthy	
+10.1093/scan/nsv098	scan	1	76	yes	2 + correlation	2	fmri	NA	NA	"5-HTTLPR carriers, healthy"	study includes a dichotomous and a continuous predictor which both seem central
+10.1093/scan/nsv099	scan	1	18	no	2	0	NA	NA	NA	healthy	
+10.1093/scan/nsv099	scan	2	19	no	2	0	fmri	NA	NA	healthy	
+10.1093/scan/nsv100	scan	1	42	no	3	3	fmri	NA	NA	healthy	
+10.1093/scan/nsv101	scan	1	44	yes	18	2	fmri	NA	NA	"adolescent, healthy"	
+10.1093/scan/nsu042	scan	1	35	yes	4	2	fmri	NA	NA	"military, healthy"	
+10.1093/scan/nsv097	scan	1	8	no	4	0	eeg	NA	NA	"female, healthy"	
+10.1093/scan/nsv097	scan	2	8	no	4	0	eeg	NA	NA	"female, healthy"	
+10.1093/scan/nsv108	scan	1	45	no	correlation	0	fmri	NA	NA	smokers	Brain activation from n=50 used to predict health outcome in n=400000
+10.1093/scan/nsv114	scan	1	26	no	4	0	fmri	NA	https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/scan/11/2/10.1093_scan_nsv114/4/nsv114_supplementary_data.zip?Expires=1548774489&Signature=W-PsXDOKg5lXb~cehOTxF8nKDU-KOR7Hj~VSqDwMOQT2wo~CE4hKx~4TYjnAXLVHjITLcDyrHf-M3jEMj2~WAhGJyLY~B01pQLEVsy3COJgRWvkSq6EWGApZ7wwaZ7bnhUE~2xhT4HSvvO4jEI1qbdRGDGbozA8IETaKiwe-MppQAJb4K5QUTOvSNSsr8aMygQMh9bXCWi-Z2Fe0TO28ZhXSplkzxeLnzeMYRVSgs1Ul49V7-8rHCPefVcb91qWo-tIGBVdNcgEEDLvLKjsJx34t1fTlHOQsYxJVMQE1LGvohmka2gv82adKHO75IWI503QOJ7gey4eQxou9LaPuog__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA	healthy	Literary stimuli used available in the supplementary materials
+10.1093/scan/nsv104	scan	1	22	no	12	0	fmri	NA	NA	healthy	
+10.1093/scan/nsv102	scan	1	95	yes	4	4	pet	NA	NA	"PTSD, military"	
+10.1093/scan/nsv113	scan										
+10.1093/scan/nsv105	scan										
+10.1093/scan/nsv106	scan										
+10.1093/scan/nsv109	scan										
+10.1093/scan/nsv112	scan										
+10.1093/scan/nsv110	scan										
+10.1093/scan/nsv111	scan										
+10.1093/scan/nsv122	scan										
+10.1093/scan/nsv115	scan										
+10.1093/scan/nsv116	scan										
+10.1093/scan/nsv117	scan										
+10.1093/scan/nsv118	scan										
+10.1093/scan/nsv120	scan										
+10.1093/scan/nsv119	scan										
+10.1093/scan/nsv121	scan										
+10.1093/scan/nsv107	scan										
+10.1093/scan/nsv123	scan										
+10.1093/scan/nsv124	scan										
+10.1093/scan/nsv128	scan										
+10.1093/scan/nsv127	scan										
+10.1093/scan/nsv126	scan										
+10.1093/scan/nsv125	scan										
+10.1093/scan/nsv129	scan										
+10.1093/scan/nsv130	scan										
+10.1093/scan/nsv131	scan										
+10.1093/scan/nsv135	scan										
+10.1093/scan/nsv133	scan										
+10.1093/scan/nsv134	scan										
+10.1093/scan/nsv132	scan										
+10.1016/j.dcn.2018.01.012	sciencedirect	1	55	no	correlation	0	fmri	https://neurovault.org/collections/PMZPESDZ/	NA	"children, adolescent, healthy"	
+10.1016/j.bandc.2011.08.018	sciencedirect	1	14	no	4	0	fmri	NA	NA	healthy	
+10.1016/j.neuropsychologia.2017.12.009	sciencedirect	1	47	no	4	0	fmri	NA	NA	"adolescent, healthy"	
+10.1016/j.inat.2018.02.001	sciencedirect	1	206	yes	2	2	fmri	NA	NA	brain tumor	fmri used as predictor with mortality being the outcome measure
+10.1016/j.bandc.2018.02.011	sciencedirect	1	16	no	2	0	fmri	NA	NA	"long term trancendental meditation practitioners, female"	
+10.1016/j.neuron.2018.06.027	sciencedirect	1	10	no	3	0	fmri	NA	NA	rhesus macaques	data and software can be aqcuired upon request
+10.1016/j.addbeh.2018.09.015	sciencedirect	1	40	no	3	0	fmri	NA	"https://ars.els-cdn.com/content/image/1-s2.0-S0306460318305252-mmc3.docx, https://ars.els-cdn.com/content/image/1-s2.0-S0306460318305252-mmc4.pdf"	"adolescent, cannabis use"	"41 subjects had behavioral data, two material links reflect two supplementary material files"
+10.1016/j.neuroimage.2018.11.044	sciencedirect	1	5	no	unknown	0	fmri	NA	NA	healthy	"the paper is not about social neuroscience, conditions hard to estimate due to technical nature of the experiment"
+10.1016/j.neuroimage.2016.05.046	sciencedirect	1	14	yes	12	2	fmri	NA	NA	prairie voles	"the descriptions of sample size in the paper are confusing, used odor task as a reference for condition and sample n"
+10.1016/j.euroneuro.2018.11.1109	sciencedirect	1	38	yes	12	2	fmri	NA	NA	opioid maintanence patients	cyberball
+10.1016/j.cortex.2017.11.020	sciencedirect	1	36	no	6	0	fmri	NA	NA	healthy	
+10.1016/j.pscychresns.2015.03.005	sciencedirect	1	36	yes	correlation	0	fmri	NA	NA	healthy	
+10.1016/j.dcn.2018.05.010	sciencedirect										
+10.1016/j.neuropsychologia.2015.10.039	sciencedirect										
+10.1016/j.neuroscience.2018.10.044	sciencedirect										
+10.1016/j.pscychresns.2018.08.012	sciencedirect										
+10.1016/j.neuropsychologia.2011.02.007	sciencedirect										
+10.1016/j.neucom.2018.09.066	sciencedirect										
+10.1016/j.neuropsychologia.2017.08.018	sciencedirect										
+10.1016/j.neuroimage.2018.01.082	sciencedirect										
+10.1016/j.dcn.2017.11.006	sciencedirect										
+10.1016/j.pnpbp.2018.05.020	sciencedirect										
+10.1016/j.neuroimage.2018.09.068	sciencedirect										
+10.1016/j.cortex.2018.08.019	sciencedirect										
+10.1016/j.schres.2018.07.042	sciencedirect										
+10.1016/j.neuroimage.2018.11.055	sciencedirect										
+10.1016/j.pscychresns.2014.10.019	sciencedirect										
+10.1016/j.psyneuen.2018.08.036	sciencedirect										
+10.1016/j.biopsycho.2018.08.012	sciencedirect										
+10.1016/j.euroneuro.2019.01.106	sciencedirect										
+10.1016/j.neuropsychologia.2018.12.003	sciencedirect										
+10.1016/j.neures.2010.09.008	sciencedirect										
+10.1016/j.neuroimage.2018.08.004	sciencedirect										
+10.1016/j.dcn.2017.02.005	sciencedirect										
+10.1016/j.bbr.2017.02.032	sciencedirect										
+10.1016/j.jaac.2018.06.026	sciencedirect										
+10.1016/j.pscychresns.2016.08.001	sciencedirect										
+10.1016/j.drugalcdep.2018.03.025	sciencedirect										
+10.1016/j.psyneuen.2018.04.005	sciencedirect										
+10.1016/j.nicl.2018.11.013	sciencedirect										
+10.1016/j.bandc.2018.06.004	sciencedirect										
+10.1016/j.ijpsycho.2018.02.005	sciencedirect										
+10.1016/j.neuroimage.2018.09.009	sciencedirect										
+10.1016/j.pmcj.2011.09.004	sciencedirect										
+10.1016/j.pscychresns.2018.08.011	sciencedirect										
+10.1016/j.neuropsychologia.2013.07.027	sciencedirect										
+10.1016/j.neuroimage.2018.09.070	sciencedirect										
+10.1016/j.pscychresns.2017.10.006	sciencedirect										
+10.1016/j.neuroimage.2018.04.015	sciencedirect										
+10.1016/j.neuropsychologia.2018.11.012	sciencedirect										
