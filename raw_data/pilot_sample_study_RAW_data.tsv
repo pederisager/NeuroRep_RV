@@ -65,12 +65,12 @@ DOI	source	study_number	sample_size	between_subjects	number_of_conditions	number
 10.1016/j.euroneuro.2018.11.1109	sciencedirect	1	38	yes	12	2	fmri	NA	NA	opioid maintanence patients	cyberball
 10.1016/j.cortex.2017.11.020	sciencedirect	1	36	no	6	0	fmri	NA	NA	healthy	
 10.1016/j.pscychresns.2015.03.005	sciencedirect	1	36	yes	correlation	0	fmri	NA	NA	healthy	
-10.1016/j.dcn.2018.05.010	sciencedirect										
-10.1016/j.neuropsychologia.2015.10.039	sciencedirect										
-10.1016/j.neuroscience.2018.10.044	sciencedirect										
-10.1016/j.pscychresns.2018.08.012	sciencedirect										
-10.1016/j.neuropsychologia.2011.02.007	sciencedirect										
-10.1016/j.neucom.2018.09.066	sciencedirect										
+10.1016/j.dcn.2018.05.010	sciencedirect	1	283	no	2 + correlation	0	fmri	NA	NA	"children, twins, healthy"	
+10.1016/j.neuropsychologia.2015.10.039	sciencedirect	1	20	yes	correlation	0	fmri	NA	NA	healthy	
+10.1016/j.neuroscience.2018.10.044	sciencedirect	1	31	yes	4	2	fmri	NA	NA	autism spectrum disorder	
+10.1016/j.pscychresns.2018.08.012	sciencedirect	1	26	yes	6	2	fmri	confidential	confidential	social anxiety disorder	supplement xml file explicitly states that the underlying data are confidential
+10.1016/j.neuropsychologia.2011.02.007	sciencedirect	1	26	yes	correlation	0	fmri	NA	NA	healthy	
+10.1016/j.neucom.2018.09.066	sciencedirect	1	68	no	2	0	fmri	http://www.humanconnectomeproject.org/data/	NA	healthy	"the paper is not about social neuroscience, data from human connectome project"
 10.1016/j.neuropsychologia.2017.08.018	sciencedirect										
 10.1016/j.neuroimage.2018.01.082	sciencedirect										
 10.1016/j.dcn.2017.11.006	sciencedirect										
