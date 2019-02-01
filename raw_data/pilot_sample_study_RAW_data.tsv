@@ -75,9 +75,9 @@ DOI	source	study_number	sample_size	between_subjects	number_of_conditions	number
 10.1016/j.neuroimage.2018.01.082	sciencedirect	1	787	no	2	0	fmri	http://www.humanconnectomeproject.org/data/	NA	healthy	
 10.1016/j.dcn.2017.11.006	sciencedirect	NA	NA	NA	NA	NA	NA	NA	NA	NA	the paper is a review of methods for longitudinal fMRI analysis
 10.1016/j.pnpbp.2018.05.020	sciencedirect	1	538	yes	2	2	fmri	NA	NA	schizophrenia patients	
-10.1016/j.neuroimage.2018.09.068	sciencedirect										
-10.1016/j.cortex.2018.08.019	sciencedirect										
-10.1016/j.schres.2018.07.042	sciencedirect										
+10.1016/j.neuroimage.2018.09.068	sciencedirect	1	26	no	4	2	fmri	NA	NA	healthy	neurofeedback
+10.1016/j.cortex.2018.08.019	sciencedirect	1	44	yes	8	2	fmri	https://data.donders.ru.nl/collections/di/dccn/DSC_3018026.01_044?1	https://data.donders.ru.nl/collections/di/dccn/DSC_3018026.01_044?1	"adolescent, autism spectrum disorder"	
+10.1016/j.schres.2018.07.042	sciencedirect	1	43	yes	4	2	fmri	NA	NA	"adolescent, clinical high-risk of developing psychosis"	
 10.1016/j.neuroimage.2018.11.055	sciencedirect										
 10.1016/j.pscychresns.2014.10.019	sciencedirect										
 10.1016/j.psyneuen.2018.08.036	sciencedirect										
