@@ -1,28 +1,27 @@
 
 
-library(tidyverse)
-
 filenames <- list.files(pattern = "records.*txt")
 
 files <- lapply(filenames, function(file) {
-  read.delim(file = file, 
-             sep = "\t", 
-             header = FALSE, 
-             fill = TRUE, 
-             fileEncoding = "UTF-16",
-             quote = "")
+  x <- read.delim(file = file, 
+                  header = FALSE, 
+                  sep = "\t", 
+                  encoding = "UTF-8", 
+                  check.names = FALSE, # otherwise R will mangle the names
+                  fill = TRUE, 
+                  quote = "", 
+                  stringsAsFactors = FALSE)
+  
+  colnames(x) <- x[1, ]
+  x <- x[-1, ]
+  x <- x[,-ncol(x)]
+  name <- strsplit(file, "_")[[1]][[1]]  # remove ".tsv" (the last 4 characters) of the filename before adding filename as variable
+  x$source <- name
+  x$file <- file
+  x
   })
 
-data <- bind_rows(files)
+data <- do.call("rbind", files)
 
-x <- read.delim(file = filenames[13], header = FALSE, fileEncoding = "UTF-16", sep = "\t", fill = TRUE, quote = "")
-
-
-
-
-
-
-library(readr)
-options(stringsAsFactors = FALSE)
-
-x <- read_delim(file = filenames[15], delim = "\t", quote = "", locale = locale(encoding = "UTF-16LE"))
+write.table(x = data, file = "complete_dataset_raw.tsv", quote = TRUE, sep = "\t", na = "NA", row.names = FALSE, fileEncoding = "UTF-8")
+saveRDS(object = data, file =  "complete_dataset_raw.Rds")
