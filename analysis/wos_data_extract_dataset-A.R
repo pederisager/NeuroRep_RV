@@ -46,7 +46,7 @@ exclude <- c("\\badhd\\b",
 
 include.l <- grepl(pattern = paste(include, collapse = "|"), x = tit.abs.keyw, ignore.case = TRUE)  # identify indexes in data matching term(s)
 exclude.l <- grepl(pattern = paste(exclude, collapse = "|"), x = tit.abs.keyw, ignore.case = TRUE)  # identify indexes in data matching term(s)
-data.filt <- data[include.l & !exclude.l,]  # filter rows based on identified terms. 
+data.filt <- data[include.l & !exclude.l,]  # filter rows based on identified terms
 
 ## Create list of remaining unique keywords
 
@@ -56,13 +56,13 @@ write.csv(keys.unique, "../processed_data/metadata_WoS/wos_filtered_unique_keywo
 
 ## Load and filter by extended list of excluded terms
 
-exclude.list <- read.csv("../processed_data/metadata_WoS/wos_excluded_keywords.csv", stringsAsFactors = FALSE)  
+exclude.list <- read.csv("../processed_data/metadata_WoS/wos_excluded_keywords.csv", stringsAsFactors = FALSE)  # Load list of to-be-excluded terms, as decided on by the authors
 
 exclude.words <- exclude.list$Term[exclude.list$exclude...final=="yes"]
-exclude.words <- paste0("\\b", exclude.words, "\\b")  # Define list of terms to exclude. "\\b" wrappers makes sure only whole words are matched.
+exclude.words <- paste0("\\b", exclude.words, "\\b")  # Define list of terms to exclude. "\\b" wrappers makes sure only whole words are matched
 include.l <- grepl(pattern = paste(include, collapse = "|"), x = tit.abs.keyw, ignore.case = TRUE)  # identify indexes in data matching term(s)
 exclude.l <- grepl(pattern = paste(exclude.words, collapse = "|"), x = tit.abs.keyw, ignore.case = TRUE)  # identify indexes in data matching term(s)
-data.filt <- data[include.l & !exclude.l,]  # filter rows based on identified terms. 
+data.filt <- data[include.l & !exclude.l,]  # filter rows based on identified terms
 
 
 # Filter dataset based on keywords ####
@@ -71,9 +71,9 @@ data.filt <- data[include.l & !exclude.l,]  # filter rows based on identified te
 
 set.seed(030142019)
 
-## Create dataset A by extracting 1000 random records from the keyword-filtered data.
+## Create dataset A by extracting 1000 random records from the keyword-filtered data
 
 indexes <- sort(sample(nrow(data.filt), 1000))  # define a set of random indexes to include in dataset A
 datasetA <- data.filt[indexes, ]  # Extract rows based on indexes
 
-write.csv(file = "../processed_data/dataset_A.csv", x = datasetA, row.names = FALSE)
+write.table(file = "../processed_data/dataset_A.tsv", sep = "\t", x = datasetA, row.names = FALSE)
