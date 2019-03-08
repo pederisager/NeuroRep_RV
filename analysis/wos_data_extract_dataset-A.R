@@ -63,6 +63,7 @@ exclude.words <- paste0("\\b", exclude.words, "\\b")  # Define list of terms to 
 include.l <- grepl(pattern = paste(include, collapse = "|"), x = tit.abs.keyw, ignore.case = TRUE)  # identify indexes in data matching term(s)
 exclude.l <- grepl(pattern = paste(exclude.words, collapse = "|"), x = tit.abs.keyw, ignore.case = TRUE)  # identify indexes in data matching term(s)
 data.filt <- data[include.l & !exclude.l,]  # filter rows based on identified terms
+data.filt <- data.filt[!duplicated(data.filt$DI),]  # Exclude duplicate records, identified through duplicate DOIs. The higher row index duplicate will be excluded.
 
 
 # Filter dataset based on keywords ####
@@ -75,5 +76,7 @@ set.seed(030142019)
 
 indexes <- sort(sample(nrow(data.filt), 1000))  # define a set of random indexes to include in dataset A
 datasetA <- data.filt[indexes, ]  # Extract rows based on indexes
+datasetA_sparse <- datasetA[, c("AU", "TI", "PY", "DI", "UT")]
 
 write.table(file = "../processed_data/dataset_A.tsv", sep = "\t", x = datasetA, row.names = FALSE)
+write.table(file = "../processed_data/dataset_A_coded.tsv", sep = "\t", x = datasetA_sparse, row.names = FALSE)
