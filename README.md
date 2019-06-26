@@ -13,14 +13,17 @@ This repository contains materials and data related to the first component of th
   In the second study we will, for a stratified subset of the dataset of 1000 studies, compare formula estimates of replication value to rank orderings provided by researchers in the field of social neuroscience (goal C). If formula estimates and expert assessments both partially capture the "true" replication value of a finding, then rank order results from both approaches should correlate. The goal of these studies is thus to examine the validity of the Replication Value study selection approach. The poster will present the theoretical outline of the Replication Value, our planned methods for these studies and the overall project goals.
 
 
-### Goal A
+### Goal A - Curate
 Large dataset (dataset A) that researchers can use when deciding to browse options for replication. Minimally, this contains year, citation count (extract 2, and see if we can find a way to do google as well), sample size, altmetric score (extract, perhaps see if we can extract again at the end or project to update this).
 
-### Goal B
+### Goal B - Compare
 Smaller dataset (dataset B) that is a (random?) sample of A, where we code more information, giving us an opportunity to compare the A-dataset formula with the B-dataset formula outcomes.
 
-### Goal C
+### Goal C - Validate
 An even smaller dataset (dataset C) of about 10 papers that are drawn from top, middle and low range RV of [A or B]. Giving us an opportunity to compare this ranking to how researchers in the field of social neuroscience would rank these ten papers after reading their abstracts (with optionally some additional minimal info to ensure all ten abstracts contain the same information).
+
+### Goal D - Replicate
+After providing validation of the replication value procedure as per goal A, B and C, we will select one study to replicate from the pool of 1000. The intent of this final goal is partially to provide "use-case validity" for the replication value approach, and partially to ensure that the validating research team has a vested interest in critically assessing the quality of the validation research.  
 
 
 ## Repository structure
