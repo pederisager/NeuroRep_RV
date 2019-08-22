@@ -5,10 +5,108 @@
   "description": "This repository contains materials and data related to the first component of the NeuroRep project. The goal of this project component is to select a target study for replication based partly on quantitative estimates of the replication value of a large dataset of relevant studies within the social neuroscience literature. A subgoal is to empirically validate the replication value quantification procedure against the intuitive judgement of a sample of researchers within the field.",
   "schemaVersion": "0.1.0",
   "license": "",
-  "author/creator": [
-    "Peder Mortvedt Isager",
-    "Anna van 't Veer",
-    "Tobias Nosten"
+  "author": [
+    {
+      "@type":"Person",
+      "name":"Peder Mortvedt Isager",
+      "CRedIT_role": [
+        "Conceptualization",
+        "Data curation",
+        "Investigation",
+        "Methodology",
+        "Project administration",
+        "Resources",
+        "Software",
+        "Supervision"
+      ],
+      "CRediT_details":"Lead investigator. Involved in goal A, B, C, and D. Involved in supervision of junior collaborators from TU/e and Leiden."
+    },
+    {
+      "@type":"Person",
+      "name":"Anna van 't Veer",
+      "CRedIT_role": [
+        "Conceptualization",
+        "Data curation",
+        "Methodology",
+        "Project administration",
+        "Resources",
+        "Supervision"
+      ],
+      "CRediT_details":"Project supervisor and part of main author team. Involved in goal A, B, C, and D. Main supervisor for all all junior collaborators from Leiden"
+    },
+    {
+      "@type":"Person",
+      "name":"Daniël Lakens",
+      "CRedIT_role": [
+        "Conceptualization",
+        "Funding acquisition",
+        "Methodology",
+        "Project administration",
+        "Supervision"
+      ],
+      "CRediT_details":"Project supervisor and part of main author team. PhD supervisor of lead investigator. Supervisor for all collaborators from TU/e. Involved in goal A, B, C, and D."
+    },
+    {
+      "@type":"Person",
+      "name":"Tobias Nosten",
+      "CRedIT_role": [
+        "Conceptualization",
+        "Data curation",
+        "Supervision"
+      ],
+      "CRediT_details":"Collected data for goal A. Participated in lab meetings related to study Conceptualization. Supervised training of Els Janson."
+    },
+    {
+      "@type":"Person",
+      "name":"Els Janson",
+      "CRedIT_role": [
+        "Data curation"
+      ],
+      "CRediT_details":"Collected data for goal A."
+    },
+    {
+      "@type":"Person",
+      "name":"Elaine Herkul",
+      "CRedIT_role": [
+        "Data curation"
+      ],
+      "CRediT_details":"Collected data for goal A."
+    },
+    {
+      "@type":"Person",
+      "name":"Giulia Murgia",
+      "CRedIT_role": [
+        "Data curation"
+      ],
+      "CRediT_details":"Collected data for goal A."
+    },
+    {
+      "@type":"Person",
+      "name":"Tobias van Beekhuizen",
+      "CRedIT_role": [
+        "Conceptualization"
+      ],
+      "CRediT_details":"Participated in lab meetings related to study Conceptualization. Master student project under Anna van t' Veer."
+    },
+    {
+      "@type":"Person",
+      "name":"Jari Burgers",
+      "CRedIT_role": [
+        "Data curation",
+        "Formal analysis",
+        "Investigation"
+      ],
+      "CRediT_details":"Participated in lab meetings related to study Conceptualization. Collected and analyzed bibliometrics data for goal A and B, including citation counts from several sources and classification data from Scite. Bachelor student project under Daniël Lakens and Peder Mortvedt Isager"
+    },
+    {
+      "@type":"Person",
+      "name":"Thed van Leeuwen",
+      "CRedIT_role": [
+        "Conceptualization",
+        "Data curation"
+      ],
+      "CRediT_details":"Advisory collaborator and contact person at CWTS. Participated in lab meetings related to study Conceptualization. Collected bibliometrics data, including citation cluster information related to goal A and B."
+    },
   ],
   "citation": "",
   "funder": "",
