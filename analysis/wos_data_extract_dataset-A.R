@@ -76,7 +76,19 @@ set.seed(030142019)
 
 indexes <- sort(sample(nrow(data.filt), 1000))  # define a set of random indexes to include in dataset A
 datasetA <- data.filt[indexes, ]  # Extract rows based on indexes
-datasetA_sparse <- datasetA[, c("AU", "TI", "PY", "DI", "UT")]
+datasetA_sparse <- datasetA[, c("AU", "TI", "PY", "DI", "UT")]  # make a sparse version of the dataset for manual coding purposes
 
 write.table(file = "../processed_data/dataset_A.tsv", sep = "\t", x = datasetA, row.names = FALSE)
-write.table(file = "../processed_data/dataset_A_coded.tsv", sep = "\t", x = datasetA_sparse, row.names = FALSE)
+write.table(file = "../processed_data/dataset_A_sparse.tsv", sep = "\t", x = datasetA_sparse, row.names = FALSE)
+
+## Append 500 additional random records to A from the keyword-filtered data to make up for missing data in the first set:
+
+indexes_500 <- sort(sample(c(1:nrow(data.filt))[-indexes], 500))  ## define a set of random indexes not already included in the "indexes" variable
+
+datasetA <- data.filt[c(indexes, indexes_500), ]  # Extract rows based on indexes and indexes_500
+datasetA_sparse <- datasetA[, c("AU", "TI", "PY", "DI", "UT")]  # make a sparse version of the dataset for manual coding purposes
+datasetA_added500 <- data.filt[c(indexes_500), c("AU", "TI", "PY", "DI", "UT")]
+
+write.table(file = "../processed_data/dataset_A.tsv", sep = "\t", x = datasetA, row.names = FALSE)
+write.table(file = "../processed_data/dataset_A_sparse.tsv", sep = "\t", x = datasetA_sparse, row.names = FALSE)
+write.table(file = "../processed_data/dataset_A_added500.tsv", sep = "\t", x = datasetA_added500, row.names = FALSE)
