@@ -35,4 +35,12 @@ Because there is no validator app for the specification yet, we cannot at this t
 
 ## Related documents and records located elsewhere
 
-Google Drive directory containing various project-related documents: https://drive.google.com/drive/folders/1ejlPhI0h6l5Akk7lo_z187IWEqyCfZdc?usp=sharing (link grants read access)
+### Google Drive directory
+Contains various project-related documents:
+https://drive.google.com/drive/folders/1ejlPhI0h6l5Akk7lo_z187IWEqyCfZdc?usp=sharing (link grants read access)
+
+### BA project - Jari Burgers
+Citation Counts as a Measure of Scientific Impact. The project investigated the stability of citation count rank order across different sources.
+
+* Preprint: https://thesiscommons.org/y9r7c/
+* Data & materials: https://osf.io/b87de/
