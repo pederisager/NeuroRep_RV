@@ -1,0 +1,184 @@
+{
+  "@type":  "Dataset",
+  "@context": "https://schema.org/",
+  "name": "CWTS citation cluster data",
+  "description": "This dataset contains bibliometric and citation cluster data from the Centre for Science and Technology Studies (cwts.nl) database. Citations are clustered by co-citation in referencing articles",
+  "schemaVersion": "Psych-DS 0.1.0",
+  "license": "",
+  "creator": [
+    {
+      "@type":"Person",
+      "name":"Thed van Leeuwen",
+      "CRedIT_role": [
+        "Conceptualization",
+        "Data curation"
+      ],
+      "CRediT_details":"Advisory collaborator and contact person at CWTS. Participated in lab meetings related to study Conceptualization. Collected bibliometrics data, including citation cluster information related to goal A and B."
+    }
+  ],
+  "citation": "",
+  "funder": "",
+  "url": "",
+  "sameAs": "",
+  "variableMeasured": [
+    {
+    "@type": "PropertyValue",
+    "name": "UT",
+    "description": "WoS Unique identifier"
+    },
+        {
+    "@type": "PropertyValue",
+    "name": "label",
+    "description": "Custom label used for search in database. Constant across records."
+  },
+  {
+"@type": "PropertyValue",
+"name": "author_first",
+"description": "Author 1 of the publication"
+},
+{
+"@type": "PropertyValue",
+"name": "author_et_al",
+"description": "all other authors"
+},
+{
+"@type": "PropertyValue",
+"name": "institute_first",
+"description": "Institute 1 on the publication"
+},
+{
+"@type": "PropertyValue",
+"name": "institute_et_al",
+"description": "all other institutes"
+},
+{
+"@type": "PropertyValue",
+"name": "title",
+"description": "Title of the manuscript"
+},
+{
+"@type": "PropertyValue",
+"name": "source",
+"description": "Title of the journal"
+},
+{
+"@type": "PropertyValue",
+"name": "source_abbr",
+"description": "abbreviation of the journal name"
+},
+{
+"@type": "PropertyValue",
+"name": "pub_year",
+"description": "Publication year"
+},
+{
+"@type": "PropertyValue",
+"name": "volume",
+"description": "journal volume"
+},
+{
+"@type": "PropertyValue",
+"name": "issue",
+"description": "journal issue"
+},
+{
+"@type": "PropertyValue",
+"name": "pages",
+"description": "page range"
+},
+{
+"@type": "PropertyValue",
+"name": "doi",
+"description": "Digital Object Identifier"
+},
+{
+"@type": "PropertyValue",
+"name": "doc_type",
+"description": "Document type"
+},
+{
+"@type": "PropertyValue",
+"name": "cluster_id1",
+"description": "Cluster ID for the lowest level of clustering"
+},
+{
+"@type": "PropertyValue",
+"name": "n_pubs",
+"description": "Number of publications in the cluster"
+},
+{
+"@type": "PropertyValue",
+"name": "label1",
+"description": "cluster-defining label"
+},
+{
+"@type": "PropertyValue",
+"name": "label2",
+"description": "cluster-defining label"
+},
+{
+"@type": "PropertyValue",
+"name": "label3",
+"description": "cluster-defining label"
+},
+{
+"@type": "PropertyValue",
+"name": "label4",
+"description": "cluster-defining label"
+},
+{
+"@type": "PropertyValue",
+"name": "label5",
+"description": "cluster-defining label"
+},
+{
+"@type": "PropertyValue",
+"name": "cwts_sc_no",
+"description": "Subject category number"
+},
+{
+"@type": "PropertyValue",
+"name": "weight",
+"description": "how many categoreis were attached"
+},
+{
+"@type": "PropertyValue",
+"name": "primary_sc",
+"description": "The primary JSC"
+},
+{
+"@type": "PropertyValue",
+"name": "sc",
+"description": "Subject category"
+},
+{
+"@type": "PropertyValue",
+"name": "mcs",
+"description": "Mean Citation Score"
+},
+{
+"@type": "PropertyValue",
+"name": "mncs",
+"description": "Mean Normalzized Citation Score, compared to the field(s) to which the paper belongs (here, the cluster)"
+},
+{
+"@type": "PropertyValue",
+"name": "mnjs",
+"description": "Mean Normalized Journal Score (the CWTS equivalent of the JIF, but solving the issue sof the JIF)."
+},
+{
+"@type": "PropertyValue",
+"name": "pp_top_10%",
+"description": "Belongs the paper to the top 10% of the most highly cited publications in the field(s) to which the paper belongs."
+}
+  ],
+  "keywords": [
+    "CWTS",
+    "citation clusters",
+    "bibliometrics"
+  ],
+  "temporalCoverage": "2009/2018",
+  "spatialCoverage": "",
+  "datePublished": "",
+  "dateCreated": "2019-01-24",
+}
