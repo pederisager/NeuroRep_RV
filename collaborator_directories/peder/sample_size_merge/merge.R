@@ -1,27 +1,30 @@
-setwd("c://Users/20176239/Desktop/sample_size_merge/")
+setwd("C:/Users/20176239/Dropbox/jobb/PhD/Projects/2019_NeuroRep_Replication_Value/collaborator_directories/peder/sample_size_merge")  # Change path to local version of this git repo
 
 jvb <- read.csv("JvB_complete_dataset_A_neuro.csv", header = T, stringsAsFactors = F)
 rvb <- read.csv("RvB_complete_dataset_A_neuro.csv", header = T, stringsAsFactors = F)
 gm <- read.csv("dataset_A_coded.csv", header = T, stringsAsFactors = F)[]
 
-data <- read.csv("all_data.csv", header = T, stringsAsFactors = F)
-
-data_old <- read.csv("dataset_A_old.tsv", header = T, sep =  "\t")
 
 
-
-#check if all studies in data_old are in data
-
-sum(!(data_old$UT %in% data$UT))  # 295 articles in the old data not in the new data for some reason.
-
-data[!(data$UT %in% data_old$UT),] # OBS!! WOS number gone likely due to overwrite. Also: Study flagged for exclusion with no comment.
-
-missing <- data_old[!(data_old$UT %in% data$UT),]  # the missing records in the new data
-
-length(unique(data_old$UT))
-length(unique(data$UT))
-
-sum(data$study_number==4)
+# Old checks (data fixed and no longer available)
+  # data <- read.csv("all_data_excel_copy_errors.csv", header = T, stringsAsFactors = F)
+  # 
+  # data_old <- read.csv("dataset_A_old.tsv", header = T, sep =  "\t")
+  # 
+  # 
+  # 
+  # #check if all studies in data_old are in data
+  # 
+  # sum(!(data_old$UT %in% data$UT))  # 295 articles in the old data not in the new data for some reason.
+  # 
+  # data[!(data$UT %in% data_old$UT),] # OBS!! WOS number gone likely due to overwrite. Also: Study flagged for exclusion with no comment.
+  # 
+  # missing <- data_old[!(data_old$UT %in% data$UT),]  # the missing records in the new data
+  # 
+  # length(unique(data_old$UT))
+  # length(unique(data$UT))
+  # 
+  # sum(data$study_number==4)
 
 
 # fix JvB's data
@@ -81,7 +84,9 @@ x[duplicated(x$UT),] # DOIs that were destroyed by Excel instead of copied. Stup
 
 # Fixing copy errors from Excel manually in all_data_excel_copy_errors_fixed
 
-all_data_fixed <- read.csv("all_data_excel_copy_errors_fixed.csv", header = T, sep =  ",")
+## Fixing manually
+
+all_data_fixed <- read.csv("all_data_excel_copy_errors_fixed.csv", header = T, sep =  ",")  # loading fixed data
 
 length(unique(all_data_fixed$UT)) - length(unique(all_data_fixed$DI))  # No discrepancy after manual fix
 
@@ -90,3 +95,4 @@ length(unique(all_data_fixed$UT)) - length(unique(all_data_fixed$DI))  # No disc
 length(unique(
   (all_data_fixed[all_data_fixed$sample_size != "", c("DI", "sample_size")])$DI)
 )
+
