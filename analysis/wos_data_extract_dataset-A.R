@@ -85,10 +85,11 @@ write.table(file = "../processed_data/dataset_A_sparse.tsv", sep = "\t", x = dat
 
 indexes_500 <- sort(sample(c(1:nrow(data.filt))[-indexes], 500))  ## define a set of random indexes not already included in the "indexes" variable
 
-datasetA <- data.filt[c(indexes, indexes_500), ]  # Extract rows based on indexes and indexes_500
+datasetA <- data.filt[c(indexes, indexes_500), -1]  # Extract rows based on indexes and indexes_500
 datasetA_sparse <- datasetA[, c("AU", "TI", "PY", "DI", "UT")]  # make a sparse version of the dataset for manual coding purposes
 datasetA_added500 <- data.filt[c(indexes_500), c("AU", "TI", "PY", "DI", "UT")]
 
 write.table(file = "../processed_data/dataset_A.tsv", sep = "\t", x = datasetA, row.names = FALSE)
+saveRDS(object = datasetA, file = "../processed_data/dataset_A.rds")  # rds version of this data needed due to file encoding issues with the .tsv file
 write.table(file = "../processed_data/dataset_A_sparse.tsv", sep = "\t", x = datasetA_sparse, row.names = FALSE)
 write.table(file = "../processed_data/dataset_A_added500.tsv", sep = "\t", x = datasetA_added500, row.names = FALSE)
