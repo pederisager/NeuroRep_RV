@@ -38,38 +38,12 @@ data.A.filt$RV <- (data.A.filt$TC / (current.year-data.A.filt$PY) ) / (data.A.fi
 
 # Sample 250 rows randomly from dataset A to generate dataset B
 
-set.seed(11012019)  # Set seed to ensure reproducibility
+set.seed(11282019)  # Set seed to ensure reproducibility
 sample.rows <- sample(x = nrow(data.A.filt), size = 250, replace = F)
 data.B <- data.A.filt[sample.rows,]
 
 
-
-# Summarize dataset B
-
-## summary of key variables
-
-key.vars <- c("PY", "study_number", "sample_size", "coder", "resolver", "excluded", "TC", "RV")
-
-summary(data.B[, key.vars])
-
-## visualization of key variables
-
-coder.freq <- table(data.B$coder)
-barplot(coder.freq, xlab = "Coder")  # Plot frequency of coders 
-
-studyn.freq <- table(data.B$study_number)
-barplot(studyn.freq, xlab = "Study number")  # Plot frequency of study numbers (first vs. second vs. fourth etc.)
-
-pubyear.freq <- table(data.B$PY)
-barplot(pubyear.freq, xlab = "Publication year")  # Plot frequency of publication years
-
-hist(data.B$sample_size, breaks = 50, xlab = "Sample size", main = "")  # Plot sample size distribution
-
-hist(data.B$TC, breaks = 50, xlab = "Citation count (WoS)", main = "")  # Plot citation count distribution
-
-hist(data.B$RV, breaks = 50, xlab = "Replication value (C/Y)/(N-3)", main = "")  # Plot replication value distribution
-
 # Save dataset B in processed_data/
 
 write.table(file = "../processed_data/dataset_B.tsv", sep = "\t", x = data.B, row.names = FALSE)
-saveRDS(object = datasetA, file = "../processed_data/dataset_B.rds")  # rds version of this data needed due to file encoding issues with the .tsv file
+saveRDS(object = data.B, file = "../processed_data/dataset_B.rds")  # rds version of this data needed due to file encoding issues with the .tsv file
