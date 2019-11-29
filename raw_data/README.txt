@@ -15,5 +15,9 @@ Decisions made'(by Peder):
 - Any row with a coder_comment not addressed by AV I will resolve myself. For these I will substitute my identifier (PI) with the AV resolver identifier. As long as the coder comment concerns whether the article is "social" or whether the study population is feasible, I will follow ATs principle and resolve they should be included.
 - 1 exception made regarding previous point. I decided to exclude a study where the study population were non-human (cats - 10.1016/j.jneumeth.2013.12.012).
 
+- dataset_A_data: Final version of dataset A, all relevant variables included.
+
+- dataset_A_data_codebook: Codebook for all variables/column headers in dataset_A_data.[rds|tsv]
 
 - dataset_B_main-finding_coded: all records of dataset B with main finding information coded.
+
