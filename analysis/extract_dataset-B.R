@@ -17,6 +17,9 @@ data.A <- merge(data.A.coded, data.A.wos[, !names(data.A.wos) %in% c("AU", "TI",
 data.A$excluded[is.na(data.A$excluded)] <- 0
 data.A.filt <- data.A[data.A$excluded != 1,]
 
+## Filter out records from 2019 - for these records, bibliometric info would not be accurate
+data.A.filt <- data.A[data.A$PY != 2019,]
+
 ## Reformat key columns
 data.A.filt$study_number <- as.factor(data.A.filt$study_number)
 data.A.filt$coder <- as.factor(data.A.filt$coder)
