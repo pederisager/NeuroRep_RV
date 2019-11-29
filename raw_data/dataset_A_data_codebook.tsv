@@ -1,0 +1,78 @@
+variable	description
+UT	Accession Number
+AU	Authors
+TI	Document Title
+PY	Year Published
+DI	Digital Object Identifier (DOI)
+exclusion_flagged	Flagged for exclusion by the person coding sample size
+study_number	"Study number, ordered from first to last, where 1=1st study and so on. The number of studies is defined as the number of unique samples reported in the methods and results. For documents with multiple studies, each study has at least a partially unique sample set."
+sample_size	The sample size coded for each study.
+coder	The coder ID of the person coding the sample size for the corresponding study.
+coder_comment	Comments provided by the sample size coder.
+resolver	Person assigned to resolve coder comments and flagged exclusions.
+resolver_comment	Comments provided by the assigned resolver.
+excluded	Decision by resolver of whether to exclude record based on coder comment. 1=excluded.
+BA	Book Authors
+BE	Editors
+GP	Book Group Authors
+AF	Author Full Name
+BF	Book Authors Full Name
+CA	Group Authors
+SO	Publication Name
+SE	Book Series Title
+BS	Book Series Subtitle
+LA	Language
+DT	Document Type
+CT	Conference Title
+CY	Conference Date
+CL	Conference Location
+SP	Conference Sponsors
+HO	Conference Host
+DE	Author Keywords
+ID	Keywords Plus®
+AB	Abstract
+C1	Author Address
+RP	Reprint Address
+EM	E-mail Address
+RI	ResearcherID Number
+OI	ORCID Identifier (Open Researcher and Contributor ID)
+FU	Funding Agency and Grant Number
+FX	Funding Text
+CR	Cited References
+NR	Cited Reference Count
+TC	Web of Science Core Collection Times Cited Count
+Z9	"Total Times Cited Count (Web of Science Core Collection, BIOSIS Citation Index, Chinese Science Citation Database, Data Citation Index, Russian Science Citation Index, SciELO Citation Index)"
+U1	Usage Count (Last 180 Days)
+U2	Usage Count (Since 2013)
+PU	Publisher
+PI	Publisher City
+PA	Publisher Address
+SN	International Standard Serial Number (ISSN)
+EI	Electronic International Standard Serial Number (eISSN)
+BN	International Standard Book Number (ISBN)
+J9	29-Character Source Abbreviation
+JI	ISO Source Abbreviation
+PD	Publication Date
+VL	Volume
+IS	Issue
+PN	Part Number
+SU	Supplement
+SI	Special Issue
+MA	Meeting Abstract
+BP	Beginning Page
+EP	Ending Page
+AR	Article Number
+D2	Book Digital Object Identifier (DOI)
+EA	Early access date
+EY	Early access year
+PG	Page Count
+WC	Web of Science Categories
+SC	Research Areas
+GA	Document Delivery Number
+PM	PubMed ID
+OA	Open Access Indicator
+HC	ESI Highly Cited Paper. Note that this field is valued only for ESI subscribers.
+HP	ESI Hot Paper. Note that this field is valued only for ESI subscribers.
+DA	Date this report was generated.
+source	"the search strategy that identified this document. ""searchterm"" refers to documents that were identified through search for relevant terms in Web of Science. ""journal"" refers to records included in either of the five social neuroscience journals."
+file	the name of the file in source_data/metadata_WoS/ that contains the information about this document.
