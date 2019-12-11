@@ -19,5 +19,7 @@ Decisions made'(by Peder):
 
 - dataset_A_data_codebook: Codebook for all variables/column headers in dataset_A_data.[rds|tsv]
 
+- dataset_B_data: Final version of dataset B, all relevant variables included.
+
 - dataset_B_main-finding_coded: all records of dataset B with main finding information coded.
 
