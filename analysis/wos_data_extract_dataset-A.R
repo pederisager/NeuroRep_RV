@@ -1,4 +1,4 @@
-data <- readRDS("../processed_data/metadata_WoS/wos_all_records_data.Rds")
+data <- readRDS("../processed_data/wos_all_records_data+cwts_open_access.Rds") # read wos data with open access data from CWTS included
 
 
 # Make a word cloud of the 200 most commonly mentioned keywords ####
