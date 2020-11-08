@@ -76,3 +76,28 @@ HP	ESI Hot Paper. Note that this field is valued only for ESI subscribers.
 DA	Date this report was generated.
 source	"the search strategy that identified this document. ""searchterm"" refers to documents that were identified through search for relevant terms in Web of Science. ""journal"" refers to records included in either of the five social neuroscience journals."
 file	the name of the file in source_data/metadata_WoS/ that contains the information about this document.
+crossref_citations	"Crossref citation counts, downloaded 2020-10-30"
+scopus_citations	"Scopus citation counts, downloaded 2020-10-30"
+altmetric_score	"Altmetric score, downloaded 2020-10-30"
+TC_2020	"Web of Science Core Collection Times Cited Count, updated 2020-11-07"
+cluster_id1	CWTS cluster ID for the primary cluster to which the article belongs
+n_pubs	Number of publications in the primary cluster to which the article belongs
+label1	Descriptive label for the primary cluster to which the article belongs
+label2	Descriptive label for the primary cluster to which the article belongs
+label3	Descriptive label for the primary cluster to which the article belongs
+label4	Descriptive label for the primary cluster to which the article belongs
+label5	Descriptive label for the primary cluster to which the article belongs
+tcs	"CWTS citation counts - excluding self-citations, downloaded 2020-10-28"
+mcs	"Identical to ""tcs"" since scores are calculated for individual articles."
+tncs	"CWTS citation impact of article relative to the primary cluster to which the article belongs. The score represents how many more times the article is cited relative to the average citation count of an article in its cluster. I.e. An article that is cited 10 times, and that belongs to a cluster in which articles are cited 4 times on average, will receive a tncs score of 10/4=2.5"
+mncs	"Identical to ""tncs"" since scores are calculated for individual articles."
+mnjs	"Identical to ""tcs"" since scores are calculated for individual articles."
+pp_top_perc	"Proportion of Journal Subject Categories to which the article belongs, in which the article is among the top ten percent most highly cited. For example, if an article belongs to 4 Journal Subject Categories, and is among the top ten most highly cited in 2 of those categories, it's pp_top_perc score would be 2/4=0.5."
+pp_uncited	"Binary. Is ""tcs"" citation counts for the article equal to 0? 1=yes, 0=no"
+prop_self_cits	"The proportion of the ""tcs"" citation counts that are self-citations"
+int_cov	
+p_oa	"Binary. Is the article open access? 1=yes, 0=no"
+p_oa_gold	"Binary. Is the article gold open access? 1=yes, 0=no"
+p_oa_bronze	"Binary. Is the article bronze open access? 1=yes, 0=no"
+p_oa_hybrid	"Binary. Is the article record hybrid open access? 1=yes, 0=no"
+p_oa_green	"Binary. Is the article green open access? 1=yes, 0=no"

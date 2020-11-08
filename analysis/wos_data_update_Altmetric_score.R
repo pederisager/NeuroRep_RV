@@ -25,5 +25,5 @@ for (i in 1:nrow(data)) {
 }
 
 # Save data
-saveRDS(file = "wos_all_records_data.Rds", object = data)
-write.table(x = data, file = "wos_all_records_data.tsv", sep = "\t", row.names = F)
+saveRDS(file = "../processed_data/metadata_WoS/wos_all_records_data.Rds", object = data)
+write.table(x = data, file = "../processed_data/metadata_WoS/wos_all_records_data.tsv", sep = "\t", row.names = F)

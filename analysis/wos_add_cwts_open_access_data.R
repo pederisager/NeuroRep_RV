@@ -1,22 +1,54 @@
 
+#### NEW ####
+
 # load data to be merged
+
 wos.data <- readRDS("../processed_data/metadata_WoS/wos_all_records_data.Rds")
-thed.data <- read.csv("../raw_data/source_data/metadata_CWTS/OA_data_from_Thed_for_all_wos_records.csv", header = T)
 
-# check that UT column is identical across datasets
-names(thed.data)
-thed.wos.data <- thed.data[,names(thed.data)[-(71:75)]]
-comp <- thed.wos.data$UT == wos.data$UT
-summary(comp)
+cwts.clusters <- read.csv("../raw_data/CWTS_cluster_information.csv")
+cwts.metrics <- read.csv("../raw_data/CWTS_research_metrics.csv")
+cwts.oa.status <- read.csv("../raw_data/CWTS_open_access_information.csv")
 
-# select data to be extracted
-cwts.oa.data <- thed.data[,c("p_oa", "p_oa_gold", "p_oa_bronze", "p_oa_hybrid", "p_oa_green")]
 
-#merge oa data with wos data
-wos.cwts.merged <- cbind(wos.data, cwts.oa.data)
+# convert string percentages to numeric proportions in cwts.metrics
 
-# check that UT and open access info matches up with thed.data
-summary(wos.cwts.merged[,c("UT", "p_oa", "p_oa_gold", "p_oa_bronze", "p_oa_hybrid", "p_oa_green")] == thed.data[,c("UT", "p_oa", "p_oa_gold", "p_oa_bronze", "p_oa_hybrid", "p_oa_green")])
+## replace "NULL" with NA
+for (i in 1:ncol(cwts.metrics)) {
+  cwts.metrics[cwts.metrics[,i]=="NULL",i] <- NA
+}
 
-#save as RDS file
-saveRDS(wos.cwts.merged, "../processed_data/wos_all_records_data+cwts_open_access.Rds")
+## Convert percentages to proportions
+for (i in 6:ncol(cwts.metrics)) {
+  cwts.metrics[,i] <- as.numeric(sub("%", "", cwts.metrics[,i]))/100
+}
+
+cwts.metrics$tcs <- as.numeric(cwts.metrics$tcs)
+cwts.metrics$mcs <- as.numeric(cwts.metrics$mcs)
+
+
+# Organize CWTS data for merging
+
+cwts.clusters <- cwts.clusters[, -1]
+names(cwts.clusters)[1] <- "UT"
+cwts.clusters <- unique(cwts.clusters)
+
+cwts.metrics <- cwts.metrics[, -c(1, 3)]
+names(cwts.metrics)[1] <- "UT"
+
+cwts.oa.status <- cwts.oa.status[, -c(1, 3, 4)]
+names(cwts.oa.status)[1] <- "UT"
+cwts.oa.status <- unique(cwts.oa.status)
+
+
+# Merge
+
+data <- merge(wos.data, cwts.clusters, by = "UT", all.x = T)
+data <- merge(data, cwts.metrics, by = "UT", all.x = T)
+data <- merge(data, cwts.oa.status, by = "UT", all.x = T)
+
+
+# Save output
+
+saveRDS(data, "../processed_data/wos+cwts_all_records_data.Rds")
+write.csv(data, "../processed_data/wos+cwts_all_records_data.csv", row.names = FALSE)
+
