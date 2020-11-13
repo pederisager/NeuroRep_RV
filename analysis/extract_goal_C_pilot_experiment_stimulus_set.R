@@ -69,3 +69,4 @@ data.C.pilot <- select(data.C.pilot,
 
 # Save data
 
+write.csv(x = data.C.pilot, file = "../processed_data/dataset_C_pilot_data.csv", row.names = F)
