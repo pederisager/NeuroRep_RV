@@ -95,9 +95,19 @@ mnjs	"Identical to ""tcs"" since scores are calculated for individual articles."
 pp_top_perc	"Proportion of Journal Subject Categories to which the article belongs, in which the article is among the top ten percent most highly cited. For example, if an article belongs to 4 Journal Subject Categories, and is among the top ten most highly cited in 2 of those categories, it's pp_top_perc score would be 2/4=0.5."
 pp_uncited	"Binary. Is ""tcs"" citation counts for the article equal to 0? 1=yes, 0=no"
 prop_self_cits	"The proportion of the ""tcs"" citation counts that are self-citations"
-int_cov	
+int_cov	"From CWTS: This was developed as an indicator of the fit of applying research metrics in research evaluation procedures. The working hypothesis is that the higher the int_cov, the more relevant is the literature in WoS for the scholarly communication a paper belongs to, e.g. in a certain field (so int_cov is normally very high, up to >80% in life, natural, and biomedical sciences, and high in psychology and the cognitive sciences >70%). Vice versa, if the int_cov is low, the adequacy of research metrics is research assessment contexts is relatively poor (e.g., in law, political science, all of the humanities)."
 p_oa	"Binary. Is the article open access? 1=yes, 0=no"
 p_oa_gold	"Binary. Is the article gold open access? 1=yes, 0=no"
 p_oa_bronze	"Binary. Is the article bronze open access? 1=yes, 0=no"
 p_oa_hybrid	"Binary. Is the article record hybrid open access? 1=yes, 0=no"
 p_oa_green	"Binary. Is the article green open access? 1=yes, 0=no"
+sample_size_orig	Sample size as coded by the original (BA student) coder.
+sample_size_BA	"Sample size, double-coded by a BA student coder."
+sample_size_PhD	"Sample size, double-coded by a PhD student coder (project lead)."
+sample_size_final	The final sample size after PhD coder resolved disagreements between coders
+matches_orig_BA	"Binary variable denoting equality between the sample sizes coded by original coder and BA double-coder (1=""equal"", 0=""different"")"
+matches_orig_PhD	"Binary variable denoting equality between the sample sizes coded by original coder and PhD double-coder (1=""equal"", 0=""different"")"
+matches_BA_PhD	"Binary variable denoting equality between the sample sizes coded by BA double-coder and PhD double-coder (1=""equal"", 0=""different"")"
+matches_all	"Binary variable denoting equality between the sample sizes coded by all three coders (1=""equal"", 0=""at least one different"")"
+irr_resolver	Person assigned to resolve disagreements between sample size coders.
+irr_resolver_comment	Comments provided by the person assigned to resolve disagreements between sample size coders.
