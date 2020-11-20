@@ -87,10 +87,10 @@ label2	Descriptive label for the primary cluster to which the article belongs
 label3	Descriptive label for the primary cluster to which the article belongs
 label4	Descriptive label for the primary cluster to which the article belongs
 label5	Descriptive label for the primary cluster to which the article belongs
-tcs	"CWTS citation counts - excluding self-citations, downloaded 2020-10-28"
-mcs	"Identical to ""tcs"" since scores are calculated for individual articles."
-tncs	"CWTS citation impact of article relative to the primary cluster to which the article belongs. The score represents how many more times the article is cited relative to the average citation count of an article in its cluster. I.e. An article that is cited 10 times, and that belongs to a cluster in which articles are cited 4 times on average, will receive a tncs score of 10/4=2.5"
-mncs	"Identical to ""tncs"" since scores are calculated for individual articles."
+tcs	"Total Citation Score. CWTS citation counts - excluding self-citations, downloaded 2020-10-28"
+mcs	"Mean Citation Score. Identical to ""tcs"" since scores are calculated for individual articles."
+tncs	"Total Normalized Citation Score. CWTS citation impact of article relative to the primary cluster to which the article belongs. The score represents how many more times the article is cited relative to the average citation count of an article in its cluster. I.e. An article that is cited 10 times, and that Mean Normalized Citation Score. belongs to a cluster in which articles are cited 4 times on average, will receive a tncs score of 10/4=2.5"
+mncs	"Mean Normalized Citation Score. Identical to ""tncs"" since scores are calculated for individual articles."
 mnjs	"Identical to ""tcs"" since scores are calculated for individual articles."
 pp_top_perc	"Proportion of Journal Subject Categories to which the article belongs, in which the article is among the top ten percent most highly cited. For example, if an article belongs to 4 Journal Subject Categories, and is among the top ten most highly cited in 2 of those categories, it's pp_top_perc score would be 2/4=0.5."
 pp_uncited	"Binary. Is ""tcs"" citation counts for the article equal to 0? 1=yes, 0=no"
