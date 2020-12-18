@@ -48,9 +48,23 @@ df.out$matches_all <- matches[,1]*matches[,2]
 
 df.out$sample_size_final <- ifelse(df.out$matches_all == 1, df.out$sample_size_orig, NA)
 
+## Load data file with resolved discrepancies and final sample size
+
+df.resolved <- read.csv(file = "../raw_data/dataset_B_inter_rater_reliability_discrepancies_resolved_by_PhD.tsv",
+                        header = TRUE, 
+                        sep = "\t")
+
+df.out <- merge(df.out[, -91], df.resolved[, c("UT", "sample_size_final", "irr_resolver", "irr_resolver_comment")], by = "UT")  # add final sample size back into df.out after manually resolving coder disagreements.
+
 ## Save output dataset to file
 
+write.table(x = df.out, 
+            file = "../processed_data/dataset_B_inter_rater_reliability.tsv", 
+            sep = "\t", 
+            row.names = FALSE)
 
+saveRDS(object = df.out, 
+        file = "../processed_data/dataset_B_inter_rater_reliability.Rds")
 
 
 # Calculate inter-rater reliability
@@ -65,7 +79,23 @@ BA.PhD.match <- sum(df.out$matches_BA_PhD)/nrow(df.out)
 
 ICC(df.out[, c("sample_size_orig", "sample_size_BA", "sample_size_PhD")])
 
-## Plot correspondence between coders
+## Discrepancies between each coder and the final sample size
+cor(df.out$sample_size_orig, df.out$sample_size_final)
+sum(df.out$sample_size_orig == df.out$sample_size_final)/250  # count number of times coder agreed with final sample size 
+sum(df.out[df.out$matches_all==0,]$sample_size_orig == df.out[df.out$matches_all==0,]$sample_size_final)/sum(df.out$matches_all==0)  # count number of times this coder was right when someone was wrong
+plot(df.out[sample_size_final], df.out$sample_size_orig, log = "xy")
+
+cor(df.out$sample_size_BA, df.out$sample_size_final)
+sum(df.out$sample_size_BA == df.out$sample_size_final)/250  # count number of times coder agreed with final sample size 
+sum(df.out[df.out$matches_all==0,]$sample_size_BA == df.out[df.out$matches_all==0,]$sample_size_final)/sum(df.out$matches_all==0)  # count number of times this coder was right when someone was wrong
+plot(df.out$sample_size_final, df.out$sample_size_BA, log = "xy")
+
+cor(df.out$sample_size_PhD, df.out$sample_size_final)
+sum(df.out$sample_size_PhD == df.out$sample_size_final)/250  # count number of times coder agreed with final sample size 
+sum(df.out[df.out$matches_all==0,]$sample_size_PhD == df.out[df.out$matches_all==0,]$sample_size_final)/sum(df.out$matches_all==0)  # count number of times this coder was right when someone was wrong
+plot(df.out$sample_size_final, df.out$sample_size_PhD, log = "xy")
+
+# Plot correspondence between coders
 
 df.plot <- rbind(df.BA, df.PhD)
 df.plot$orig_sample_size <- c(df.orig$sample_size, df.orig$sample_size)
