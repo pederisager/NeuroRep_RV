@@ -24,7 +24,7 @@ data.A <- data.A[-exclude,]  # Remove excluded studies
 data.A$RV <- (1/data.A$sample_size) * (as.numeric(data.A$TC_2020)/(2020-data.A$PY+1))
 excludeRV <- which(is.na(data.A$RV))
 data.A <- data.A[-excludeRV,] 
-data.A <- data.A[order(-data.A$RV),]  # Order data by RV in descending order
+data.A <- data.A[order(-data.A$RV, data.A$sample_size),]  # Order data by RV in descending order
 
 
 
@@ -61,7 +61,7 @@ data.C.pilot <- rbind(highest, middle, lowest)
 ## Clean data
 
 data.C.pilot <- select(data.C.pilot, 
-                       UT, AU, TI, PY, DI,
+                       UT, AU, TI, PY, DI, study_number,
                        TC_2020, sample_size, 
                        RV_dist_location, RV)
 
