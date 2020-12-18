@@ -1,1 +1,0 @@
-This directory contains PDF files that were manually extracted in cases where the Zotero auto-extraction failed.
