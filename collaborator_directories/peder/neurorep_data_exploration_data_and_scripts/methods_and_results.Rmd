@@ -1,0 +1,299 @@
+---
+title: "Neurorep exploratory analysis"
+author: "Peder M. Isager"
+date: "11/23/2020"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+setwd("C:/Users/peder/Dropbox/jobb/PhD/Projects/2019_NeuroRep_Replication_Value/collaborator_directories/peder/neurorep_data_exploration_data_and_scripts")
+
+library(tidyverse)
+library(psych)
+library(gridExtra)
+library(corrplot)
+library(knitr)
+
+
+
+#### Load and clean data #### 
+
+data.bib <- readRDS("data_bib.Rds")  # Bibliometric data for all articles that survived keyword exclusion
+data.all <- readRDS("data_all.Rds")  # Bibliometric data + sample size of all individual studies selected for sample size coding
+data.irr <- readRDS("data_irr.Rds")  # Sample size inter-rater reliability data for sample of studies selected for triple-coding
+```
+
+# Determining an initial set of candidates
+
+The first step of our procedure was to determine a suitable set of candidate studies given our replication goals. Our research field of interest is social neuroscience, and our methodological interests pertain to fMRI research. We also determined to restrict our candidate set to studies published in the last ten years (later than 2009 at the time this decision was made). Our aim was thus to generate a representative sample of recently published fMRI studies within social neuroscience. In addition, we needed to determine a procedure for excluding studies from our candidate set that we would not be able to replicate (e.g. animal model research, highly invasive methodologies, research on patient groups, etc.). 
+
+We collected all records from the Web of Science database (citation). Because Web of Science does not have a predefined category of ‘Social Neuroscience’ we utilized two strategies for identifying social neuroscience research within the database. One strategy involved scraping all records from field-specific journals listed in the Web of Science. The other strategy involved scraping all records from Web of Science matching the key terms "social" and "fMRI". From the this initial set of records we then excluded a number of records when keyword information suggested the record would be unsuitable as a candidate in our replication effort.
+
+Once a final set of candidate records had been determined, we explored the available bibliographic information to ensure that the sample indeed seemed representative of the field of social neuroscience fMRI research. 
+
+## Methods/Procedure
+
+We identified four journals in the Web of Science database as social neuroscience journals (*list journals*). Empirical articles published in these journals were identified by submitting the following search term to Web of Science: 
+
+[search term]
+
+The search was conducted on YYYY-MM-DD. XXXX records were identified via this search strategy.
+
+Searching field-specific journals is bound to miss many important studies in a field like social neuroscience, since many studies in this field are published in general topic journals like PLOS ONE, PNAS and Neuroimage. To be able to identify such studies and add them to our candidate set, we searched the entire Web of Science database for studies containing the keywords "social" and "fMRI" in either title or abstract. This general keyword combination is combatible with the description of many different topics in social neuroscience fMRI research, even for studies published in general topic journals. 
+
+Empirical articles containing the relevant keyword information were identified by submitting the following search term to Web of Science: 
+
+[search term]
+
+The search was conducted on YYYY-MM.DD. XXXX records were identified via this search strategy.
+
+Unsurprisingly, the two strategies yielded overlapping results, as studies published in social neuroscience journals are likely to contain the keywords "social" and "fMRI". After removing duplicate records, the two search strategies yielded XXXX unique empirical articles in total. These articles were considered our initial canidate set, and basic bibliometric information about each article, including author-provided keywords, were downloaded for all articles in the initial set. 
+
+Author PI and AV subsequently reviewed the 9807 unique author-provided keywords used to describe candidates in the initial set and curated a list of keywords to be used for further exclusion of articles. For example, we excluded all studies containing keywords such as "rats", "canine", "infants", "als", and any other term suggesting that the study would require access to a non-healthy/non-adult/non-human participant population, which would be unfeasible for our replication efforts. The complete records of excluded keywords can be found at [link to osf]. After excluding articles based on keyword information, our final set of candidates contained XXXX empirical articles. 
+
+### Statistical analyses and exploration - summary
+
+To verify that our final candidate set seemed representative of (human) social neuroscience research, we conducted several exploratory analyses of the rich bibliometric information available for each article via Web of Science. We explored the frequency distribution of journal outlets in order to verify that the journals most fequently chosen in our data correspond to popular publication outlets in social fMRI research. We explored the frequency distribution of Web of Science field categories (citation) to verify that categories such as "neurosciences", "social psychology", "psychology" and "multidisciplinary" were prevalent in our data. 
+
+In addition to exploring journal outlets and general field categories, we wanted to ensure that subfields and topics known to be prevalent in social fMRI research (e.g. social pain research [citation], face perception research [citation] and experimental paradigms from behavioral economy such as the dictator game [citation]). To this end, we acquired additional bibliometric information from the Centre for Science and Technology Studies (CWTS, [citation/link]) about prevalent citation clusters in our data (a proxy for scientific subfields contained within a larger research field). A citation cluster is determined by [ask Thed to write a short description on how CWTS determines citation clusters]. We analyzed the distribution of these clusters in our data, and we studied the frequency of category labels used to describe various clusters [ask Thed to write a summary of how these are derived]. Our goal was to verify that subfields and topics expected to be common were in fact freqently mentioned, and that no topic clearly irrelevant to social neuroscience were prominently featured. 
+
+To augment these analyses, we also utilized the statistical visialization software VOSviewer to extract commonly mentioned terms from the titles and abstracts of all studies, and we studied whether terms co-occured in line with our prior knowledge of terminology in different subfields of social neuroscience. All data included in the final dataset were subjected to analysis in VOSviewer with the parameters:
+
+[list VOSviewer parameters and link to map files on OSF]
+
+
+## Results
+
+```{r echo=FALSE}
+
+# Plot journals most frequently published in
+
+jou.freq <- as.data.frame(tail(sort(table(data.bib$SO)), 20))
+levels(jou.freq$Var1) <- sub("PROCEEDINGS OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES OF AMERICA", "PNAS", levels(jou.freq$Var1))
+
+
+g.jou.freq <- ggplot(jou.freq, aes(x = Var1, y = Freq)) +
+  geom_col() +
+  labs(title="Journals most frequently published in",
+       x = NULL,
+       y = "Frequency") +
+  coord_flip() +
+  theme_bw()
+
+## Number of journals in dataset
+
+n.journals <- nrow(unique(select(data.bib, SO)))  
+
+
+# Plot WoS research fields most frequently tagged
+
+field.freq <- as.data.frame(tail(sort(table(data.bib$WC)), 20))
+field.freq <- field.freq[order(-field.freq$Freq),]
+names(field.freq) <- c("field", "frequency")
+
+
+g.field.freq <- ggplot(field.freq, aes(x = field, y = frequency)) +
+  geom_col() +
+  labs(title="WoS research fields most frequently tagged",
+       x = NULL,
+       y = "Frequency") +
+  coord_flip() +
+  theme_bw()
+
+## Number of WoS categories in dataset
+
+n.woscats <- nrow(unique(select(data.bib, WC)))  
+
+
+# Plot most frequent primary cluster labels
+
+labels <- c(data.bib$label1, 
+            data.bib$label2, 
+            data.bib$label3, 
+            data.bib$label4, 
+            data.bib$label5)  # Combine all labels into one string variable
+
+lab.freq <- as.data.frame(tail(sort(table(labels)), 50))  # count prevalence of each string and save 50 most prevalent
+lab.freq <- lab.freq[order(-lab.freq$Freq),]
+names(lab.freq) <- c("label", "frequency")
+
+g.lab.freq <- ggplot(lab.freq, aes(x = label, y = frequency)) +
+  geom_col() +
+  labs(title="Most frequent primary cluster labels",
+       x = NULL,
+       y = "Frequency") +
+  coord_flip() +
+  theme_bw()
+
+n.labels.total <- length(unique(labels))
+
+## Number of unique clusters/subfields contained in set
+
+n.clusters <- nrow(unique(select(data.bib, cluster_id1, n_pubs)))  
+
+
+# Plot distribution of cluster size
+
+clu.siz <- unique(select(data.bib, cluster_id1, n_pubs))
+
+g.clu.siz <- ggplot(clu.siz, aes(x = n_pubs)) +
+  geom_histogram() +
+  labs(title="Number of publications in clusters/subfields",
+       x = "Cluster size",
+       y = "Frequency") +
+  theme_bw()
+
+clu.summary <- describe(data.bib$n_pubs)
+
+```
+
+
+### Distribution of studies over journals
+
+The records included in our dataset was published in `r n.journals` different journals. This is in line with our expectation that social neuroscience is a broad and loosely connected research field with a great number of subfield contained within. 
+
+Figure 1 displays the name and frequency of the 20 journals most frequently published in (*Peder draft note: We could also change this to be a table. Or we could turn the tables below into figures like this. Whatever helps readability the most.*). Unsurprisingly, two of the four journals from which all records were initially scraped were also among the most prominent journals in the final set of studies (Social Cognitive and Affective Neuroscience, and Social Neuroscience). Besides these two, the sample appears to be dominated by journals that are either general topic, (Plos ONE and PNAS) or general neuroscience/psychology (e.g. Neuroimage, Frontiers Psychology, Cortex). The lack of specialist journals in the top end of the frequency distribution is likely due to the fact that these journals only serve a smaller subsection of the larger community of social neuroscientists, while journals like Neuroimage and Plos ONE can, in principle, serve them all. 
+
+```{r, echo=FALSE}
+plot(g.jou.freq)
+```
+
+
+### Distribution of studies over Web of Science categories
+
+The records in our dataset was classified as being members of `r n.woscats` unique Web of Science categories. Table 1 displays the name and frequency of the 20 Web of Science categories most frequently tagged. 
+
+```{r echo=FALSE}
+kable(field.freq, caption = "Journals most frequently published in", row.names = FALSE)
+```
+
+### Citation clusters and frequently co-occuring keywords
+
+Examining bibliometric information from CWTS, we found that the records in our dataset is contained in `r n.clusters` unique citation citation clusters. As shown in Figure 2, the number of articles in each cluster varies substantially (min=`r clu.summary$min`, median=`r clu.summary$median`, max=`r clu.summary$max`).
+
+```{r, echo=FALSE}
+plot(g.clu.siz)
+```
+
+To better understand the scientific topic covered by these citation clusters, we inspected the category labels assigned to each cluster by CWTS. In total, the citation clusters were associated with `r n.labels.total` unique labels. Table 2 displays the frequency of the 50 most frequently mentioned category labels in our data.   
+
+```{r echo=FALSE}
+kable(lab.freq, caption = "Most frequent cluster labels", row.names = FALSE)
+```
+
+To complement the cluster information from CWTS, we utilized the VOSviewer analysis tool to extract topic-related keywords from article titles and abstracts, and analyze co-occurences between these keywords. Figure 3 displays the co-occurence map between commonly mentioned keywords in our dataset. 
+
+![Figure 3: VOSviewer map of title/abstract keyword co-occurences](vosviewer_label_cooccurence.png)
+
+## Discussion
+
+Based on the bibliometric information summarized above, we feel confident that we have successfully managed to sample articles from human social fMRI research. Journals common in the field of social neuroscience are also frequent within our data. The Web of Science category distribution is similarly consistent with what we would expect from studies sampled from social neuroscience research, with categories such as "Neurosciences; Psychology; Psychology, Experimental" and "Multidisciplinary Sciences" being among the most common. On the other hand, it is somewhat surprising that categories such as "Psychology, Social" and "Neuroimaging" are not more prevalent in a dataset that is supposed to contain fMRI studies of social psyhological phenomena. 
+
+The concern about prevalence of fMRI methodology and social psychology phenomena in the dataset is however relieved by inspecting the distribution of CWTS cluster labels and the VOSviewer co-occurence map. On the one hand, "fmri" and "fmri data" are among the 50 most common labels used to describe citation clusters to which our data belongs. On the other hand, terms such as "imitation", "empathy" "mirror neuron", "facial expression", and "social exclusion" suggests that topics common in social fMRI research are also well-represented in our dataset. The VOSviewer co-occurence map shows that topics frequent in article titles and abstract overlap with topics frequent within the CWTS cluster labels. 
+
+The co-occurence map also suggests a number of larger subtopics within the data. As expected from a set of articles sampled from social neuroscience, language, social pain and exclusion, and face perception seem to be highly prevalent themes. Not consistent with our expectations is the prominent cluster of studies related to the default mode network and functional connectivity. Visual inspection of titles that are categorized in the "default mode" cluster by CWTS suggests that many of these articles are purely methodological, and a vast majority do not seem to be concerned with social neuroscience as such. 
+
+Another unexpectedly prevalent topic in the co-occurence map is that centered around decision-making. Convergently, the 5 most frequent CWTS cluster labels (table 2) all seem related to choice and decision making, which is not obviously a topic sorted under social neuroscience. Reviewing the titles and abstracts of articles within the CWTS "decision making" cluster, reveals a more nuanced picture. The citation cluster described by the labels "intertemporal choice", "decision making", "delay discounting", "impulsivity" and "iowa gambling task" is the most prevalent cluster in our data (`r sum(data.bib$cluster_id1 == 692, na.rm = T)` articles in our data belong in this cluster). However, the CWTS labels used to describe this cluster are not necessarily representative of the articles from this cluster that are included our dataset. For example, although "iowa gambling task" is descriptive of the cluster as a whole, only a single article from this cluster in our dataset even mentions the Iowa gambling task. We therefore consider it likely that we have sampled a biased subset of articles from this cluster, which seems plausible considering that the cluster contains a total of `r mean(data.bib$n_pubs[data.bib$cluster_id1==692], na.rm = T)` articles. The articles from this cluster that are contained in our data concern a variety of topics, most of which more clearly related to social psychology than the cluster labels would indicate. For example, neuromarketing designs and study designs common in behavioral economy (e.g. ultimatum and trust games) appear frequently, which also explains the frequent co-occurences of terms like "decision", "outcome", "choice", "partner" and "game" (Figure 3). However, we should note that there also appears to be a number of purely methodological articles in this subset, suggesting that our method of excluding methodological articles by article keyword information was not entirely successful. 
+
+In summary, our exploratory analyses suggest that we have been largely successful in curating a large set of studies from the social neuroscience literature that employ fMRI methodology and otherwise adhere to our inclusion criteria. However, we remind the reader that the results above summarizes only a subset of a larger collection of bibliometric information available for our dataset. The results we report are those we believe are most relevant for evaluating whether we have successfully sampled the population of human social fMRI research. However, the full dataset including all bibliometric variables are available at [OSF link to data] for the curious/sceptical reader. 
+
+
+
+
+
+
+# Operationalizing value and uncertainty
+
+Having determined on a set of candidate articles to consider for replication, the next step in our selection procedure was to derive a quantitative estimate of replication value for each replication candidate included in our dataset. In theory, this simply involves determining a suitable formula for estimating RV, collecting the necessary data for each candidate, and applying the formula to each candidate study in the dataset. However, in practice there are several additional challenges to consider.
+
+First, we must settle on a quantitative definition of RV that is likely to be valid for estimating the expected utility of our replication attempt (Isager et al. 2020). We determined to use the formula described in Isager et al. (2020 - thesis chapter 2) as our primary definition of RV. However, this formula is not yet validated empirically, neither in general nor in social fMRI research specifically. Thus, in addition to collecting the information necessary to calculate the formula described in Isager et al. (2020 - thesis chapter 2), we aimed to identify additional quantitative indicators that might be important for estimating RV. We also aimed to collect quantitative information that would let us compare the performance of the Isager et al. (2020) indicator with other potential operationalizations of RV (e.g. Field et al. 2019, which required information about bayes factors). 
+
+Second, given that the target of a replication study is a claim (Isager et al. 2020 - chapter 1), and given that any article in our dataset may contain multiple claims, we must decide which claims from each article to focus our formula RV estimates on. We initially determined to focus our efforts on the main claim from each study from each article in our set of candidates. This means that each article in our dataset actually represents as many replication canidates as there are empirical studies reported in that article. We subsequently began the process of coding, for each individual study in each article, the main finding reported for that study. 
+
+Third, we needed to determine which quantitative indicators of "value" and "uncertainty" are feasible to collect in practice, as this would determine which operationalizations of RV we could consider estimating. For instance, we knew that the formula of Isager et al. (2020) ideally requires enough statistical information that a standard error can be calculated. This implies that it must be possible for us to identify statistical tests of each claim under consideration, and also that the necessary information about standard deviations, sample size etc. must be available for each of these tests. Finally, given the large number of canidates we are considering, we reuire a quick and efficient method for collecting the necessary quantitative information.
+
+## Operationalizing "value" - methods/procedure
+
+We utilized various citation impact metrics as indicators of the value of each replication candiate, following the equation and rationale laid out in Isager et al. (2020, thesis chapter 3). We needed to select a single bibliometric source to rely in for citation impact estimates. However, in practice their are sources to choose from (Crossref, Scopus, Web of Science, etc.), and no principled reason for preferring one over the other. We therefore decided to collect citation count information from several bibliometric sources and inspect the similarity of the citation count estimates provided. We collected citation count data from Web of Science (provided with the bibliometric data collected when identifying the initial canidate set), Crossref (using the rcrossref package in R [citation]), Scopus (using the rscopus package in R [citation]), and CWTS (provided by CWTS staff). 
+
+To address the fact that different subfields may have different citation practices that inflate citation counts in some fields compared to others, we also collected field-normalized citation scores from the CWTS database (see [citation] for details about the normalization procedure). Since it is not completely clear whether field-normalized citation scores should be preferred to non-normalized scores for calculating replication value (Isager et al. 2020 - either chapter 1 or 3 discusses whether normalizing scores makes sense) our initial goal was simply to observe the correlation between field-normalized and non-normalized scores, to better understand the impact of choosing one or the other. 
+
+Finally, we also collected Altmetric scores (cite explanation of scores) as an alternative operationalization of impact. Altmetric scores are known to be only weakly associated with more traditional citation metrics (cite the bibliometric article pointing this out), which presumably reflects the fact that Altmetric scores capture other aspects of impact than do traditional citation counts. 
+
+## Operationalizing "uncertainty" - methods/procedure
+
+Following the formula of Isager et al. (2020, cite chapter 3), we initially determined to operationalize the uncertainty about a claim before replication in terms of the sample size (specifically, the number of participants) of the study supporting the claim. However, sample size is a limited indicator of uncertainty, and we know that there are other quantitative operationalizations of uncertainty that would likely be more accurate, such as the standard error of the effect estimates used to support a claim (Isager et al. 2020 - chapter 3) or the Bayes factor of hypothesis comparisons used to support a claim (Field et al. 2019). 
+
+In an attempt to provide initial validation of the formula in Isager et al. (2020), we therefore attempted to identify and calculate alternative quantitative operationalizations of replication value. Our overall goal was to study the similarities and differences between the estimates of different formula operationalizations of replication value. In practice, we also needed to find out which information could feasibly be collected for the large number of studies in our candidate set. E.g. we suspected that collecting the sample size of all relevant studies in the dataset would be an easier task than calculating standard error of each relevant effect in the data, since calculating the standard error requires additional information, such as the standard deviation, that may not always be available in the published report. 
+
+In the following two sections, we briefly summarize two pilot studies that were undertaken with these goal in mind. In the first study, we surveyed a small sample of fMRI researchers to better understand which information is important for judging uncertainty about claims in this field. In the second study, we attempted and failed to identify the "main claim(s)" of individual research articles. 
+
+### Consulting field experts to identify potential quantitative indicators of uncertainty
+
+To better understand what information is important for assessing uncertainty about findings from fMRI research, we constructed a survey to probe experts in fMRI research (defined as researchers with, or in the process of completing, a PhD who has experience with collecting and/or analyzing fMRI data) about which information they use to assess the quality and quantity of evidence for fMRI findings in their field. The survey contained open-ended items encouraging researchers to fill inn whatever information they considered important for assessing evidence. The survey also contained a number of questions asking researchers to rate and rank-order the importance of specific types of information for assessing evidence (e.g. the statistical power of the study, the results of a replication study, the prevalence of statistical errors in the report, etc.). For each such question, we also asked for open-ended comments to better understand how the information was being used by researchers to assess evidence. For example, in one question we asked researchers to rate the importance of "the percentage of participants that were excluded". For this question, we also asked participants to "indicate in what way you believe this information is related to the quality and quantity of evidence in support of a finding". We also asked participants to rate and comment on the importance of sample size, and we used the responses on these items as a preliminary validation of whether sample size relates to uncertainty in the way assumed by Isager et al. (2020). The survey and all questions are openly available at [link to survey on OSF]
+
+The pilot data collection was carried out on a convenience sample of colleagues of the first (Peder) and second (Anna) author. Eleven researchers responded to the survey. The pilot dataset is too small to allow detailed interpretations of the quantitative data. Here we simply give a summary of the course qualitative conclusions we drew from the data. All data collected are openly available at [link to data on OSF]. 
+
+There seemed to be broad agreement among experts that sample size is important for evaluating the quality and quantity of evidence for a typical fMRI finding. Several experts freely offered sample size as a piece of information they would be evaluating when assessing the credibility of a finding. In addition, when asked to rank-order the importance of different pieces of information, sample size was ranked higher than average by all experts. In addition, statistical power, partially a function of sample size, was consistently highly rated by experts, and one expert explicitly pointed to the relationship between sample size and power in their comments ("Sample size is the easiest way to increase statistical power"). Finally, when asked specifically about the importance of sample size, there seemed to be broad agreement that a higher sample size generally entails higher credibility, in line with the assumptions of Isager et al. (2020). However, two experts described feeling less confident about findings supported by a very high sample size, due to the elevated risks of overinterpreting trivially small and meaningless effects (a problem often referred to as "the crud factor", Meehl 1990; Orben and Lakens 2020). Nonetheless, we interpreted these results overall as preliminary validation of correspondence between the rationale of Isager et al. (2020) and how experts actually use sample size when evaluating uncertainty. 
+
+Besides sample size (and statistical power) there were a few other pieces of information that experts seemed to agree would be important for assessing the credibility of findings: 
+
+* The results of a replication study (particularly if the replication was conducted by independent investigators).
+* Open access to the underlying empirical data that were analyzed.
+* The presence of statical errors in reporting.
+
+Beyond these factors, experts did not consistently agree on whether or how various pieces of information would be important for assessing the credibility of findings. This includes several statistical indicators commonly available in fMRI study reports, such as Z- and p-values for peak voxels in clusters, cluster extent (in number of voxels), and number of participants excluded.
+
+[*Consider adding a table of numeric and verbal summaries for each information piece we asked about here*]
+
+### Identifying the "main claim/finding" for each article
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Results
+
+### Sample size inter-rater reliability
+
+```{r}
+## Percentage exact agreement
+all.match <- sum(data.irr$matches_all)/nrow(data.irr)
+orig.BA.match <- sum(data.irr$matches_orig_BA)/nrow(data.irr)
+orig.PhD.match <- sum(data.irr$matches_orig_PhD)/nrow(data.irr)
+BA.PhD.match <- sum(data.irr$matches_BA_PhD)/nrow(data.irr)
+
+icc <- ICC(data.irr[, c("sample_size_orig", "sample_size_BA", "sample_size_PhD")])
+
+
+g.irr <- ggplot(data = data.irr, aes(x=sample_size_orig)) +
+  geom_point(aes(y=sample_size_BA), col = "#E69F00", alpha = 0.6) +
+  geom_point(aes(y=sample_size_PhD), col = "#56B4E9", alpha = 0.6) +
+  theme_bw() +
+  scale_color_manual(values=c("#E69F00", "#56B4E9"), name = "Coder", labels = c("BA", "PhD")) +
+  scale_x_continuous(trans='log10') +
+  scale_y_continuous(trans='log10')
+```
+
+Overall, there was a high, albeit far from perfect, agreement between the three coders (percentage exact agreement = `r all.match`). The BA double coder and the PhD coder had a slightly higher agreement rate (percentage exact agreement = `r orig.PhD.match`) than either one had with the original BA coders (percentage exact agreement between original BA coders and BA double coder = `r orig.BA.match`, percentage exact agreement between original BA coders and PhD double coder = `r orig.PhD.match`). The intraclass correlation coefficient between raters was high, ICC = `r icc$results["Single_raters_absolute", "ICC"]`, CI95%[`r icc$results["Single_raters_absolute", "lower bound"]`, `r icc$results["Single_raters_absolute", "upper bound"]`]. 
+
+Figure X displays 
+
+
+# Calculating replication value
+
+
+
