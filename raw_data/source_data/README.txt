@@ -1,1 +1,0 @@
-This folder contains meta-data for the individual DOIs included as well as miscelaneous data files related to the curation process, such as PDF files.
