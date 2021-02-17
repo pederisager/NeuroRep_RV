@@ -221,30 +221,37 @@ cor(select(.data = data.bib,
 
 ### Distributions
 
-ggplot(data = data.all) +
+g.raw <- ggplot(data = data.all) +
   geom_density(aes(x = TC_2020), col = "black") +
   geom_density(aes(x = crossref_citations), col = "red") + 
   geom_density(aes(x = scopus_citations), col = "blue") +
   geom_density(aes(x = tcs), col = "green") +
-  geom_density(aes(x = TC), col = "purple") +
-  theme_bw()
+#  geom_density(aes(x = TC), col = "purple") +
+  theme_bw() +
+  labs(title="A")
 
-ggplot(data = data.all, aes(x = tncs)) +
-  geom_density() 
+g.tncs <- ggplot(data = data.all, aes(x = tncs)) +
+  geom_density() +
+  theme_bw()+
+  labs(title="B")
 
-ggplot(data = data.all, aes(x = altmetric_score)) +
-  geom_density() 
+g.alt <- ggplot(data = data.all, aes(x = altmetric_score)) +
+  geom_density() +
+  theme_bw()+
+  labs(title="C")
+
+grid.arrange(g.raw, g.tncs, g.alt)
 
 ### Correlation matrix
 
 cor.dat <- select(.data = data.all, 
        TC_2020, 
-       TC, 
-       crossref_citations, 
-       scopus_citations,
-       tcs,
-       tncs,
-       altmetric_score, 
+       # TC, 
+       # crossref_citations, 
+       # scopus_citations,
+       # tcs,
+       # tncs,
+       # altmetric_score, 
        sample_size, 
        years.since.pub)
 
