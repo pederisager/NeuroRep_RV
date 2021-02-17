@@ -1,4 +1,5 @@
 # Read dataset A
+setwd("c:/Users/peder/Dropbox/jobb/PhD/Projects/2019_NeuroRep_Replication_Value/analysis/")
 
 ## Read the coded data
 data.A.coded <- read.table(file = "../raw_data/dataset_A_coded.tsv", header = T, sep = "\t", quote = "\"", na.strings = "", stringsAsFactors = F)
