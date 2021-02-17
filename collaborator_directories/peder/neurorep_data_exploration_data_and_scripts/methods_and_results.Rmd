@@ -19,8 +19,7 @@ library(knitr)
 library(pander)
 
 
-#### Load and clean data #### 
-
+#### Load data #### 
 codebook <- read.table(file = "codebook.tsv", header = T, sep = "\t")
 data.bib <- readRDS("data_bib.Rds")  # Bibliometric data for all articles that survived keyword exclusion
 data.all <- readRDS("data_all.Rds")  # Bibliometric data + sample size of all individual studies selected for sample size coding

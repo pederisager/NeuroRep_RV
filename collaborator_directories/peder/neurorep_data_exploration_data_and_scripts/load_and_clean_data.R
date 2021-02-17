@@ -1,6 +1,7 @@
 #### Load packages ####
 
 library(tidyverse)
+setwd("c:/Users/peder/Dropbox/jobb/PhD/Projects/2019_NeuroRep_Replication_Value/collaborator_directories/peder/neurorep_data_exploration_data_and_scripts/")
 
 #### Load data #### 
 
