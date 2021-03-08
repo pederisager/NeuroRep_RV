@@ -1,5 +1,5 @@
 ---
-title: "Neurorep exploratory analysis"
+title: "Neurorep exploratory analysis - Methods & Results sections"
 author: "Peder M. Isager"
 date: "11/23/2020"
 output:
@@ -17,6 +17,7 @@ library(gridExtra)
 library(corrplot)
 library(knitr)
 library(pander)
+library(RVAideMemoire)
 
 
 #### Load data #### 
@@ -266,8 +267,7 @@ With respect to identifying statistical information for each finding, however, w
 It is clear that many statistical results are being utilized in this statement, and it is not clear which, if any, would be more appropriate to serve as the results on which a replication value estimate is based. Many of the findings identified in our pilot had a similar structure to the example above. We suspect this finding structure will be common in the field of social fMRI, where hypotheses are often of the form "what does neural activity look like for task/manipulation/stimulus/group X" and so relates to multiple aspects of the fMRI data collected. For the purposes of collecting statistical data for replication value estimation, it appears it would not be enough to simply identify the main finding of each study in our dataset. We would also have to determine, for each finding, which empirical results to extract statistical information from and how to the common case where a finding is related to multiple statistical results. Due to the labor intensity implied by these pilot results, we determined not to proceed with the coding of main findings in this project. 
 
 
-* Summary paragraph concluding that only sample size will be used to quantify uncertainty after the efforts discussed above.
-
+In summary, sample size was the only operationalization of *uncertainty* we were able to move forward with in this study. While sample size is clearly only one of several factors that influences the replication value of an original study, other factors of interest that might be possible to quantify, such as the results of existing replications of the result, or presence of statistical errors in reporting of the original results, would in practice be very challenging to obtain, especially for a large dataset like ours.
 
 
 
@@ -275,11 +275,14 @@ It is clear that many statistical results are being utilized in this statement, 
 
 ## Introduction
 
+* Quick introduction to the contents of the section. 
+
+Having decided upon a suitable set of candidate studies for replication, and having established reasonable and feasible-to-identify operationalizations of *Value* and *uncertainty*, we could finally begin the process of calculating the replication value for the studies in our canidate set of studies.
+
+In the following sections we report the following: First we consider the practical issue that citation count information could be based on any number of sources, and consequently we study the reliability of citation count estimates across sources. Second, we consider the influence of age on citation count, and we estimate how well this influence is mitigated by dividing citation count by publication year. Third, we describe how sample size was coded, and we study the inter-rater reliability of different sample-size coders. Finally, based on these reliability analyses we design two separate replication value formulas, study the similarity in formula estimates, and give a brief qualitative face validity report on the top-ten recommendations provided by each of the formulas. 
 
 
 ## Reliability checks
-
-### Sample size inter-rater reliability
 
 ### Reliability of citation scores across sources
 
@@ -305,51 +308,6 @@ pander(t.cit.metrics)
 Strength of association was explored by correlating all citation metrics with one another. Due to the skewed distribution of all citation metrics, and because we are chiefly concerned with the rank-ordering of the records (Isager et al. 2020 - Chapter 1) Spearman's rho was selected as correlation coefficient for these analyses.
 
 In addition, we expected WoS, Crossref, Scopus, and CWTS to be highly correlated measures of the same underlying construct - the raw academic citation impact of an article. To test this expectation, we subjected the citation scores from these sources to an intraclass correlation analysis (model = two-way fixed effects, type = single rater, definition = consistency). 
-
-## Results
-
-### Sample size inter-rater reliability
-
-```{r, include=FALSE}
-# Percentage exact agreement
-all.match <- sum(data.irr$matches_all)/nrow(data.irr)
-orig.BA.match <- sum(data.irr$matches_orig_BA)/nrow(data.irr)
-orig.PhD.match <- sum(data.irr$matches_orig_PhD)/nrow(data.irr)
-BA.PhD.match <- sum(data.irr$matches_BA_PhD)/nrow(data.irr)
-
-nonmatches <- data.irr[data.irr$matches_all==0,]
-orig.final.match <- sum(nonmatches$sample_size_orig==nonmatches$sample_size_final)
-BA.final.match <- sum(nonmatches$sample_size_BA==nonmatches$sample_size_final)
-PhD.final.match <- sum(nonmatches$sample_size_PhD==nonmatches$sample_size_final)
-
-# Intra-class correlation 
-icc <- ICC(data.irr[, c("sample_size_orig", "sample_size_BA", "sample_size_PhD")])
-
-# Dot plots of relationship between each oair of coders
-
-df.ba <- data.frame(sample_size_orig=data.irr$sample_size_orig, sample_size=data.irr$sample_size_BA, coder="undergrad")
-df.phd <- data.frame(sample_size_orig=data.irr$sample_size_orig, sample_size=data.irr$sample_size_PhD, coder="PhD")
-df.irr <- rbind(df.ba, df.phd)
-
-g.irr <- ggplot(data=df.irr, aes(x=sample_size_orig, y=sample_size, col=coder, shape=coder)) +
-  geom_point(alpha = 0.6, size=3) +
-  theme_bw() +
-  scale_x_continuous(trans='log10', name = "sample size, coded by original coder") +
-  scale_y_continuous(trans='log10', name = "double-coded sample size")
-
-```
-
-```{r fig1, echo=FALSE, fig.cap="Variation in sample size between coders. Sample size is plotted on log scale. The original sample size coded is represented on the x-axis. Double-coded sample size values are represented on the y-axis. Red circles represent values from the PhD coder. Green triangles represent values from the undergraduate student coder."}
-plot(g.irr)
-```
-
-Overall, there was a high but imperfect agreement between the three coders (percentage exact agreement = `r all.match`). The BA double coder and the PhD coder had a slightly higher agreement rate (percentage exact agreement = `r orig.PhD.match`) than either one had with the original BA coders (percentage exact agreement between original BA coders and BA double coder = `r orig.BA.match`, percentage exact agreement between original BA coders and PhD double coder = `r orig.PhD.match`). The intraclass correlation coefficient between raters was high, ICC = `r icc$results["Single_raters_absolute", "ICC"]`, CI95%[`r icc$results["Single_raters_absolute", "lower bound"]`, `r icc$results["Single_raters_absolute", "upper bound"]`]. Figure \ref{fig:fig1} displays the variation in sample size between the coders, plotted on log scale. 
-
-Coders disagreed in `r nrow(nonmatches)` cases. Because coding was conducted at different times by all coders, all disagreements between coders were resolved by the PhD coder. The final sample size was then substituted for the original coder values and used in subsequent analyses. In those cases where coders disagreed, the final sample size after resolving agreed with the original coders in `r orig.final.match` cases, with the BA coder in `r BA.final.match` cases, and with the PhD coder in `r PhD.final.match` cases.
-
-
-
-### Reliability of citation scores across sources
 
 ```{r, include=FALSE, warning=FALSE}
 # Citation metric distributions
@@ -392,7 +350,7 @@ icc.cit <- ICC(data.bib[, c("TC_2020", "crossref_citations", "scopus_citations",
 ```
 
 
-```{r fig2, echo=FALSE, warning=FALSE, fig.cap="Distribution of citation score metrics. (A) The distribution of ..."}
+```{r fig2, echo=FALSE, warning=FALSE, fig.cap="Distribution of citation score metrics. (A) The distribution of raw citation counts from Web of Science (black), Crossref (red), Scopus (blue) and CWTS (green). (B) The distribution of CWTS citation counts normalized by research field/cluster. (C) The distribution of Altmetric attention scores."}
 grid.arrange(g.raw, g.tncs, g.alt)
 ```
 
@@ -410,7 +368,7 @@ corrplot(corr = cor.mat,
 
 Figure \ref{fig:fig3} displays the correlations between various citation metrics. The correlation between raw citation scores from any two sources was very high (always >`r min(cor.mat[1:4, 1:4])`). The inter-rater reliability was similarly high, ICC = `r icc.cit$results["Single_fixed_raters", "ICC"]`, CI95%[`r icc.cit$results["Single_fixed_raters", "lower bound"]`, `r icc.cit$results["Single_fixed_raters", "upper bound"]`]. Even though self-citations are subtracted from CWTS citation scores, these scores were only marginally less correlated with scores from the three other sources, compared to intercorrelations between the other sources. Since the correlation between citation counts taken from WoS, Crossref, Scopus and CWTS were almost identical, we decided to use WoS as our primary citation count source in subsequent analyses. 
 
-As expected based on the prior literature (*cite article showing low correlation between altmetric scores and traditional citation indeces*) the correlations between Altmetric scores and all other indicators were consistently quite low. The correlation between normalized and non-normalized citation scores was consistently high, though substantially lower than the inter-correlation between different raw citation scores. 
+As expected based on the prior literature (*cite article showing low correlation between altmetric scores and traditional citation indeces*) the correlations between Altmetric scores and all other indicators were consistently quite low. The correlation between normalized and non-normalized citation scores was consistently high, though substantially lower than the inter-correlation between different raw citation scores.
 
 
 
@@ -434,13 +392,11 @@ cor.mat <- cor(cor.dat, use = "pairwise.complete.obs", method = "spearman")
 col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))  # Set color scheme for corrplot
 ```
 
-Because citation count is a cumulative metric that accrues over time, it is strongly influenced by publication age. If we treat citation count as a valid measure of value (Isager et al. 2020, chapter 2), the upshot is that older replication value will tend to be biased towards older claims. In other words, raw citation count will give the impression that older claims are more valuable than younger claims, even if there is no change in value of claims studied over time. In order to prevent this bias, our replication value formula uses average yearly citation count as a measure of value in order to mitigate the correlation between publication age and estimated value. 
+Because citation count is a cumulative metric that accumulates over time, it is strongly influenced by publication age. If we treat citation count as a measure of value (Isager et al. 2020, chapter 2), the upshot is that older replication value will tend to be biased towards older claims. In other words, raw citation count will give the impression that older claims are more valuable than younger claims, even if there is no change in value of claims studied over time. To prevent this bias, our replication value formula uses average yearly citation count as a measure of value in order to mitigate the correlation between publication age and estimated value. 
 
 To explore the effectiveness of this method for preventing age bias in our value measure, we examined how the correlation between age and citation count changed as raw citation count was transformed into average yearly citation count. 
 
 We computed pairwise spearman correlations between publication age, WoS citation count, Altmetric scores, WoS citation count divided by years since publication, and Altmetric scores divided by years since publication. 
-
-* Plot correlation matrix of input variables
 
 ```{r fig4, echo=FALSE, fig.cap="citation count by age correlation matrix"}
 corrplot(corr = cor.mat, 
@@ -452,18 +408,82 @@ corrplot(corr = cor.mat,
          diag = F)
 ```
 
-Figure \ref{fig:fig4} displays the correlation coefficients between all variables of interest. As expected, there was a strong correlation between age and raw citation count (*rho*=`r cor.mat[1,2]`). The correlation between citations and age dropped significantly when citation count is divided by years since publication. However, a meaningful residual correlation between average yearly citation rate and publication age remains (*rho*=`r cor.mat[1,4]`), suggesting that our replication value formula will still be slightly age-biased. Whether or not this age-bias is appropriate is difficult to say. On the one hand, it may simply be that dividing citations by age is not the most effective way to counteract the accumulation of citations over time. Other methods, such as only counting citations from the past X years, may be more appropriate. On the other hand, it is not possible to rule out that claims studies in 2010 really were more valuable on average than claims studied in 2015. Our data cannot be used to disentangle these possibilities. All we can conclude for now is that our formula for estimating replication value will tend to slightly favor older publications. 
+Figure \ref{fig:fig4} displays the correlation coefficients between all variables of interest. As expected, there was a strong correlation between age and raw citation count (*rho*=`r cor.mat[1,2]`). The correlation between citations and age dropped substantially when citation count is divided by years since publication. However, a meaningful residual correlation between average yearly citation rate and publication age remains (*rho*=`r cor.mat[1,4]`). This suggests that our replication value formula will still be slightly age-biased. Whether or not this age-bias is problematic is difficult to diagnose. On the one hand, it may simply be that dividing citations by age is not the most effective way to counteract the accumulation of citations over time. Other methods, such as only counting citations from the past X years, may be more appropriate. On the other hand, it is not possible to rule out that claims studied in 2010 really were more valuable on average than claims studied in 2015. Our data cannot be used to disentangle these possibilities. All we can conclude for now is that our formula for estimating replication value will tend to slightly favor older publications. 
 
-Unexpectedly, there was only a negligible correlation between age and altmetric score in our data. It is not entirely clear why Altmetric scores, also a variable that accumulates over time, is not dependent on publication age. It may be due to differences in how traditional citations and altmetric scores accure. For WoS citations to accumulate, citing articles must themselves be published, which means the accumulation of citation impact is a slow process stretched out over many years. In contrast, Altmetric factors such as blog citations, news report citations and retweets can accumulate quickly, and may also subside more quickly as the article fades from immediate public attention. Thus, Altmetric scores may not be dependent on age beyond the first few months following publication, assuming that the maximum Altmetric score an article will get can be reached within the first year of publication. Whatever the case may be, when there is no association between Altmetric score and age, there is no need to control for age, and dividing the scores by age creates an artificial negative correlation (*rho*=`r cor.mat[1,5]`). The upshot is that we introduce an articifial bias towards recently published articles. Thus, it appears that it would be more appropriate to use raw Altmetric scores than age-corrected Altmetric scores when estimating replication value in our data. 
+Unexpectedly, there was only a negligible correlation between age and altmetric score in our data. It is not entirely clear why Altmetric scores, also a variable that accumulates over time, is not dependent on publication age. It may be due to differences in the trajectory of how traditional citations and altmetric scores accumulate. For WoS citations to accumulate, citing articles must themselves be published, which means the accumulation of citation impact is a slow process stretched out over many years. In contrast, Altmetric factors such as blog citations, news report citations and retweets can accumulate quickly, and may also subside more quickly as the article fades from immediate public attention. Thus, Altmetric scores may not be dependent on age beyond the first few months following publication, assuming that the maximum Altmetric score an article will get can be reached within the first year of publication. Whatever the case may be, when there is no association between Altmetric score and age, there is no need to control for age, and dividing the scores by age creates an artificial negative correlation (*rho*=`r cor.mat[1,5]`). The upshot is that we introduce an articifial bias towards recently published articles. Thus, we conclude that it would be more appropriate to use raw Altmetric scores than age-corrected Altmetric scores when estimating replication value in our data. 
+
+
+
+### Sample size inter-rater reliability
+
+There does not, as far as we know, exist any tool for extracting sample size from research articles automatically. Sample size for each study in our dataset was therefore coded manually. In this section we first  report our procedure for coding the sample size of each study in the dataset. We then report our procedure for extracting a subsample of the full set `r nrow(data.bib)` candidate articles for which sample size could feasibly be coded. Finally, we report the results of an inter-rater reliability analysis designed to investigate the ability of coders to code sample sizes reliably and without error. 
+
+For each article, we identified the number of studies reported in the article and coded sample size for each study that explicitly reported results from fMRI analyses. Coding was primarily conducted by a team of three undergraduate research assistants. For each such study, code the total sample size across study conditions was collected. Sample size was here defined as the number of participants for which fMRI data was reported (i.e. that were not excluded from all fMRI analyses). We did not code more detailed sample size information such as the number of stimuli and trials used in each study. Although such information is obviously important for accurate estimation of overall statistical uncertainty (cite Westfall, Kenny & Judd, 2014), it quickly became obvious that such information would be much more difficult to code than the number of participants used. For further details about how coders were instructed to proceed with sample size coding, see the supplementary coding instructions (cite RV_coding_instructions.docx on OSF). 
+
+From the outset it was not clear to us how cumbersome it would be to code sample size information for the sample of studies in our candidate set. However, manually coding sample size for all studies in the full set of `r nrow(data.bib)` articles was deemed unfeasible. In liew of prior information about the speed and reliability with which sample size can be manually coded, we decided to aim for coding a subset of about 1000 studies from the original dataset. A sample of 1500 articles were sampled at random from the original dataset (see wos_data_extract_dataset-A.R on OSF for the exact code used to draw this sample). All articles that turned out to match our original exclusion criteria were excluded. For all non-excluded articles, sample size was coded for each fMRI study in the article. 
+
+The final dataset contained `r nrow(data.all)` individual studies from `r length(unique(data.all$UT))` unique articles (`r 1500-length(unique(data.all$UT))` studies were excluded). On average, coders reported that coding the sample size of a single articles would take a couple of minutes, but time taken was not normally distributed. Most studies could be coded in only a minute or so when sample size and exclusions critieral were clearly summarized in either the study abstract or the "participants" subsection of the methods section. A smaller subset of studies would take several minutes to code, usually because study authors would not report sample size clearly, or would not report clearly if data were excluded, meaning the entire methods and results sections would have to be read before sample size could confidently be coded. Overall, coding the sample size of >1000 studies turned out to be a feasible undertaking. 
+
+Manual coding introduces human error. In addition, discrepancies between coders can emerge for example if it is not clear if some participants should be considered excluded or not, if some studies should be considered excluded or not, etc. In order to ensure that sample size estimates were reliably coded, a subset of `r nrow(data.irr)` studies, randomly selected from the larger set of `r nrow(data.all)` were subjected to an inter-rater reliability analyses. Two additional coders (one additional undergraduate student, and the first author - a PhD student at the time) re-coded the sample size for each study in this subset. All coders were blind to the codes provided by all other coders while coding. To study inter-rater reliability, we subsequently calculated the percentage agreement between each of the coders, and we calculated absolute agreement between coders in a one-way random, single measures intraclass correlation analysis using the *psych* package in R (cite `psych` package). 
+
+
+```{r, include=FALSE}
+# Percentage exact agreement
+all.match <- sum(data.irr$matches_all)/nrow(data.irr)
+orig.BA.match <- sum(data.irr$matches_orig_BA)/nrow(data.irr)
+orig.PhD.match <- sum(data.irr$matches_orig_PhD)/nrow(data.irr)
+BA.PhD.match <- sum(data.irr$matches_BA_PhD)/nrow(data.irr)
+
+nonmatches <- data.irr[data.irr$matches_all==0,]
+orig.final.match <- sum(nonmatches$sample_size_orig==nonmatches$sample_size_final)
+BA.final.match <- sum(nonmatches$sample_size_BA==nonmatches$sample_size_final)
+PhD.final.match <- sum(nonmatches$sample_size_PhD==nonmatches$sample_size_final)
+
+# Intra-class correlation 
+icc <- ICC(data.irr[, c("sample_size_orig", "sample_size_BA", "sample_size_PhD")], lmer = T)
+
+# Dot plots of relationship between each oair of coders
+
+df.ba <- data.frame(sample_size_orig=data.irr$sample_size_orig, sample_size=data.irr$sample_size_BA, coder="undergrad")
+df.phd <- data.frame(sample_size_orig=data.irr$sample_size_orig, sample_size=data.irr$sample_size_PhD, coder="PhD")
+df.irr <- rbind(df.ba, df.phd)
+
+g.irr <- ggplot(data=df.irr, aes(x=sample_size_orig, y=sample_size, col=coder, shape=coder)) +
+  geom_point(alpha = 0.6, size=3) +
+  theme_bw() +
+  scale_x_continuous(trans='log10', name = "sample size, coded by original coder") +
+  scale_y_continuous(trans='log10', name = "double-coded sample size")
+
+# Histogram of final sample size distribution
+
+g.samplesize <- ggplot(data = data.all, aes(x=sample_size)) +
+  geom_histogram(bins = 50) +
+  xlim(c(1, 500)) +
+  theme_bw()
+
+```
+
+```{r fig1, echo=FALSE, fig.cap="Variation in sample size between coders. Sample size is plotted on log scale. The original sample size coded is represented on the x-axis. Double-coded sample size values are represented on the y-axis. Red circles represent values from the PhD coder. Green triangles represent values from the undergraduate student coder."}
+plot(g.irr)
+```
+
+Overall, there was a high but imperfect agreement between the three coders (percentage exact agreement = `r all.match`). The BA double coder and the PhD coder had a slightly higher agreement rate (percentage exact agreement = `r orig.PhD.match`) than either one had with the original BA coders (percentage exact agreement between original BA coders and BA double coder = `r orig.BA.match`, percentage exact agreement between original BA coders and PhD double coder = `r orig.PhD.match`). The intraclass correlation coefficient between raters was high, ICC = `r icc$results["Single_raters_absolute", "ICC"]`, CI95%[`r icc$results["Single_raters_absolute", "lower bound"]`, `r icc$results["Single_raters_absolute", "upper bound"]`]. Figure \ref{fig:fig1} displays the variation in sample size between the coders, plotted on log scale. 
+
+Coders disagreed in `r nrow(nonmatches)` cases. Because coding was conducted at different times by all coders, all disagreements between coders were resolved by the PhD coder. The final sample size was then substituted for the original coder values and used in subsequent analyses. In those cases where coders disagreed, the final sample size after resolving agreed with the original coders in `r orig.final.match` cases, with the BA coder in `r BA.final.match` cases, and with the PhD coder in `r PhD.final.match` cases. In addition to the cases of disagreements identified in the inter-rater reliability analysis, one additional sample size coding error was detected in later analyses and subsequently corrected. Figure \ref{fig:figX} displays the distribution of sample size in our data after resolving coder disagreements. 
+
+```{r figX, echo=FALSE, warning=FALSE, fig.cap="Distribution of sample size in the dataset. For visualization purposes, x-axis limit is set to n=500, which excludes 10 cases where n>500."}
+
+plot(g.samplesize)
+
+```
+
 
 
 ## Calculating replication value
 
-* Compute replication value based on WoS citations and based on Altmetric score
-
 ```{r,  include=FALSE}
 
-data.all$RV <- (data.all$TC_2020/data.all$years.since.pub) * (1/data.all$sample_size)
+data.all$RV <- (data.all$TC_2020/ (data.all$years.since.pub + 1) ) * (1/data.all$sample_size)
 data.all$RV_alt <- data.all$altmetric_score * (1/data.all$sample_size)
 
 RV_top <- data.all[order(-data.all$RV),] %>% .[1:10,]
@@ -483,6 +503,7 @@ data.insp$RV_position <- c(rep("highest WoS RV score", 10),
 
 data.insp <- select(.data = data.insp,
                     RV_position, 
+                    UT,
                     DI, 
                     TI, 
                     AU, 
@@ -496,25 +517,83 @@ data.insp <- select(.data = data.insp,
                     RV_alt)
 
 names(data.insp) <- c("RV position", 
+                      "WoS identifier",
                       "doi", 
                       "title", 
                       "authors", 
                       "abstract", 
                       "study number", 
                       "publication year", 
-                      "Wos citations", 
+                      "WoS citations", 
                       "altmetric score", 
                       "sample size", 
                       "RV based on WoS citations", 
                       "RV based on Altmetric score")
 
-write.csv(data.insp, "../../../processed_data/highest_lowest_RV_for_inspection_data.csv", row.names = F)
+#write.csv(data.insp, "../../../processed_data/highest_lowest_RV_for_inspection_data.csv", row.names = F)
 ```
 
-* Plot distribution of replication value
+Based on the preceding exploratory analyses we decided to compare the results of two alternative formula operationalizations of replication value. One formula measured "value" via the Web of Science citation count of the articles (*RV~WoS~*), while the other formula measured "value" via Altmetric score of the articles (*RV~Alt~*). Both formulas treat sample size as a measure of uncertainty. 
 
-* List key bibliometrics for 10 highest, middle, and lowest RV studies
+*RV~WoS~* was based on the replication formula derived in Isager et al. (2021, RVCn chapter), and calculated in the following way: 
+
+$$
+RV_{WoS}=\frac{C_{WoS}}{Y+1}\times\frac{1}{\sqrt{n}}
+$$
+
+where *C~WoS~* denotes the Web of Science citation count of the article a study is reported in, *Y* denotes the article age in years, and *n* denotes the sample size of the study after exclusion. 
+
+*RV~Alt~* was calculated in the following way: 
+
+$$
+RV_{WoS}=C_{Alt}\times\frac{1}{\sqrt{n}}
+$$
+
+where *C~Alt~* denotes the Altmetric attention score of the article (see https://web.archive.org/web/20201116095905/https://help.altmetric.com/support/solutions/articles/6000233311-how-is-the-altmetric-attention-score-calculated- [*make a real citation of this later*] for how this is calculated), and *n* denotes the sample size of the study after exclusion. Because exploratory analyses revealed that altmetric attention scores are not correlated with article age in our data, we did not average *C~Alt~* over publication year in this replication value formula. Because altmetric attention scores were not available for all reports in our dataset, *C~Alt~* could only be calculated for `r sum(!is.na(data.all$RV_alt))` our of `r nrow(data.all)` studies. 
+
+The distribution of replication value from both formulas was visualized in histograms. Estimates from the two formulas were correlated. Spearman's rho was selected as the appropriate correlation statistic, since rank-order correlation between different formulas is what matters for what decisions they lead to in practice. 95% bootstrap confidence intervals were calculated for the correlation estimate using the `spearman.ci` function of the *RVAideMemoire* package in R (cite package).
+
+```{r, fig5, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="A: Distribution of RV~alt~ statistic. B: Distribution of RV~WoS~ statistic. C: RV~alt~ by RV~WoS~. Blue dots represent the 10 highest RV~alt~ scores. Red dots represent the 10 highest RV~WoS~ scores. Purple dots represent scores that are among the 10 highest scores on both estimators."}
+# Spearman correlation between the replication value estimators, plus bootstrap confidence intervals
+
+RVcor <- spearman.ci(data.all$RV, data.all$RV_alt, nrep = 3000, conf.level = 0.95)
+
+# Plot both replication value distributions and visualize their association
+
+data.all$highestRV <- 0
+data.all$highestRV[which(data.all$RV >= tail(head(data.all$RV[order(-data.all$RV)], 10), 1))] <- 1  # mark 10 highest RVwos scores
+data.all$highestRV_alt <- 0
+data.all$highestRV_alt[which(data.all$RV_alt >= tail(head(data.all$RV_alt[order(-data.all$RV_alt)], 10), 1))] <- 1  # mark 10 highest RValt
+
+highestRV <- data.all %>% filter(RV >= tail(head(data.all$RV[order(-data.all$RV)], 10), 1))
+highestRV_alt <- data.all %>% filter(RV_alt >= tail(head(data.all$RV_alt[order(-data.all$RV_alt)], 10), 1))
+highestRV_both <- highestRV %>% filter(RV_alt >= tail(head(data.all$RV_alt[order(-data.all$RV_alt)], 10), 1))
+
+RVwos.p <- ggplot(data = data.all, aes(x = RV)) +
+  geom_histogram(fill = "brown1") + 
+  theme_bw()
+
+RValt.p <- ggplot(data = data.all, aes(x = RV_alt)) +
+  geom_histogram(fill = "cornflowerblue") + 
+  theme_bw()
+
+  RVcor.p <- ggplot(data = data.all, aes(x = RV, y = RV_alt)) +
+  geom_point() +
+  geom_point(data = highestRV, aes(x = RV, y = RV_alt), color = "brown1", size = 3) +
+  geom_point(data = highestRV_alt, aes(x = RV, y = RV_alt), color = "cornflowerblue", size = 3) +
+  geom_point(data = highestRV_both, aes(x = RV, y = RV_alt), color = "darkorchid1", size = 4) +
+  theme_bw()
+
+gridExtra::grid.arrange(RVwos.p, RValt.p, RVcor.p, layout_matrix = rbind(c(2, 3), c(1, 3)))
+```
+
+Figure \ref{fig:fig5}A and \ref{fig:fig5}B displays the distribution of the two replication value estimators in our dataset. Both estimator distributions are highly skewed, which is expected given that sample size, Web of Science citation count and altmetric attention scores are all highly skewed as well (see figure \ref{fig:figX} and figure \ref{fig:fig2}). Figure \ref{fig:fig5}C displays the association between scores from the two estimators. Overall, there is a modest rank-order order correlation between the estimators, $\rho$=`r RVcor$estimate`, 95%CI[`r RVcor$conf.int[1]`, `r RVcor$conf.int[2]`]. 
+
+Since our replication selection strategy involves selecting a subset of the highest formula-ranked studies for further qualitative review, we also considered rank-order overlap between the two formulas for the highest-ranked studies from each formula. Of the ten highest-ranked studies from each formula, only two studies were ranked among the top ten in both formula rank-orderings (purple-colored points in figure \ref{fig:fig5}C. Maybe cite both studies here?). Besides these, top ten studies based on *RV~WoS~* (red points in figure \ref{fig:fig5}C) had substantially lower scores on *RV~alt~* than the top ten studies based on*RV~alt~* (blue points in \ref{fig:fig5}C), and vice versa. In other words, quantitative recommendations for which studies to replicate seems to vary substantially based on which operationalization one would use to estimate replication value.
+
+Finally, we determined to follow up the quantitative analyses of formula estimated with a brief qualitative review to assess the immediate face validity of formula recommendations. 
 
 
 ## Face-validity of replication value estimates
 
+* Make supplementary table that lists the 10 highest and lowest RV studies from both estimators that were used in our qualitative comparison. 

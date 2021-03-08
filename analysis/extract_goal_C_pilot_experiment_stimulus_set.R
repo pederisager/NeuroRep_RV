@@ -10,22 +10,12 @@
 # Load packages
 
 library(tidyverse)
+library()
 
 # Load dataset A
-data.A <- readRDS("../processed_data/dataset_A_updated_data.rds")  # Load updated version of dataset A that contains updated WoS citation scores
-excluded <- which(data.A$excluded == 1)
-too_recent <- which(data.A$PY > 2018)
-exclude <- unique(c(excluded, too_recent))
-
-data.A <- data.A[-exclude,]  # Remove excluded studies
-
-
-# Calculate RV
-data.A$RV <- (1/data.A$sample_size) * (as.numeric(data.A$TC_2020)/(2020-data.A$PY+1))
-excludeRV <- which(is.na(data.A$RV))
-data.A <- data.A[-excludeRV,] 
-data.A <- data.A[order(-data.A$RV, data.A$sample_size),]  # Order data by RV in descending order
-
+data <- readRDS("../collaborator_directories/peder/neurorep_data_exploration_data_and_scripts/data_all.Rds")  # Load datafile (we can change the file path to whatever file we want)
+data <- data[-which(data$PY > 2018),]  # Remove studies that are more recent than 2018
+data <- data[order(-data$RV, data$sample_size),]  # Order data by RV in descending order
 
 
 # Draw sample
@@ -36,22 +26,18 @@ data.A <- data.A[order(-data.A$RV, data.A$sample_size),]  # Order data by RV in 
 
 ## Sample 30 highest RV studies
 
-highest <- data.A[1:30,]
+highest <- data[1:30,]
 highest$RV_dist_location = "top"
 
-## Sample 30 studies from trimmed RV range/2
+## Sample 30 studies randomly from .45 > RV > .25
 
-trim_edges_by <- 30
+middle <- data[which(data$RV > .25 & data$RV < .45),] %>% .[sample(nrow(.), 30, replace = F), ]
+middle$RV_dist_location = "middle"
 
-trimmedRVcenter <- sum(range(data.A$RV[(1+trim_edges_by):(length(data.A$RV)-trim_edges_by)]))/2
-closesttocenter <- length(data.A$RV)-findInterval(trimmedRVcenter, sort(data.A$RV))+1
+## Sample 15 of studies with RV=0 that have the highest sample size, and 15 studies with RV>0 that has the lowest RV. 
 
-middle <- data.A[(closesttocenter-14):(closesttocenter+15),]
-middle$RV_dist_location = "center"
-
-## Sample 30 lowest RV studies
-
-lowest <- data.A[nrow(data.A):(nrow(data.A)-29),]
+lowest <- rbind(data[nrow(data):(nrow(data)-14),], 
+                data[nrow(data[!data$RV==0,]):(nrow(data[!data$RV==0,])-14),])
 lowest$RV_dist_location = "bottom"
 
 ## Combine samples
@@ -63,9 +49,7 @@ data.C.pilot <- rbind(highest, middle, lowest)
 data.C.pilot <- select(data.C.pilot, 
                        UT, AU, TI, PY, DI, study_number,
                        TC_2020, sample_size, 
-                       RV_dist_location, RV)
-
-
+                       RV_dist_location, RV, AB, SO)
 
 # Save data
 
