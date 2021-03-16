@@ -3,6 +3,7 @@ title: "Neurorep exploratory analysis - Methods & Results sections"
 author: "Peder M. Isager"
 date: "11/23/2020"
 output:
+  word_document: default
   pdf_document: default
 ---
 
@@ -168,7 +169,7 @@ plot(g.jou.freq)
 The records in our dataset was classified as being members of `r n.woscats` unique Web of Science categories. Table 1 displays the name and frequency of the 20 Web of Science categories most frequently tagged. 
 
 ```{r echo=FALSE}
-kable(field.freq, caption = "Journals most frequently published in", row.names = FALSE)
+kable(field.freq, caption = "Web of Science field categories most frequently tagged.", row.names = FALSE)
 ```
 
 ### Citation clusters and frequently co-occuring keywords
@@ -275,9 +276,7 @@ In summary, sample size was the only operationalization of *uncertainty* we were
 
 ## Introduction
 
-* Quick introduction to the contents of the section. 
-
-Having decided upon a suitable set of candidate studies for replication, and having established reasonable and feasible-to-identify operationalizations of *Value* and *uncertainty*, we could finally begin the process of calculating the replication value for the studies in our canidate set of studies.
+Having decided upon a suitable set of candidate studies for replication, and having established reasonable and feasible-to-identify operationalizations of *Value* and *uncertainty*, we could finally begin the process of calculating the replication value for the studies in our candidate set of studies.
 
 In the following sections we report the following: First we consider the practical issue that citation count information could be based on any number of sources, and consequently we study the reliability of citation count estimates across sources. Second, we consider the influence of age on citation count, and we estimate how well this influence is mitigated by dividing citation count by publication year. Third, we describe how sample size was coded, and we study the inter-rater reliability of different sample-size coders. Finally, based on these reliability analyses we design two separate replication value formulas, study the similarity in formula estimates, and give a brief qualitative face validity report on the top-ten recommendations provided by each of the formulas. 
 
@@ -286,7 +285,7 @@ In the following sections we report the following: First we consider the practic
 
 ### Reliability of citation scores across sources
 
-To better understand the reliability of various citation scores, we explored the strenght of association between the following citation metrics: 
+To better understand the reliability of various citation scores, we explored the strength of association between the following citation metrics: 
 
 ```{r echo=FALSE}
 metric.names <- c("WoS", "Crossref", "Scopus", "CWTS", "CWTS_normalized", "Altmetric")

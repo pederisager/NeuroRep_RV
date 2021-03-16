@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.4.14)  24 FEB 2021 15:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.4.14)  11 MAR 2021 11:47
 entering extended mode
 **./methods_and_results.tex
 (methods_and_results.tex
@@ -690,17 +690,17 @@ Package pdftex.def Info: methods_and_results_files/figure-latex/unnamed-chunk-2
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [2] [3 <./methods_and_results_files/figure-latex/unnamed-chunk-2-1.pdf>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 374.
+(Font)              <10> on input line 375.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 374.
+(Font)              <7> on input line 375.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 374.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 377.
+(Font)              <5> on input line 375.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 378.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 379
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 380
 .
 ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\ts1lmtt.fd"
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -711,17 +711,17 @@ File: methods_and_results_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file
  (type pdf)
 <use methods_and_results_files/figure-latex/unnamed-chunk-4-1.pdf>
 Package pdftex.def Info: methods_and_results_files/figure-latex/unnamed-chunk-4
--1.pdf  used on input line 385.
+-1.pdf  used on input line 386.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [4 <./methods_and_results_files/figure-latex/unnamed-chunk-4-1.pdf>]
 <vosviewer_label_cooccurence.png, id=60, 2043.88594pt x 1044.90375pt>
 File: vosviewer_label_cooccurence.png Graphic file (type png)
 <use vosviewer_label_cooccurence.png>
 Package pdftex.def Info: vosviewer_label_cooccurence.png  used on input line 46
-4.
+5.
 (pdftex.def)             Requested size: 469.74083pt x 240.14742pt.
 [5] [6 <./vosviewer_label_cooccurence.png>] [7] [8]
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 733.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 734.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\ts1lmr.fd"
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -732,13 +732,13 @@ File: methods_and_results_files/figure-latex/fig2-1.pdf Graphic file (type pdf)
 
 <use methods_and_results_files/figure-latex/fig2-1.pdf>
 Package pdftex.def Info: methods_and_results_files/figure-latex/fig2-1.pdf  use
-d on input line 974.
+d on input line 975.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-LaTeX Warning: Reference `fig:fig2' on page 11 undefined on input line 982.
+LaTeX Warning: Reference `fig:fig2' on page 11 undefined on input line 983.
 
 
-LaTeX Warning: Reference `fig:fig2' on page 11 undefined on input line 986.
+LaTeX Warning: Reference `fig:fig2' on page 11 undefined on input line 987.
 
 [11] [12 <./methods_and_results_files/figure-latex/fig2-1.pdf>]
 <methods_and_results_files/figure-latex/fig3-1.pdf, id=126, 469.755pt x 325.215
@@ -747,10 +747,10 @@ File: methods_and_results_files/figure-latex/fig3-1.pdf Graphic file (type pdf)
 
 <use methods_and_results_files/figure-latex/fig3-1.pdf>
 Package pdftex.def Info: methods_and_results_files/figure-latex/fig3-1.pdf  use
-d on input line 992.
+d on input line 993.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-LaTeX Warning: Reference `fig:fig3' on page 13 undefined on input line 996.
+LaTeX Warning: Reference `fig:fig3' on page 13 undefined on input line 997.
 
 [13 <./methods_and_results_files/figure-latex/fig3-1.pdf>]
 <methods_and_results_files/figure-latex/fig4-1.pdf, id=141, 469.755pt x 325.215
@@ -759,10 +759,10 @@ File: methods_and_results_files/figure-latex/fig4-1.pdf Graphic file (type pdf)
 
 <use methods_and_results_files/figure-latex/fig4-1.pdf>
 Package pdftex.def Info: methods_and_results_files/figure-latex/fig4-1.pdf  use
-d on input line 1042.
+d on input line 1043.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-LaTeX Warning: Reference `fig:fig4' on page 14 undefined on input line 1046.
+LaTeX Warning: Reference `fig:fig4' on page 14 undefined on input line 1047.
 
 [14 <./methods_and_results_files/figure-latex/fig4-1.pdf>]
 <methods_and_results_files/figure-latex/fig1-1.pdf, id=153, 469.755pt x 325.215
@@ -771,14 +771,14 @@ File: methods_and_results_files/figure-latex/fig1-1.pdf Graphic file (type pdf)
 
 <use methods_and_results_files/figure-latex/fig1-1.pdf>
 Package pdftex.def Info: methods_and_results_files/figure-latex/fig1-1.pdf  use
-d on input line 1163.
+d on input line 1164.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [15]
 
-LaTeX Warning: Reference `fig:fig1' on page 16 undefined on input line 1179.
+LaTeX Warning: Reference `fig:fig1' on page 16 undefined on input line 1180.
 
 
-LaTeX Warning: Reference `fig:figX' on page 16 undefined on input line 1191.
+LaTeX Warning: Reference `fig:figX' on page 16 undefined on input line 1192.
 
 <methods_and_results_files/figure-latex/figX-1.pdf, id=160, 469.755pt x 325.215
 pt>
@@ -786,7 +786,7 @@ File: methods_and_results_files/figure-latex/figX-1.pdf Graphic file (type pdf)
 
 <use methods_and_results_files/figure-latex/figX-1.pdf>
 Package pdftex.def Info: methods_and_results_files/figure-latex/figX-1.pdf  use
-d on input line 1196.
+d on input line 1197.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [16 <./methods_and_results_files/figure-latex/fig1-1.pdf>] [17 <./methods_and_r
 esults_files/figure-latex/figX-1.pdf>]
@@ -796,38 +796,38 @@ File: methods_and_results_files/figure-latex/fig5-1.pdf Graphic file (type pdf)
 
 <use methods_and_results_files/figure-latex/fig5-1.pdf>
 Package pdftex.def Info: methods_and_results_files/figure-latex/fig5-1.pdf  use
-d on input line 1256.
+d on input line 1257.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-LaTeX Warning: Reference `fig:fig5' on page 18 undefined on input line 1265.
+LaTeX Warning: Reference `fig:fig5' on page 18 undefined on input line 1266.
 
 
-LaTeX Warning: Reference `fig:fig5' on page 18 undefined on input line 1265.
+LaTeX Warning: Reference `fig:fig5' on page 18 undefined on input line 1266.
 
 
-LaTeX Warning: Reference `fig:figX' on page 18 undefined on input line 1269.
+LaTeX Warning: Reference `fig:figX' on page 18 undefined on input line 1270.
 
 
-LaTeX Warning: Reference `fig:fig2' on page 18 undefined on input line 1270.
+LaTeX Warning: Reference `fig:fig2' on page 18 undefined on input line 1271.
 
 
-LaTeX Warning: Reference `fig:fig5' on page 18 undefined on input line 1270.
+LaTeX Warning: Reference `fig:fig5' on page 18 undefined on input line 1271.
 
 
-LaTeX Warning: Reference `fig:fig5' on page 18 undefined on input line 1281.
+LaTeX Warning: Reference `fig:fig5' on page 18 undefined on input line 1282.
 
 
-LaTeX Warning: Reference `fig:fig5' on page 18 undefined on input line 1283.
+LaTeX Warning: Reference `fig:fig5' on page 18 undefined on input line 1284.
 
 
-LaTeX Warning: Reference `fig:fig5' on page 18 undefined on input line 1285.
+LaTeX Warning: Reference `fig:fig5' on page 18 undefined on input line 1286.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1306.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1307.
 [18] [19 <./methods_and_results_files/figure-latex/fig5-1.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1306.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1307.
 (methods_and_results.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1306.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1306.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1307.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1307.
 
 LaTeX Warning: There were undefined references.
 
@@ -854,7 +854,7 @@ public/lm/lmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr7.pfb
 s/MiKTeX 2.9/fonts/type1/public/lm/lmri7.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/
 lmtt10.pfb>
-Output written on methods_and_results.pdf (19 pages, 2163568 bytes).
+Output written on methods_and_results.pdf (19 pages, 2163221 bytes).
 PDF statistics:
  337 PDF objects out of 1000 (max. 8388607)
  72 named destinations out of 1000 (max. 500000)
