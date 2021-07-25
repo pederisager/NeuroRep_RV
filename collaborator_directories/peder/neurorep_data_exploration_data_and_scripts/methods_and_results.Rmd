@@ -3,8 +3,8 @@ title: "Neurorep exploratory analysis - Methods & Results sections"
 author: "Peder M. Isager"
 date: "11/23/2020"
 output:
-  word_document: default
   pdf_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -14,6 +14,7 @@ setwd("C:/Users/peder/Dropbox/jobb/PhD/Projects/2019_NeuroRep_Replication_Value/
 
 library(tidyverse)
 library(psych)
+library(stringr)
 library(gridExtra)
 library(corrplot)
 library(knitr)
@@ -75,6 +76,12 @@ To augment these analyses, we also utilized the statistical visialization softwa
 
 jou.freq <- as.data.frame(tail(sort(table(data.bib$SO)), 20))
 levels(jou.freq$Var1) <- sub("PROCEEDINGS OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES OF AMERICA", "PNAS", levels(jou.freq$Var1))
+jou.freq <- jou.freq[order(jou.freq$Freq, decreasing = T),]
+jou.freq[,1] <- str_to_title(tolower(jou.freq[,1]))
+jou.freq[[13,1]] <- "PNAS"
+jou.freq[[4,1]] <- "PLOS One"
+
+
 
 
 g.jou.freq <- ggplot(jou.freq, aes(x = Var1, y = Freq)) +
@@ -143,12 +150,13 @@ clu.siz <- unique(select(data.bib, cluster_id1, n_pubs))
 
 g.clu.siz <- ggplot(clu.siz, aes(x = n_pubs)) +
   geom_histogram() +
-  labs(title="Number of publications in clusters/subfields",
-       x = "Cluster size",
+  labs(title="Distribution of cluster/subfield size",
+       x = "Number of CWTS records included in cluster",
        y = "Frequency") +
   theme_bw()
 
 clu.summary <- describe(data.bib$n_pubs)
+
 
 ```
 
@@ -160,7 +168,7 @@ The records included in our dataset was published in `r n.journals` different jo
 Figure 1 displays the name and frequency of the 20 journals most frequently published in (*Peder draft note: We could also change this to be a table. Or we could turn the tables below into figures like this. Whatever helps readability the most.*). Unsurprisingly, two of the four journals from which all records were initially scraped were also among the most prominent journals in the final set of studies (Social Cognitive and Affective Neuroscience, and Social Neuroscience). Besides these two, the sample appears to be dominated by journals that are either general topic, (Plos ONE and PNAS) or general neuroscience/psychology (e.g. Neuroimage, Frontiers Psychology, Cortex). The lack of specialist journals in the top end of the frequency distribution is likely due to the fact that these journals only serve a smaller subsection of the larger community of social neuroscientists, while journals like Neuroimage and Plos ONE can, in principle, serve them all. 
 
 ```{r, echo=FALSE}
-plot(g.jou.freq)
+kable(jou.freq, caption = "Journals most frequently published in.", row.names = FALSE)
 ```
 
 
@@ -180,7 +188,7 @@ Examining bibliometric information from CWTS, we found that the records in our d
 plot(g.clu.siz)
 ```
 
-To better understand the scientific topic covered by these citation clusters, we inspected the category labels assigned to each cluster by CWTS. In total, the citation clusters were associated with `r n.labels.total` unique labels. Table 2 displays the frequency of the 50 most frequently mentioned category labels in our data.   
+To better understand the scientific topic covered by these citation clusters, we inspected the category labels assigned to each cluster by CWTS. In total, the citation clusters were associated with `r n.labels.total` unique labels. Table 3 displays the frequency of the 50 most frequently mentioned category labels in our data.   
 
 ```{r echo=FALSE}
 kable(lab.freq, caption = "Most frequent cluster labels", row.names = FALSE)
@@ -188,7 +196,7 @@ kable(lab.freq, caption = "Most frequent cluster labels", row.names = FALSE)
 
 To complement the cluster information from CWTS, we utilized the VOSviewer analysis tool to extract topic-related keywords from article titles and abstracts, and analyze co-occurences between these keywords. Figure 3 displays the co-occurence map between commonly mentioned keywords in our dataset. 
 
-![Figure 3: VOSviewer map of title/abstract keyword co-occurences](vosviewer_label_cooccurence.png)
+![VOSviewer map of title/abstract keyword co-occurences](vosviewer_label_cooccurence.png)
 
 ## Discussion
 
@@ -288,14 +296,15 @@ In the following sections we report the following: First we consider the practic
 To better understand the reliability of various citation scores, we explored the strength of association between the following citation metrics: 
 
 ```{r echo=FALSE}
-metric.names <- c("WoS", "Crossref", "Scopus", "CWTS", "CWTS_normalized", "Altmetric")
-metric.desc <- c(codebook[81, 2], codebook[78, 2], codebook[79, 2], codebook[89, 2], codebook[91, 2], codebook[80, 2])
+metric.names <- c("WoS", "Crossref", "Scopus", "CWTS", "CWTS normalized", "Altmetric", "Total")
+metric.desc <- c(codebook[81, 2], codebook[78, 2], codebook[79, 2], codebook[89, 2], codebook[91, 2], codebook[80, 2], "Number of articles for which all citation metrics were available")
 metric.n <- c(sum(!is.na(data.bib$TC_2020)),
               sum(!is.na(data.bib$crossref_citations)),
               sum(!is.na(data.bib$scopus_citations)),
               sum(!is.na(data.bib$tcs)),
               sum(!is.na(data.bib$tncs)),
-              sum(!is.na(data.bib$altmetric_score)))
+              sum(!is.na(data.bib$altmetric_score)),
+              sum(complete.cases(data.bib[, c("TC_2020", "scopus_citations", "crossref_citations", "altmetric_score", "tcs", "tncs")])))
 
 t.cit.metrics <- data.frame("citation metric" = metric.names, 
                             "description" = metric.desc, 
@@ -309,25 +318,28 @@ Strength of association was explored by correlating all citation metrics with on
 In addition, we expected WoS, Crossref, Scopus, and CWTS to be highly correlated measures of the same underlying construct - the raw academic citation impact of an article. To test this expectation, we subjected the citation scores from these sources to an intraclass correlation analysis (model = two-way fixed effects, type = single rater, definition = consistency). 
 
 ```{r, include=FALSE, warning=FALSE}
+# Number of articles for which all citation data exists
+sum(complete.cases(data.bib[, c("TC_2020", "scopus_citations", "crossref_citations", "altmetric_score", "tcs", "tncs")]))
+
 # Citation metric distributions
 g.raw <- ggplot(data = data.all) +
   geom_density(aes(x = TC_2020), col = "black") +
   geom_density(aes(x = crossref_citations), col = "red") + 
   geom_density(aes(x = scopus_citations), col = "blue") +
-  geom_density(aes(x = tcs), col = "green") +
+  geom_density(aes(x = tcs), col = "orange") +
   theme_bw() +
-  labs(title="A", x="raw citation score")
+  labs(title="A", x="raw citation score", y= "")
 
 g.tncs <- ggplot(data = data.all, aes(x = tncs)) +
   geom_density() +
   theme_bw()+
-  labs(title="B", x="CWTS cluster-normalized citation score")
+  labs(title="B", x="CWTS cluster-normalized citation score", y= "")
 
 g.alt <- ggplot(data = data.all, aes(x = altmetric_score)) +
   geom_density() +
   theme_bw()+
   xlim(0,500) +
-  labs(title="C", x="Altmetric score")
+  labs(title="C", x="Altmetric score", y= "")
 
 # Correlation matrix
 cor.dat <- select(.data = data.bib, 
@@ -383,8 +395,9 @@ cor.dat <- select(.data = data.bib,
 cor.dat$PY <- 2020-cor.dat$PY
 cor.dat$TC_2020_by_year <- cor.dat$TC_2020/cor.dat$PY
 cor.dat$altmetric_score_by_year <- cor.dat$altmetric_score/cor.dat$PY
+cor.dat$tncs <- data.bib$tncs
 
-names(cor.dat) <- c("age", "citations", "altmetrics", "citations by year", "altmetrics by year")
+names(cor.dat) <- c("age", "WoS", "Altmetric", "WoS by year", "Altmetrics by year", "CWTS normalized")
 
 cor.mat <- cor(cor.dat, use = "pairwise.complete.obs", method = "spearman")
 
@@ -450,6 +463,7 @@ df.irr <- rbind(df.ba, df.phd)
 g.irr <- ggplot(data=df.irr, aes(x=sample_size_orig, y=sample_size, col=coder, shape=coder)) +
   geom_point(alpha = 0.6, size=3) +
   theme_bw() +
+  labs(col = "double-coder", shape = "double-coder") +
   scale_x_continuous(trans='log10', name = "sample size, coded by original coder") +
   scale_y_continuous(trans='log10', name = "double-coded sample size")
 
@@ -466,7 +480,7 @@ g.samplesize <- ggplot(data = data.all, aes(x=sample_size)) +
 plot(g.irr)
 ```
 
-Overall, there was a high but imperfect agreement between the three coders (percentage exact agreement = `r all.match`). The BA double coder and the PhD coder had a slightly higher agreement rate (percentage exact agreement = `r orig.PhD.match`) than either one had with the original BA coders (percentage exact agreement between original BA coders and BA double coder = `r orig.BA.match`, percentage exact agreement between original BA coders and PhD double coder = `r orig.PhD.match`). The intraclass correlation coefficient between raters was high, ICC = `r icc$results["Single_raters_absolute", "ICC"]`, CI95%[`r icc$results["Single_raters_absolute", "lower bound"]`, `r icc$results["Single_raters_absolute", "upper bound"]`]. Figure \ref{fig:fig1} displays the variation in sample size between the coders, plotted on log scale. 
+Overall, there was a high but imperfect agreement between the three coders (percentage exact agreement = `r all.match`). The BA double coder and the PhD coder had a slightly higher agreement rate (percentage exact agreement = `r BA.PhD.match`) than either one had with the original BA coders (percentage exact agreement between original BA coders and BA double coder = `r orig.BA.match`, percentage exact agreement between original BA coders and PhD double coder = `r orig.PhD.match`). The intraclass correlation coefficient between raters was high, ICC = `r icc$results["Single_raters_absolute", "ICC"]`, CI95%[`r icc$results["Single_raters_absolute", "lower bound"]`, `r icc$results["Single_raters_absolute", "upper bound"]`]. Figure \ref{fig:fig1} displays the variation in sample size between the coders, plotted on log scale. 
 
 Coders disagreed in `r nrow(nonmatches)` cases. Because coding was conducted at different times by all coders, all disagreements between coders were resolved by the PhD coder. The final sample size was then substituted for the original coder values and used in subsequent analyses. In those cases where coders disagreed, the final sample size after resolving agreed with the original coders in `r orig.final.match` cases, with the BA coder in `r BA.final.match` cases, and with the PhD coder in `r PhD.final.match` cases. In addition to the cases of disagreements identified in the inter-rater reliability analysis, one additional sample size coding error was detected in later analyses and subsequently corrected. Figure \ref{fig:figX} displays the distribution of sample size in our data after resolving coder disagreements. 
 
@@ -555,6 +569,7 @@ The distribution of replication value from both formulas was visualized in histo
 ```{r, fig5, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="A: Distribution of RV~alt~ statistic. B: Distribution of RV~WoS~ statistic. C: RV~alt~ by RV~WoS~. Blue dots represent the 10 highest RV~alt~ scores. Red dots represent the 10 highest RV~WoS~ scores. Purple dots represent scores that are among the 10 highest scores on both estimators."}
 # Spearman correlation between the replication value estimators, plus bootstrap confidence intervals
 
+set.seed(20210722)
 RVcor <- spearman.ci(data.all$RV, data.all$RV_alt, nrep = 3000, conf.level = 0.95)
 
 # Plot both replication value distributions and visualize their association
@@ -568,22 +583,51 @@ highestRV <- data.all %>% filter(RV >= tail(head(data.all$RV[order(-data.all$RV)
 highestRV_alt <- data.all %>% filter(RV_alt >= tail(head(data.all$RV_alt[order(-data.all$RV_alt)], 10), 1))
 highestRV_both <- highestRV %>% filter(RV_alt >= tail(head(data.all$RV_alt[order(-data.all$RV_alt)], 10), 1))
 
-RVwos.p <- ggplot(data = data.all, aes(x = RV)) +
-  geom_histogram(fill = "brown1") + 
-  theme_bw()
-
 RValt.p <- ggplot(data = data.all, aes(x = RV_alt)) +
-  geom_histogram(fill = "cornflowerblue") + 
-  theme_bw()
+  geom_density(fill = "cornflowerblue") + 
+  theme_classic() +
+  labs(y="", x=expression(RV[alt]~density)) + 
+  theme(
+  axis.text.x = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank())
 
-  RVcor.p <- ggplot(data = data.all, aes(x = RV, y = RV_alt)) +
+RVwos.p <- ggplot(data = data.all, aes(x = RV)) +
+  geom_density(fill = "brown1") + 
+  theme_classic() +
+  labs(y="", x=expression(RV[WoS]~density)) + 
+  theme(
+  axis.text.x = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank()) 
+
+RVcor.p <- ggplot(data = data.all, aes(x = RV, y = RV_alt)) +
+  geom_rug() +
+  geom_rug(data = highestRV, color="brown1", sides="b", size=1) +
+  geom_rug(data = highestRV_alt, color="cornflowerblue", sides="l", size=1) +
+  #geom_rug(data=data.all, mapping=aes(x=RV), color="brown1", sides="b") +
+  #geom_rug(data=data.all, mapping=aes(y=RV_alt), color="cornflowerblue", sides="l") +
   geom_point() +
+  geom_point(data = highestRV, aes(x = RV, y = RV_alt), color = "white", size = 3) +
   geom_point(data = highestRV, aes(x = RV, y = RV_alt), color = "brown1", size = 3) +
   geom_point(data = highestRV_alt, aes(x = RV, y = RV_alt), color = "cornflowerblue", size = 3) +
   geom_point(data = highestRV_both, aes(x = RV, y = RV_alt), color = "darkorchid1", size = 4) +
-  theme_bw()
+  theme_bw() + 
+  theme(axis.title=element_text(size=16,face="bold")) +
+  labs(x=expression(RV["WoS"]), y=expression(RV["Alt"])) 
 
-gridExtra::grid.arrange(RVwos.p, RValt.p, RVcor.p, layout_matrix = rbind(c(2, 3), c(1, 3)))
+
+# gridExtra::grid.arrange(RVwos.p, RValt.p, RVcor.p, layout_matrix = rbind(c(2, 3, 3), c(1, 3, 3)))
+# 
+# empty <- ggplot()+geom_point(aes(1,1), colour="white")+
+#          theme(axis.ticks=element_blank(),
+#                panel.background=element_blank(),
+#                axis.text.x=element_blank(), axis.text.y=element_blank(),
+#                axis.title.x=element_blank(), axis.title.y=element_blank())
+# 
+# 
+# grid.arrange(RValt.p, RVcor.p, empty, RVwos.p, ncol=2, nrow=2, widths=c(1, 4), heights=c(4, 1))
+plot(RVcor.p)
 ```
 
 Figure \ref{fig:fig5}A and \ref{fig:fig5}B displays the distribution of the two replication value estimators in our dataset. Both estimator distributions are highly skewed, which is expected given that sample size, Web of Science citation count and altmetric attention scores are all highly skewed as well (see figure \ref{fig:figX} and figure \ref{fig:fig2}). Figure \ref{fig:fig5}C displays the association between scores from the two estimators. Overall, there is a modest rank-order order correlation between the estimators, $\rho$=`r RVcor$estimate`, 95%CI[`r RVcor$conf.int[1]`, `r RVcor$conf.int[2]`]. 
