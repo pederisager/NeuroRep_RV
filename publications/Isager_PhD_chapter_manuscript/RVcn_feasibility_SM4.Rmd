@@ -1,0 +1,76 @@
+---
+title: 'SM4: Age-citation correlation matrices for all citation sources'
+author: "Peder M. Isager"
+date: "9/17/2021"
+output: pdf_document
+
+header-includes   :
+- \usepackage{caption}
+- \captionsetup[figure]{labelformat=empty}
+- \captionsetup[table]{labelformat=empty}
+---
+
+```{r setup, include = FALSE, echo=FALSE, warning=FALSE}
+library(tidyverse)
+source("OSF_files/analysis/analyses.R")
+```
+
+
+```{r fig1, fig.cap="**Figure SM4-1.** Matrix of bi-variate correlations between age and Web of Science citation count.", warning=FALSE, echo=FALSE}
+
+corrplot(corr = cor.mat.wos, 
+         method = "color", 
+         col = col(200), 
+         addCoef.col = "black", 
+         tl.col="black", 
+         tl.srt=45,  
+         diag = F)
+```
+
+
+```{r fig2, fig.cap="**Figure SM4-2.** Matrix of bi-variate correlations between age and Crossref citation count.", warning=FALSE, echo=FALSE}
+
+corrplot(corr = cor.mat.crossref, 
+         method = "color", 
+         col = col(200), 
+         addCoef.col = "black", 
+         tl.col="black", 
+         tl.srt=45,  
+         diag = F)
+```
+
+
+```{r fig3, fig.cap="**Figure SM4-3.** Matrix of bi-variate correlations between age and Scopus citation count.", warning=FALSE, echo=FALSE}
+
+corrplot(corr = cor.mat.scopus, 
+         method = "color", 
+         col = col(200), 
+         addCoef.col = "black", 
+         tl.col="black", 
+         tl.srt=45,  
+         diag = F)
+```
+
+
+```{r fig4, fig.cap="**Figure SM4-4.** Matrix of bi-variate correlations between age and CWTS citation count.", warning=FALSE, echo=FALSE}
+
+corrplot(corr = cor.mat.cwts, 
+         method = "color", 
+         col = col(200), 
+         addCoef.col = "black", 
+         tl.col="black", 
+         tl.srt=45,  
+         diag = F)
+```
+
+
+```{r fig5, fig.cap="**Figure SM4-5.** Matrix of bi-variate correlations between age and scite citation count.", warning=FALSE, echo=FALSE}
+
+corrplot(corr = cor.mat.scite, 
+         method = "color", 
+         col = col(200), 
+         addCoef.col = "black", 
+         tl.col="black", 
+         tl.srt=45,  
+         diag = F)
+```

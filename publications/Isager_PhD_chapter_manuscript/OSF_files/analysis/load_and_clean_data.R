@@ -6,9 +6,9 @@ library(tidyverse)
 
 #### Load data #### 
 
-data.bib <- readRDS("../raw_data/articles.Rds")  # Load dataset containing Web of Science and CWTS bibliometrics for all records identified by our initial literature search.
-data.all <- readRDS("../raw_data/studies.Rds")  # Load dataset randomly sampled from data.bib for which sample size has also been coded 
-data.irr <- readRDS("../raw_data/studies_irr.Rds")  # Load dataset randomly sampled from data.all, used for checking sample size coding inter-rater reliability
+data.bib <- readRDS("../processed_data/wos+cwts_all_records_data.Rds")  # Load dataset containing Web of Science and CWTS bibliometrics for all records identified by our initial literature search.
+data.all <- readRDS("../processed_data/dataset_A_updated_data.rds")  # Load dataset randomly sampled from data.bib for which sample size has also been coded 
+data.irr <- readRDS("../processed_data/dataset_B_inter_rater_reliability.Rds")  # Load dataset randomly sampled from data.all, used for checking sample size coding inter-rater reliability
 codebook <- read.table("../raw_data/codebook.tsv", header = T, row.names = 1, sep = "\t")
 
 
@@ -34,7 +34,7 @@ exclude <- c("\\badhd\\b",
              "\\bdisorders\\b", 
              "\\bschizophrenia\\b")  # Define list of terms to exclude. "\\b" wrappers makes sure only whole words are matched.
 
-exclude.list <- read.csv("../raw_data/step_1_excluded_keywords.csv", stringsAsFactors = FALSE)  # Load list of to-be-excluded terms, as decided on by the authors
+exclude.list <- read.csv("../raw_data/wos_excluded_keywords.csv", stringsAsFactors = FALSE)  # Load list of to-be-excluded terms, as decided on by the authors
 
 exclude.words <- exclude.list$Term[exclude.list$exclude...final=="yes"]
 exclude.words <- paste0("\\b", exclude.words, "\\b")  # Define list of terms to exclude. "\\b" wrappers makes sure only whole words are matched
@@ -65,7 +65,7 @@ data.all <- data.all[is.na(data.all$excluded),]
 
 # Add missing values in TC_2020 and PY to data.all and recalculate RV
 
-missing.data.all <- read.csv("../raw_data/studies_missing_TC_2020_and_PY.csv")  # missing PY and TC_2020 values, manually identified in WoS
+missing.data.all <- read.csv("../raw_data/dataset_A_missing_TC_2020_and_PY.csv")  # missing PY and TC_2020 values, manually identified in WoS
 
 for (i in 1:nrow(data.all)) {
   if (is.na(data.all$PY[i]))
@@ -91,8 +91,5 @@ data.irr <- select(data.irr,
                    matches_orig_BA, matches_orig_PhD, matches_BA_PhD, matches_all, irr_resolver, irr_resolver_comment)
 
 saveRDS(data.bib, file = "../processed_data/data_bib.Rds")
-write.csv(data.bib, file = "../processed_data/data_bib.csv", row.names = F)
 saveRDS(data.all, file = "../processed_data/data_all.Rds")
-write.csv(data.all, file = "../processed_data/data_all.csv", row.names = F)
 saveRDS(data.irr, file = "../processed_data/data_irr.Rds")
-write.csv(data.irr, file = "../processed_data/data_irr.csv", row.names = F)

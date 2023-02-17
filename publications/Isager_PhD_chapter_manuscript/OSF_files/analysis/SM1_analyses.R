@@ -1,10 +1,6 @@
-# Load packages and data
-
 library(tidyverse)
 
-setwd(dirname(rstudioapi::getSourceEditorContext()$path)) # When opened in Rstudio, sets path to whereever analysis script is stored. Replace with whatever path is appropriate on local system
-
-pilot.dat <- read.csv("../raw_data/SM1_survey_data.csv")
+pilot.dat <- read.csv("../processed_data/pilot_expert_survey/NeuroRep_Survey_Pilot_data_2020-10-15_cleaned.csv")
 
 # Make summary table
 
@@ -51,7 +47,7 @@ names(imp.dat) <- c("sample size", "participants excluded", "statistical power",
                     "condition assignment", "replication result", "replication close", "replication independent", 
                     "within or between", "cluster peak Z", "open data", "preregistered", "statistical errors", 
                     "connected to theory", "predicted or exploratory", "participant sampling", "effect unexpected")
-imp.g <- ggplot(gather(imp.dat), aes(value)) + 
+ggplot(gather(imp.dat), aes(value)) + 
   geom_histogram(bins = 10) + 
   facet_wrap(~key) +
   theme_bw()
@@ -60,7 +56,7 @@ imp.g <- ggplot(gather(imp.dat), aes(value)) +
 names(rank.dat) <- c("sample size", "participants excluded", "statistical power", "effect size", "cluster peak Z", "cluster extent", "cluster p-value", 
                      "main or interaction", "within or between design", "open data", "statistical errors", "strongly connected to theory", 
                      "predicted or exploratory", "participant sampling", "condition assignment", "replication result", "preregistered", "effect unexpected")
-rank.g <- ggplot(gather(rank.dat), aes(value)) + 
+ggplot(gather(rank.dat), aes(value)) + 
   geom_histogram(bins = 10) + 
   facet_wrap(~key) +
   theme_bw()

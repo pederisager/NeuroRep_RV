@@ -14,8 +14,8 @@
 #### Install packages ####
 
 library(tidyverse)
-
-
+library(gridExtra)
+library(RVAideMemoire)
 
 #### Load data ####
 
@@ -77,48 +77,47 @@ data.scite <- data.scite %>% arrange(target_doi, year)
 # Create variables
 ## Number of years from paper was published to current citation year
 data.scite <- data.scite %>% mutate(years_since_pub = year - PY)
-## Change in citation count since last year
-data.scite$cit_change <-  
-  data.scite$citation_count - 
-  c(0, data.scite$citation_count[-nrow(data.scite)])
-data.scite$cit_change[data.scite$years_since_pub==0] <- NA
-## Percentage change in citation count since last year
-data.scite$cit_change_prop <-  
-  (data.scite$citation_count - 
-  c(0, data.scite$citation_count[-nrow(data.scite)])) / 
-  c(0, data.scite$citation_count[-nrow(data.scite)])
-data.scite$cit_change_prop[data.scite$years_since_pub==0] <- NA
+## Total Scite citation count from publication year to 2020
+data.scite <- data.scite %>%  # compute c/(y+1) up to 2019
+  group_by(target_doi) %>% 
+  do(scite_total_citation_count = sum(.$citation_count)) %>% 
+  mutate(scite_total_citation_count = as.numeric(scite_total_citation_count)) %>% 
+  left_join(data.scite, ., by = "target_doi")
 
-#### Plot data ####
+# Keep only data points also in data.bib
+data.scite <- data.scite[data.scite$target_doi %in% data.bib$DI,]
+
+# Save processed data
+write.csv(data.scite, "../processed_data/data_scite.csv", row.names = F)
+# Load processed data
+data.scite <- read.csv("../processed_data/data_scite.csv")
+
+#### Plot and analyze data ####
 
 # Citation trajectory for each article since publication
-data.scite %>% 
+p.traj_raw <- data.scite %>% 
   mutate(years_since_pub = year - PY) %>%
   ggplot(aes(x = years_since_pub, y = citation_count)) + 
   geom_line(aes(group=target_doi)) +
-  scale_x_continuous(breaks = seq(0, 11, by = 1))
+  scale_x_continuous(breaks = seq(0, 11, by = 1)) +
+  theme_bw() +
+  labs(title = "A", 
+       x = "years since publication", 
+       y = "citations obtained in year x")
 
-# Citation trajectory, excluding extreme cases
-data.scite %>% 
+# Ceneral log(citation+1) trajectory trend
+p.traj_log <- data.scite %>% 
   mutate(years_since_pub = year - PY) %>%
-  group_by(target_doi) %>% 
-  filter(!any(citation_count > 50)) %>%
-  ggplot(aes(x = years_since_pub, y = citation_count)) + 
-  geom_line(aes(group=target_doi))+
-  scale_x_continuous(breaks = seq(0, 11, by = 1))
-
-# Ceneral citation trajectory trend
-data.scite %>% 
-  mutate(years_since_pub = year - PY) %>%
-  ggplot(aes(x = years_since_pub, y = citation_count, 10)) + 
-  geom_smooth(level = 0.99) + 
-  #geom_boxplot(aes(group=years_since_pub)) +
-  scale_x_continuous(breaks = seq(0, 11, by = 1))
-
-
-
-
-#### Analyze data #### 
+  ggplot(aes(x = years_since_pub, y = log(citation_count+1))) + 
+  #geom_smooth(level = 0.99) + 
+  geom_line(aes(group=target_doi), col="grey")+
+  geom_boxplot(aes(group=years_since_pub)) +
+  scale_x_continuous(breaks = seq(0, 11, by = 1)) +
+  scale_y_continuous(breaks = log(c(0, 10, 100)+1), labels = c(0, 10, 100)) +  # need to add +1 to breaks since added +1 to citation count during log transformation
+  theme_bw() +
+  labs(title = "B", 
+       x = "years since publication", 
+       y = "citations obtained in year x")
 
 # See if c/(y+1) up to 2019 is a good predictor of citations in year 2020
 data <- data.scite %>%  # compute c/(y+1) up to 2019
@@ -126,16 +125,25 @@ data <- data.scite %>%  # compute c/(y+1) up to 2019
   group_by(target_doi) %>% 
   do(CoverYplus1 = sum(.$citation_count)/max(.$years_since_pub+1)) %>% 
   mutate(CoverYplus1 = as.numeric(CoverYplus1))
-
 data$citations2020 <- data.scite %>%  # extract 2020 citation count
   filter(year==2020) %>% 
   .$citation_count
-
-data <- unique(left_join(data, as_tibble(data.scite[, c(1,4)]), by = "target_doi"))  # add publication year to summary data
-  
-data %>%  
+data <- unique(left_join(data, as_tibble(data.scite[, c(1,4,6)]), by = "target_doi"))  # add publication year to summary data
+p.c2020_by_cy1 <- data %>%  
   ggplot(aes(x = CoverYplus1, y = citations2020)) +
   geom_point(aes(col=PY)) + 
-  geom_smooth(method = "lm", col="black")
+  geom_smooth(method = "lm", col="black") +
+  scale_color_gradient(low = "red", high = "yellow") +
+  theme_bw() +
+  labs(title = "C", 
+       x = expression(frac(C[Scite],Y+1)),
+       y = expression(paste("scite"^"TM", "citations obtained in 2020")), 
+       col = "publication year") 
 
-cor(data$CoverYplus1, data$citations2020, method = ("spearman"))
+c2020_by_cy1 <- spearman.ci(data$CoverYplus1, data$citations2020, nrep = 10000, conf.level = 0.95)
+c2020_by_age <- spearman.ci(2019-data$PY, data$citations2020, nrep = 10000, conf.level = 0.95)
+
+# Combine plots into one figure
+lay <- rbind(c(1,2),
+             c(3,3))
+grid.arrange(p.traj_raw, p.traj_log, p.c2020_by_cy1, layout_matrix = lay)

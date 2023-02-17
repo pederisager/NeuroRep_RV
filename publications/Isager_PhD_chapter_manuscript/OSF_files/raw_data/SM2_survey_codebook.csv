@@ -1,0 +1,255 @@
+variable,description/question in qualtrics,
+ID,participant identifier,
+duration_seconds,how long it took participant to complete survey,
+RecordedDate,date and time the survey was taken,
+open_ended_start,"When you read an empirical paper there are multiple pieces of information that you could use to evaluate the credibility of a finding in that paper.
+
+
+
+If you were to assess the quality and quantity of evidence in support of a finding from fMRI within your own field of expertise, what information would you want to have access to? Please list any piece of information that comes to mind.",
+sam_siz_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+
+The total sample size collected for the study:",
+sam_siz_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+par_exc_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+ 
+
+The percentage of participants that were excluded (after they met the inclusion criteria for participating in MRI research)",
+par_exc_how,"For this question, we would like you to indicate in what way you believe this information is related to the quality and quantity of evidence in support of a finding:",
+par_exc_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+stat_pow_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+
+The statistical power of the study to detect effect sizes of interest",
+stat_pow_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+eff_siz_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+The size of the effect (e.g. Cohen’s d for condition differences, Pearson’s r for brain-behavior correlations, or percentage signal change for raw BOLD signal differences)",
+eff_siz_how,"For this question, we would like you to indicate in what way you believe this information is related to the quality and quantity of evidence in support of a finding:",
+eff_siz_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+clu_ext_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+Cluster extent of relevant cluster(s)",
+clu_ext_how,"For this question, we would like you to indicate in what way you believe this information is related to the quality and quantity of evidence in support of a finding:",
+clu_ext_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+clu_pval_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+The p-value for relevant cluster(s)",
+clu_pval_how,"For this question, we would like you to indicate in what way you believe this information is related to the quality and quantity of evidence in support of a finding:",
+clu_pval_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+main_int_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+Whether the finding is a main effect or an interaction",
+main_int_how,"For this question, we would like you to indicate in what way you believe this information is related to the quality and quantity of evidence in support of a finding:",
+main_int_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+con_ass_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+How participants were assigned to conditions, if relevant (e.g., randomly, single/double blind, etc.)",
+con_ass_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+rep_res_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+In cases where you know of a replication study, the result(s) of a replication study",
+rep_close_imp,"In cases where you know of a replication study, whether the replication is a close (direct) or conceptual replication.",
+rep_close_how,"For this question, we would like you to indicate in what way you believe this information is related to the quality and quantity of evidence in support of a finding:",
+rep_ind_imp,"In cases where you know of a replication study, whether the replication is conducted by an independent team or not.",
+rep_ind_how,"For this question, we would like you to indicate in what way you believe this information is related to the quality and quantity of evidence in support of a finding:",
+rep_com,Comments about these pieces of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+wit_bet_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+Whether the finding is based on within-subjects measurements or between-subjects measurements",
+wit_bet_how,"For this question, we would like you to indicate in what way you believe this information is related to the quality and quantity of evidence in support of a finding:",
+wit_bet_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+clu_zpeak_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+Peak Z-value for relevant clusters",
+clu_zpeak_how,"For this question, we would like you to indicate in what way you believe this information is related to the quality and quantity of evidence in support of a finding:",
+clu_zpeak_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+open_dat_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+Open access to the underlying empirical data that were analyzed",
+open_dat_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+pre_reg_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+Whether the study has been preregistered",
+pre_reg_how,"For this question, we would like you to indicate in what way you believe this information is related to the quality and quantity of evidence in support of a finding:",
+pre_reg_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+stat_err_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+Whether there are statistical errors in the results reported (e.g., the degrees of freedom do not correspond to the other reported statistics, the total sample size does not equal the sum of the group sample sizes, etc.)",
+stat_err_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+the_con_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+Whether the finding has a strong connection with theory",
+the_con_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+pred_exp_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+Whether the finding is predicted a priori or discovered during data exploration",
+pred_exp_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+par_sam_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+How participants were sampled from the population (e.g., stratified random sampling, snowball sampling, convenience sampling, etc.)",
+par_sam_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+unexp_imp,"Imagine you are evaluating a typical fMRI finding within your field of expertise. There is rarely a direct relationship between any single piece of information about a finding and its credibility. Nevertheless, please indicate how important the following pieces of information are for you when you judge the quality and quantity of evidence in support of a finding.
+
+
+
+Please give your answer considering scale endpoints between “All else equal, this is not at all important to me” and “All else equal, this is very important to me”.
+
+
+ 
+
+Whether the finding is unexpected (e.g., “counterintuitive”), or in line with what we already know",
+unexp_how,"For this question, we would like you to indicate in what way you believe this information is related to the quality and quantity of evidence in support of a finding:",
+unexp_com,Comments about this piece of information as an indication of the quality and quantity of evidence in support of a finding (if any):,
+sam_siz_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - The sample size",
+par_exc_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - The percentage participants excluded",
+stat_pow_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - The statistical power",
+eff_siz_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - The effect size",
+clu_zpeak_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - The cluster peak Z-values",
+clu_ext_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - The cluster extent",
+clu_pval_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - The p-value",
+main_int_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - Main effect or interaction",
+wit_bet_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - Within-subjects or between-subjects",
+open_dat_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - Openly available data",
+stat_err_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - The presence of statical errors in reporting",
+the_con_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - The connection to theory",
+pred_exp_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - Predicted a priori or discovered during data exploration",
+par_sam_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - How participants are sampled from the population",
+con_ass_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - How participants are assigned to conditions",
+rep_res_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - The results of a replication",
+pre_reg_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - Preregistered or not preregistered",
+unexp_rank,"Please rank-order the items you just evaluated according to how important they are, on average, for your judgements of the quality and quantity of evidence in support of a finding.
+The more important an item is for your judgements, the higher its position in the rank-order should be. - Unexpected vs. in line with what we already know",
+open_ended_end,"After reading through these items, are there additional pieces of information that came to mind, but that you did not mention at the beginning of the survey and that were not present in the items?",
+general_comments,General comments and feedback on the survey. Were the questions understandable? Did the kinds of information we provided make sense to you?,

@@ -1,0 +1,46 @@
+---
+title: 'SM1: Distribution of CWTS citation cluster keywords'
+author: "Peder M. Isager"
+date: "9/17/2021"
+output: pdf_document
+bibliography: ["neurorep_what_to_replicate.bib"]
+
+header-includes   :
+- \usepackage{caption}
+- \captionsetup[figure]{labelformat=empty}
+- \captionsetup[table]{labelformat=empty}
+ \usepackage{float}
+ \floatplacement{figure}{H}
+---
+
+```{r setup, include = FALSE, echo=FALSE, warning=FALSE}
+options(digits = 3)
+
+library(pander)
+
+source("OSF_files/analysis/analyses.R")
+```
+
+We acquired additional bibliometric information from the Centre for Science and Technology Studies (CWTS, https://www.cwts.nl/) about citation clusters in our data [a proxy for scientific subfields based upon clustering of publications based on citation relationships; @Waltman2019]. Each citation cluster can be thought of as a data-defined research subfield, where articles that cite similar articles tend to end up in the same cluster/subfield. The clusters were generated independently of our study, based on all bibliometric information in the CWTS database. For each article in our dataset, we retrieved information about its corresponding CWTS cluster, including how many articles in the entire CWTS database were included in this cluster. The CWTS cluster algorithm also generates key-terms that describe the most prevalent research topics dealt with in each cluster. This allows for a higher-resolution analysis of the research topics covered in our dataset. We expected to see a wide range of CWTS clusters included in our data, and we expected the cluster labels would primarily denote terms related to social phenomena and their influence on cognition and neural activity. 
+
+The records in our dataset were sampled from `r n.clusters` unique CWTS citation clusters. The size of each cluster varied substantially (min = `r clu.summary$min` records, median = `r clu.summary$median` records, max = `r clu.summary$max` records). The full distribution of cluster size visualized in figure SM1.
+
+```{r fig1, fig.cap="**Figure SM1:** Distribution of the size of CWTS clusters to which the articles in our dataset belong. The size of each cluster refers to the total number of records associated with that cluster over the entire CWTS database, which includes millions of articles from all over science. Thus, the size of the cluster refers to the population size of the cluster, not how many articles are included in the cluster in our data.", warning=FALSE, echo = FALSE, message=FALSE}
+
+plot(g.clu.siz)
+```
+
+To better understand the scientific topics covered in these citation clusters, we inspected the category labels assigned to each cluster by CWTS. In total, the citation clusters were associated with `r n.labels.total` unique labels. Table 2 displays the frequency of the 50 most frequently mentioned category labels in our data. 
+
+```{r tab1, echo=FALSE}
+pander(lab.freq, caption = "\\textbf{Table SM1:} Frequency table of the 50 most prevalent cluster labels in our dataset. Label frequencies are identical for many labels because multiple labels are used to describe a single cluster. For example, the terms “face recognition”, “face processing”, “prosopagnosia”, “unfamiliar face”, and “facial identity” all appear 118 times because they are all used to describe one, and only one, cluster to which 118 articles in our data belong. ")
+```
+
+While most cluster labels describe substantive topics, the inclusion of “effect” in the top 50 most prevalent labels should highlight that not all labels assigned by the cluster algorithm are equally informative for understanding cluster content. The distribution of substantive topic labels is largely consistent with our expectations. Terms like “fmri”, “fmri data”, “imitation”, “empathy”, “facial expression”, “social anxiety”, and “social exclusion” are frequently used to describe subfields to which the articles in our dataset belong. Conversely, we did not observe any labels that were obviously unrelated to our a-priori expectations about which topics should be covered in a sample of social fMRI articles.
+
+Close inspection of the cluster label data revealed an important confuscating factor, however. While cluster labels are descriptive of the whole cluster as it appears in the CWTS database, they are not necessarily descriptive of the subset of that cluster included in our candidate set. As a prominent example, the citation cluster described by the labels “intertemporal choice”, “decision making”, “delay discounting”, “impulsivity” and “iowa gambling task” is the most prevalent cluster in our data. However, the labels used to summarize the `r unique(data.bib$n_pubs[data.bib$cluster_id1=="692" & !is.na(data.bib$cluster_id1=="692")])` CWTS records in this cluster are not necessarily representative of the minority of articles from the cluster that are included in our dataset. Although the term “iowa gambling task” is descriptive of the cluster as a whole, only one out of the `r length(data.bib$n_pubs[data.bib$cluster_id1=="692" & !is.na(data.bib$cluster_id1=="692")])` articles from the cluster in our dataset mentions the Iowa gambling task. Inferring about the contents of our dataset based on these labels alone could therefore be misleading. However, correspondence in topics between frequently occurring CWTS cluster labels and frequently co-occurring keywords in VOSviewer (see figure 3 in main manuscript) is encouraging.
+
+
+
+
+# References
