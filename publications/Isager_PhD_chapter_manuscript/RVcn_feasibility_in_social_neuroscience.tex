@@ -3,12 +3,7 @@
 \PassOptionsToPackage{hyphens}{url}
 %
 \documentclass[
-  english,
   man,floatsintext]{apa6}
-\title{Selecting Studies for Replication in Social Neuroscience: Exploring a Formal Approach}
-\author{Peder Mortvedt Isager\textsuperscript{1}, Daniël Lakens\textsuperscript{2}, Thed van Leeuwen\textsuperscript{3}, \& Anna E. van 't Veer\textsuperscript{4}}
-\date{}
-
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -38,16 +33,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Selecting Studies for Replication in Social Neuroscience: Exploring a Formal Approach},
-  pdfauthor={Peder Mortvedt Isager1, Daniël Lakens2, Thed van Leeuwen3, \& Anna E. van 't Veer4},
-  pdflang={en-EN},
-  pdfkeywords={replication value, replication, social neuroscience, study selection, expected utility, \emph{RV\textsubscript{Cn}}},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -107,6 +92,15 @@
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{english}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
 % Manuscript styling
 \usepackage{upgreek}
 \captionsetup{font=singlespacing,justification=justified}
@@ -137,6 +131,20 @@
 % \setlength{\parindent}{0.5in}
 % \setlength{\parskip}{0pt plus 0pt minus 0pt}
 
+% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
+% See https://github.com/crsh/papaja/issues/292
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-\z@\relax}%
+  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
 % \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\HyOrg@maketitle}
@@ -148,7 +156,15 @@
   {\section*{\protect\normalfont{\@title}}}
   {}{\typeout{Failed to patch title.}}
 \makeatother
-\shorttitle{Selecting Studies for Replication in Social Neuroscience}
+
+\usepackage{xpatch}
+\makeatletter
+\xapptocmd\appendix
+  {\xapptocmd\section
+    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
+    {}{\InnerPatchFailed}%
+  }
+{}{\PatchFailed}
 \keywords{replication value, replication, social neuroscience, study selection, expected utility, *RV~Cn~*\newline\indent Word count: 11332}
 \usepackage{csquotes}
 \usepackage{caption}
@@ -158,20 +174,26 @@
 \pagestyle{fancy}
 \lhead{ISAGER ET AL.}
 \rhead{}
-\ifXeTeX
-  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
-  \usepackage{polyglossia}
-  \setmainlanguage[]{english}
-\else
-  \usepackage[main=english]{babel}
-% get rid of language-specific shorthands (see #6817):
-\let\LanguageShortHands\languageshorthands
-\def\languageshorthands#1{}
-\fi
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Selecting Studies for Replication in Social Neuroscience: Exploring a Formal Approach},
+  pdfauthor={Peder Mortvedt Isager1, Daniël Lakens2, Thed van Leeuwen3, \& Anna E. van 't Veer4},
+  pdflang={en-EN},
+  pdfkeywords={replication value, replication, social neuroscience, study selection, expected utility, \emph{RV\textsubscript{Cn}}},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
+\title{Selecting Studies for Replication in Social Neuroscience: Exploring a Formal Approach}
+\author{Peder Mortvedt Isager\textsuperscript{1}, Daniël Lakens\textsuperscript{2}, Thed van Leeuwen\textsuperscript{3}, \& Anna E. van 't Veer\textsuperscript{4}}
+\date{}
+
+
+\shorttitle{Selecting Studies for Replication in Social Neuroscience}
 
 \authornote{
 
@@ -185,7 +207,7 @@ Correspondence concerning this article should be addressed to Peder Mortvedt Isa
 
 \affiliation{\vspace{0.5cm}\textsuperscript{1} Department of Psychology, Oslo New University College\\\textsuperscript{2} Department of Industrial Engineering \& Innovation Sciences, Eindhoven University of Technology\\\textsuperscript{3} Centre for Science and Technology Studies, Leiden University\\\textsuperscript{4} Methodology and Statistics unit, Institute of Psychology, Leiden University}
 
-\abstract{
+\abstract{%
 Replication of published results is crucial for ensuring the robustness and self-correction of research, yet replications are scarce in many fields. Replicating researchers will therefore often have to decide which of several relevant candidates to target for replication. Formal strategies for efficient study selection have been proposed, but none have been explored for practical feasibility--a prerequisite for validation. Here we move one step closer to efficient replication study selection by exploring the feasibility of a particular selection strategy that estimates \emph{replication value} as a function of citation impact and sample size (Isager, Veer, \& Lakens, 2021) in the field of social neuroscience, where replication seems especially important. We first report our efforts to generate a representative candidate set of replication targets in social fMRI research. We then explore the feasibility and reliability of estimating replication value for the targets in our set, resulting in a dataset of 1358 studies ranked on their value of prioritising them for replication. Finally, we assess the face validity of this strategy for identifying the studies that would be the most important to replicate out of all candidates in our set. Our report thus demonstrates how the approach of Isager et al. (2021) could be implemented in practice, and provides a general framework for exploring the feasibility of formal study selection strategies. Confirmation of feasibility opens the door for empirical validation of the proposed approach. We end our report by discussing how future validation studies might be designed.
 }
 
@@ -199,7 +221,7 @@ Replication of published results is crucial for ensuring the robustness and self
 
 Close replication of original research results is essential for ensuring that the results can be reliably produced by different researchers (Poldrack et al., 2017). The practice is especially important in subfields of social and cognitive neuroscience where correlations between brain activity and behavioral outcomes are often of primary interest. These research designs tend to be highly vulnerable to error-rate-inflation and overestimation of effect size due to a combination of (1) low statistical power (Szucs \& Ioannidis, 2017), (2) substantial researcher degrees of freedom (Botvinik-Nezer et al., 2020; Carp, 2012), and (3) incentives to publish statistically significant results (Button et al., 2013). In addition, neuroimaging research is generally vulnerable to generalizability issues that arise as a result of the complicated measurement pipeline. Unsurprisingly, rates of successful replications in the field are low (Boekel et al., 2015). And yet, close replications -- which protect against persistence of false-positives -- are not common practice (Ashar et al., 2021; Huber, Potter, \& Huszar, 2019; Poldrack et al., 2017). As a consequence, many original studies are currently in need of replication. At the same time, the costs of data collection -- and, by extension, replication -- is high (Poldrack et al., 2017). With limited resources and many non-replicated studies to choose from, the field should consider which studies in the published literature would be the most important to replicate, so that resources directed towards replication can be spent optimally.
 
-Various formal strategies for replication study selection have been developed in recent years (Field, Hoekstra, Bringmann, \& Van Ravenzwaaij, 2019; Isager et al., 2021, supplementary formula documents in 2020; Matiasz et al., 2018). If effective, such strategies have a great potential for increasing the transparency and efficiency of replication study selection in neuroimaging research. When criteria for study selection are made transparent, it becomes easier to discuss which replication studies are worthwhile to fund, conduct, and publish. Additionally, when important-to-replicate targets can be identified more easily the overall contribution of replication as a research activity increases. By increasing the efficiency of coordination and resource spending in replication research, formal study selection strategies present a major step forward towards the important goal of making replication part of mainstream research practice (Zwaan, Etz, Lucas, \& Donnellan, 2018).
+Various formal strategies for replication study selection have been developed in recent years (Field, Hoekstra, Bringmann, \& Van Ravenzwaaij, 2019; Isager et al., 2021; Matiasz et al., 2018; supplementary formula documents in Isager et al., 2020). If effective, such strategies have a great potential for increasing the transparency and efficiency of replication study selection in neuroimaging research. When criteria for study selection are made transparent, it becomes easier to discuss which replication studies are worthwhile to fund, conduct, and publish. Additionally, when important-to-replicate targets can be identified more easily the overall contribution of replication as a research activity increases. By increasing the efficiency of coordination and resource spending in replication research, formal study selection strategies present a major step forward towards the important goal of making replication part of mainstream research practice (Zwaan, Etz, Lucas, \& Donnellan, 2018).
 
 However, no formal study selection strategy has been tested for application in social neuroscience (or any other field for that matter). To be applicable, a strategy must meet two basic conditions. First, it must be feasible to apply the strategy in practice. That is, the information needed to execute the strategy must be possible to obtain given reasonable time and resource constraints. Most formal study selection strategies are based on a combination of statistical, bibliometric, and substantive information about the candidate replication targets, which is often not easy to access (Federer et al., 2018; Furukawa, Barbui, Cipriani, Brambilla, \& Watanabe, 2006; Glasziou, Meats, Heneghan, \& Shepperd, 2008; Sullivan \& Feinn, 2012; e.g., Tay, Kramer, \& Waltman, 2020). The feasibility of existing strategies for application in any particular area of research is therefore uncertain. Second, provided that the strategy is feasible to apply we must validate that the strategy is actually helping us reach our prespecified research goals. All feasible selection strategies lead to \emph{some} prioritization of replication targets, but whether prioritized targets truly are those more in need of replication is an empirical question.
 
@@ -276,7 +298,7 @@ The search was conducted on 2019-02-21. 2706 records were identified via this se
 \hypertarget{selection-process}{%
 \subsubsection{Selection process}\label{selection-process}}
 
-Unsurprisingly, the two search strategies yielded overlapping results, as articles published in the four social neuroscience journals we identified also frequently contained the keywords ``social'' and ``fMRI.'' After removing duplicate records, the two search strategies yielded 7413 unique empirical articles in total (see figure 2). Basic bibliometric information about each article, including author-provided keywords, were downloaded for all articles.
+Unsurprisingly, the two search strategies yielded overlapping results, as articles published in the four social neuroscience journals we identified also frequently contained the keywords ``social'' and ``fMRI''. After removing duplicate records, the two search strategies yielded 7413 unique empirical articles in total (see figure 2). Basic bibliometric information about each article, including author-provided keywords, were downloaded for all articles.
 
 Authors PMI and AvtV reviewed the initial set of articles and determined for each article whether author-provided keywords indicated that replication would require access to samples or equipment that would not be feasible for us to obtain (the complete list of excluded keywords, categories, and exclusion rationales can be found at \url{https://osf.io/mtx72/}). All articles whose keywords, titles or abstracts matched keywords in our list were excluded. Our final set of candidates contained 2268 empirical articles. These articles were considered our initial candidate set.
 
@@ -291,7 +313,7 @@ Authors PMI and AvtV reviewed the initial set of articles and determined for eac
 
 Once the final set of candidate records was determined, we explored the available bibliographic information to ensure that the sample indeed seemed representative of the field of social fMRI research. To verify that the initial candidate set curated was representative of the population we wanted to sample from, two complementary validating questions were explored. First, does the sample adequately sample the strata of our population of interest? That is, are research topics and themes common in the population represented in the sample, and does the sample seem sufficiently diverse in terms of topics, themes, and subfields, given our expectation of diversity in the population sampled from? Second, does the sample contain strata from populations we did not intend to sample from? That is, are topics and themes prevalent in the data that obviously do not belong in the research field we are trying to sample from?
 
-To address these questions we explored a number of bibliometric indicators of the research topics contained within a set of articles, including (1) the journals in which articles in the initial set were published, (2) the WoS field categories ({``Web of {Science Core Collection Help},''} n.d.) assigned to articles in the initial set, and (3) topic-related keyword information gathered from the articles themselves. The following sections summarize the analyses of each indicator in turn.
+To address these questions we explored a number of bibliometric indicators of the research topics contained within a set of articles, including (1) the journals in which articles in the initial set were published, (2) the WoS field categories (\emph{Web of {Science Core Collection Help}}, n.d.) assigned to articles in the initial set, and (3) topic-related keyword information gathered from the articles themselves. The following sections summarize the analyses of each indicator in turn.
 
 The analyses reported in the following sections only summarize a subset of all bibliometric information available for our initial candidate set of articles. Additional information includes all WoS Core Collection fields, the open access status of each article, and a range of citation metrics. The full dataset, including all bibliometric variables and a variable codebook, are available on OSF (\url{https://osf.io/f7zdq/}).
 
@@ -350,7 +372,7 @@ We explored the distribution of WoS field categories linked to our data, includi
 
 The records in our dataset were classified as being members of 178 unique WoS categories. Table 2 displays the name and frequency of the 20 WoS categories most frequently tagged (0.87 of all articles in the set were sorted under these 20 Web of Science categories). This distribution is largely consistent with what we would expect to see in studies sampled from social neuroscience research, with many categories covered and with categories such as ``Neurosciences; Psychology; Psychology, Experimental'' and ``Multidisciplinary Sciences'' being among the most common. However, it is somewhat surprising that categories such as ``Psychology, Social'' and ``Neuroimaging'' are not more prevalent in a dataset that is supposed to contain fMRI studies of social psychological phenomena.
 
-Inspecting the full range of WoS category labels yielded similar observations. Most labels were clearly related to areas of behavioral science, psychiatry, neuroscience and biology, consistent with the interdisciplinary branches of social fMRI research. Only a few category labels seemed obviously unrelated to social neuroscience (``Engineering, Mechanical, Information Science \& Library Science,'' ``Ophthalmology,'' ``Physics, Fluids \& Plasmas; Physics, Mathematical,'' and ``Urology \& Nephrology''). Of the articles sorted under these categories in our data, only one article (Colman \& Vukadinović Greetham, 2015) seemed truly unrelated to social neuroscience on closer inspection.
+Inspecting the full range of WoS category labels yielded similar observations. Most labels were clearly related to areas of behavioral science, psychiatry, neuroscience and biology, consistent with the interdisciplinary branches of social fMRI research. Only a few category labels seemed obviously unrelated to social neuroscience (``Engineering, Mechanical, Information Science \& Library Science'', ``Ophthalmology'', ``Physics, Fluids \& Plasmas; Physics, Mathematical'', and ``Urology \& Nephrology''). Of the articles sorted under these categories in our data, only one article (Colman \& Vukadinović Greetham, 2015) seemed truly unrelated to social neuroscience on closer inspection.
 
 \begin{table}[tbp]
 
@@ -443,11 +465,11 @@ In exploring how \emph{RV\textsubscript{Cn}} should be calculated based on the q
 To better understand the reliability of citation impact \(C\) across sources \(S\), we explored the strength of association between a variety of citation metrics (table 3).
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.25}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.46}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.10}}@{}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2500}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4583}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.0972}}@{}}
 \caption{\textbf{Table 3:} Frequency of various citation metrics available for our data. Web of Science citation counts were originally available for all articles, but some could not be retrieved when the citation count data was updated in 2020.}\tabularnewline
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\centering
 citation.metric
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -455,9 +477,9 @@ description
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 N
 \end{minipage} \\
-\midrule
+\midrule()
 \endfirsthead
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\centering
 citation.metric
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -465,7 +487,7 @@ description
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 N
 \end{minipage} \\
-\midrule
+\midrule()
 \endhead
 WoS & Web of Science Core Collection
 Times Cited Count, updated
@@ -505,7 +527,7 @@ Altmetric & Altmetric score, downloaded
 Total & Number of articles for which
 all citation metrics were
 available & 1590 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 All metrics were retrieved within a timespan of two weeks to ensure that there would be no differences in citation impact from different sources due to time-lag. Due to the skewed distribution of all citation metrics, and because we are primarily concerned with the rank-ordering of the records (Isager et al., 2020) Spearman's rho correlation was used to assess the strength of association between metrics.
@@ -588,7 +610,7 @@ Manual coding introduces human error. In addition, discrepancies between coders 
 \caption{\label{fig:fig8}\textbf{Figure 8.} Variation in sample size between coders. Sample size is plotted on log scale. The original sample size coded is represented on the x-axis. Double-coded sample size values are represented on the y-axis. Blue circles represent values from the PhD-student coder. Brown triangles represent values from the undergraduate student coder.}
 \end{figure}
 
-Overall, there was a high but imperfect agreement between the three coders (percentage exact agreement = 0.77). The undergraduate double-coder and the PhD coder had a slightly higher agreement rate (percentage exact agreement = 0.88) than either one had with the original undergraduate coders (percentage exact agreement between original coders and undergraduate coder = 0.82, percentage exact agreement between original coders and PhD coder = 0.83). The intraclass correlation coefficient between raters was high, ICC = 0.82, CI95\%{[}0.80, 0.85{]}. Figure 8 displays the variation in sample size between the coders, plotted on log scale.
+Overall, there was a high but imperfect agreement between the three coders (percentage exact agreement = 0.77). The undergraduate double-coder and the PhD coder had a slightly higher agreement rate (percentage exact agreement = 0.88) than either one had with the original undergraduate coders (percentage exact agreement between original coders and undergraduate coder = 0.82, percentage exact agreement between original coders and PhD coder = 0.83). The intraclass correlation coefficient between raters was high, ICC = 0.82, CI95\%{[}0.79, 0.86{]}. Figure 8 displays the variation in sample size between the coders, plotted on log scale.
 
 Coders disagreed in 57 cases. All disagreements between coders were resolved by the PhD coder after inspecting comments by the other coders. In most cases, one coder was clearly correct and the other clearly incorrect. In cases where the correct sample size was genuinely ambiguous (e.g., when study exclusion procedures were not clearly explained) the PhD coder had final say in which sample size would be considered correct. In addition to the cases of disagreements identified in the data used for inter-rater reliability analysis, one additional sample size coding error in the full set of 1358 studies was detected and corrected at a later time during the analyses. Figure 9 displays the distribution of sample size in our data after resolving coder disagreements (mode=20, median=24, frequency of \emph{n\textless=10}=37, \emph{11-20}=479, \emph{21-30}=365, \emph{31-40}=184, \emph{41-50}=97, \emph{51-60}=60, \emph{61-70}=27, \emph{71-80}=25, \emph{81-90}=10, \emph{91-100}=10, \emph{n\textgreater100}=64).
 
@@ -642,7 +664,7 @@ In other words, quantitative recommendations for which studies to replicate will
 
 In summary we return to the research questions posed in the introduction. First, does it matter from which source we collect citation impact estimates? It depends. For academic citation impact, exact count may vary between sources, but relative citation rank-order appears very reliable across sources. So long as the same source is used consistently for all replication targets evaluated, choice of source has little consequence. Field-normalizing citation counts seems to have a more substantial impact on citation rank-order, though correlation between raw and field-normalized counts was also quite high for our data. Altmetric attention scores are only weakly correlated with traditional citation counts,which has a substantial impact on \emph{RV\textsubscript{Cn}} estimates. This is to be expected since Altmetric attention scores and traditional citation count metrics measure different value-related attributes, and it means that, in practice, researchers need to think carefully about which of these metrics more closely represents their personal definition of value. Finally, it seems that the recommendation to average citation impact over article age in the \emph{RV\textsubscript{Cn}} estimate (Isager et al., 2021) is an effective but imperfect method of adjustment for article age. However, depending on the citation metric chosen, averaging over age may itself introduce systematic measurement error in the scores. We therefore urge researchers to consider alternative age adjustment methods when these are available.
 
-Second, can we code sample size for all candidates in a feasible and reliable way? Indeed it seems so. However, (1) this process was more challenging than we had first anticipated, (2) inter-rater reliability of manual coders is high, but not perfect, and (3) we were only able to code sample size coarsely as `number of participants in study,' omitting information often used in the calculation of the standard error such as number of trials and stimuli (Westfall et al., 2014). Our main obstacle in the coding process was the non-standardized reporting of participant exclusions, which we needed to derive the final sample size of the study design. Most often, exclusions and final sample size would be reported in the `participants' subsection of the methods section. However, information about participant exclusions would frequently not appear until the results section. In several cases, exclusions would be reported in several places. For example, participants excluded after psychiatric assessment might be mentioned in the methods section, while participants excluded due to movement artifacts might appear as part of the reported results. Frequent inconsistencies like these meant that double-checking usually had to take place, which slowed down the coding effort and led to several coding errors. In the end, we were not able to code sample size for all studies in the entire set of 2268 articles given our time- and resource constraints, but a substantial subset could be coded by a small roster of undergraduate research assistants in less than 100 hours, all told. We estimate that the entire set could likely be coded in less than 200 hours. In cases where it is not feasible for researchers to carry out step 2 for the entire set of candidates derived in step 1 (see figure 1), randomly selecting a feasible subset of all candidates in step 2 seems to us a reasonable way to proceed, since it at least gives every candidate an equal chance of being evaluated further. Of course, alternative methods for narrowing down the candidate set could also be considered. A simple procedure would be to define the field of interest more narrowly than we did here, leaving fewer replication targets in the initial set of candidates to begin with.
+Second, can we code sample size for all candidates in a feasible and reliable way? Indeed it seems so. However, (1) this process was more challenging than we had first anticipated, (2) inter-rater reliability of manual coders is high, but not perfect, and (3) we were only able to code sample size coarsely as `number of participants in study', omitting information often used in the calculation of the standard error such as number of trials and stimuli (Westfall et al., 2014). Our main obstacle in the coding process was the non-standardized reporting of participant exclusions, which we needed to derive the final sample size of the study design. Most often, exclusions and final sample size would be reported in the `participants' subsection of the methods section. However, information about participant exclusions would frequently not appear until the results section. In several cases, exclusions would be reported in several places. For example, participants excluded after psychiatric assessment might be mentioned in the methods section, while participants excluded due to movement artifacts might appear as part of the reported results. Frequent inconsistencies like these meant that double-checking usually had to take place, which slowed down the coding effort and led to several coding errors. In the end, we were not able to code sample size for all studies in the entire set of 2268 articles given our time- and resource constraints, but a substantial subset could be coded by a small roster of undergraduate research assistants in less than 100 hours, all told. We estimate that the entire set could likely be coded in less than 200 hours. In cases where it is not feasible for researchers to carry out step 2 for the entire set of candidates derived in step 1 (see figure 1), randomly selecting a feasible subset of all candidates in step 2 seems to us a reasonable way to proceed, since it at least gives every candidate an equal chance of being evaluated further. Of course, alternative methods for narrowing down the candidate set could also be considered. A simple procedure would be to define the field of interest more narrowly than we did here, leaving fewer replication targets in the initial set of candidates to begin with.
 
 \hypertarget{step-3---in-depth-review-of-recommended-candidates}{%
 \subsection{Step 3 - In depth review of recommended candidates}\label{step-3---in-depth-review-of-recommended-candidates}}
@@ -667,7 +689,7 @@ Second, correspondence between \emph{RV\textsubscript{WoS}}/\emph{RV\textsubscri
 
 Third, we discovered a number of potential sources of noise and systematic error in the \emph{RV\textsubscript{WoS}}/\emph{RV\textsubscript{Alt}} estimates during review (which may partly be responsible for the low perceived correspondence between indicator estimates and reviewer intuitions). The most obvious problem was the number of studies utilizing within-subject designs. Variation in study design leads to noisy estimation of true replication value, since both \emph{RV\textsubscript{WoS}} and \emph{RV\textsubscript{Alt}} exclusively use number of participants to estimate uncertainty and thus ignore reduction in uncertainty due to repeated measures of each participant. More problematic still, the use of within-subject designs seemed to be much more common among the highest ranked studies. This makes intuitive sense. A within-subject design is likely to require a lower number of participants on average than a between-subject design, since lack of participants can be compensated for by repeated measures, which means study design and sample size is likely to be correlated. If so, \emph{RV\textsubscript{WoS}} and \emph{RV\textsubscript{Alt}} will tend to overestimate the true replication value of within-subject designs compared to between-subject designs. Similarly, there seemed to be consistent differences between studies in the higher and lower groups with respect to study design more generally. Studies with larger sample size often concerned large-scale collaborations studying genetic effects and resting state fMRI, while smaller sample size studies were more often single-lab studies measuring BOLD contrasts during a task manipulation. If certain research areas utilize within-subject research designs more often than others, then research from these areas will tend to get favored by \emph{RV\textsubscript{WoS}} and \emph{RV\textsubscript{Alt}} simply due to systematic failure to account for study design in the uncertainty estimate. In future applications of \emph{RV\textsubscript{Cn}}-based study selection we therefore recommend that the sample size estimate is corrected for the study design used, ideally for all studies during step 2 or, if this is unfeasible, at least as part of evaluation during step 3 supplementary material 2 for technical details on how such correction can be achieved{]}.
 
-Finally, we discovered a few cases of disconnect between the replication targets reported in an article and the apparent reason why the article received attention. In one case, an article containing both a literature review and an empirical study seemed to be cited primarily due to the literature review (Dimoka, Pavlou, \& Davis, 2011). In another case, a study on human navigation appeared to receive a large Altmetric score primarily due to speculative news reports claiming that GPS use can ``turn the brain off,'' which does not clearly follow from the study's conclusions (Javadi et al., 2017). While one could argue that correctness of reporting is unrelated to news media impact per se, it is unclear whether the solution to dubious interpretation of study claims is replication of the original study. Formally, it is unclear how much we would be able to reduce uncertainty by replicating. Researchers should always consider the likely effect of replication on uncertainty during step 3 since replication value indicators, by definition, are not sensitive to this determinant of expected utility gain (Isager et al., 2020).
+Finally, we discovered a few cases of disconnect between the replication targets reported in an article and the apparent reason why the article received attention. In one case, an article containing both a literature review and an empirical study seemed to be cited primarily due to the literature review (Dimoka, Pavlou, \& Davis, 2011). In another case, a study on human navigation appeared to receive a large Altmetric score primarily due to speculative news reports claiming that GPS use can ``turn the brain off'', which does not clearly follow from the study's conclusions (Javadi et al., 2017). While one could argue that correctness of reporting is unrelated to news media impact per se, it is unclear whether the solution to dubious interpretation of study claims is replication of the original study. Formally, it is unclear how much we would be able to reduce uncertainty by replicating. Researchers should always consider the likely effect of replication on uncertainty during step 3 since replication value indicators, by definition, are not sensitive to this determinant of expected utility gain (Isager et al., 2020).
 
 Our face validity review thus identifies several issues that are important to consider when conducting in-depth review of replication targets, including coding errors in \emph{RV\textsubscript{Cn}} estimates, potential systematic mismeasurement of certain study designs and topics, and the appropriateness of replication for reducing uncertainty about highly cited claims. Future research should give us a better understanding of which factors to consider during in-depth review of replication candidates (e.g., Pittelkow, Field, Isager, Veer, \& Ravenzwaaij, 2021).
 
@@ -701,7 +723,7 @@ The replication study selection procedure proposed by Isager et al. (2021) seems
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
 \leavevmode\vadjust pre{\hypertarget{ref-2021}{}}%
-Altmetric {Attention Score}. (2021). \emph{Digital Science}. https://web.archive.org/web/20210418105109/https://help.altmetric.com/support/solutions/articles/6000233311-how-is-the-altmetric-attention-score-calculated-.
+Altmetric {Attention Score}. (2021). https://web.archive.org/web/20210418105109/https://help.altmetric.com/support/solutions/articles/6000233311-how-is-the-altmetric-attention-score-calculated-.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Ashar2021}{}}%
 Ashar, Y. K., Clark, J., Gunning, F. M., Goldin, P., Gross, J. J., \& Wager, T. D. (2021). Brain markers predicting response to cognitive-behavioral therapy for social anxiety disorder: An independent replication of {Whitfield}-{Gabrieli} et al. 2015. \emph{Translational Psychiatry}, \emph{11}(1), 260. \url{https://doi.org/10.1038/s41398-021-01366-y}
@@ -719,7 +741,7 @@ Button, K. S., Ioannidis, J. P. A., Mokrysz, C., Nosek, B. A., Flint, J., Robins
 Carp, J. (2012). On the {Plurality} of ({Methodological}) {Worlds}: {Estimating} the {Analytic Flexibility} of {fMRI Experiments}. \emph{Frontiers in Neuroscience}, \emph{6}. \url{https://doi.org/10.3389/fnins.2012.00149}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Chamberlain2020}{}}%
-Chamberlain, S., Zhu, H., Jahn, N., Boettiger, C., \& Ram, K. (2020). Rcrossref.
+Chamberlain, S., Zhu, H., Jahn, N., Boettiger, C., \& Ram, K. (2020). \emph{Rcrossref}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Colman2015}{}}%
 Colman, E. R., \& Vukadinović Greetham, D. (2015). Memory and burstiness in dynamic networks. \emph{Physical Review E}, \emph{92}(1), 012817. \url{https://doi.org/10.1103/PhysRevE.92.012817}
@@ -749,22 +771,22 @@ Furukawa, T. A., Barbui, C., Cipriani, A., Brambilla, P., \& Watanabe, N. (2006)
 Glasziou, P., Meats, E., Heneghan, C., \& Shepperd, S. (2008). What is missing from descriptions of treatment in trials and reviews? \emph{BMJ}, \emph{336}(7659), 1472--1474. \url{https://doi.org/10.1136/bmj.39590.732037.47}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Heirene2021}{}}%
-Heirene, R. M. (2021). A call for replications of addiction research: Which studies should we replicate and what constitutes a {`successful'} replication? \emph{Addiction Research \& Theory}, \emph{29}(2), 89--97. \url{https://doi.org/10.1080/16066359.2020.1751130}
+Heirene, R. M. (2021). A call for replications of addiction research: Which studies should we replicate and what constitutes a {``successful''} replication? \emph{Addiction Research \& Theory}, \emph{29}(2), 89--97. \url{https://doi.org/10.1080/16066359.2020.1751130}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Herve2021}{}}%
-Hervé, M. (2021). {RVAideMemoire}: {Testing} and {Plotting Procedures} for {Biostatistics}.
+Hervé, M. (2021). \emph{{RVAideMemoire}: {Testing} and {Plotting Procedures} for {Biostatistics}}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Huber2019}{}}%
 Huber, D. E., Potter, K. W., \& Huszar, L. D. (2019). Less {``{Story}''} and more {``{Reliability}''} in cognitive neuroscience. \emph{Cortex; a Journal Devoted to the Study of the Nervous System and Behavior}, \emph{113}, 347--349. \url{https://doi.org/10.1016/j.cortex.2018.10.030}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Isager2020a}{}}%
-Isager, P. M. (2020). Test validity defined as d-connection between target and measured attribute: {Expanding} the causal definition of {Borsboom} et al. (2004). {PsyArXiv}. \url{https://doi.org/10.31234/osf.io/btgsr}
+Isager, P. M. (2020). \emph{Test validity defined as d-connection between target and measured attribute: {Expanding} the causal definition of {Borsboom} et al. (2004)}. {PsyArXiv}. \url{https://doi.org/10.31234/osf.io/btgsr}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Isager2020}{}}%
-Isager, P. M., Aert, R. C. M. van, Bahník, Š., Brandt, M., DeSoto, K. A., Giner-Sorolla, R., \ldots{} Lakens, D. (2020). Deciding what to replicate: {A} formal definition of {``replication value''} and a decision model for replication study selection. {MetaArXiv}. \url{https://doi.org/10.31222/osf.io/2gurz}
+Isager, P. M., Aert, R. C. M. van, Bahník, Š., Brandt, M., DeSoto, K. A., Giner-Sorolla, R., \ldots{} Lakens, D. (2020). \emph{Deciding what to replicate: {A} formal definition of {``replication value''} and a decision model for replication study selection.} {MetaArXiv}. \url{https://doi.org/10.31222/osf.io/2gurz}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Isager2021}{}}%
-Isager, P. M., Veer, A. van 't, \& Lakens, D. (2021). Replication value as a function of citation impact and sample size. {MetaArXiv}. \url{https://doi.org/10.31222/osf.io/knjea}
+Isager, P. M., Veer, A. van 't, \& Lakens, D. (2021). \emph{Replication value as a function of citation impact and sample size}. {MetaArXiv}. \url{https://doi.org/10.31222/osf.io/knjea}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Javadi2017}{}}%
 Javadi, A.-H., Emo, B., Howard, L. R., Zisch, F. E., Yu, Y., Knight, R., \ldots{} Spiers, H. J. (2017). Hippocampal and prefrontal processing of network topology to simulate the future. \emph{Nature Communications}, \emph{8}(1), 14652. \url{https://doi.org/10.1038/ncomms14652}
@@ -791,22 +813,22 @@ Li, W., Mai, X., \& Liu, C. (2014). The default mode network and social understa
 Matiasz, N. J., Wood, J., Doshi, P., Speier, W., Beckemeyer, B., Wang, W., \ldots{} Silva, A. J. (2018). {ResearchMaps}.org for integrating and planning research. \emph{PloS One}, \emph{13}(5), e0195271. \url{https://doi.org/10.1371/journal.pone.0195271}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Muschelli2019}{}}%
-Muschelli, J. (2019). Rscopus: {Scopus Database} '{API}' {Interface}.
+Muschelli, J. (2019). \emph{Rscopus: {Scopus Database} '{API}' {Interface}}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Nuijten2017}{}}%
-Nuijten, M. B., van Assen, M. A. L. M., Hartgerink, C. H. J., Epskamp, S., \& Wicherts, J. M. (2017). \emph{The {Validity} of the {Tool} {``statcheck''} in {Discovering Statistical Reporting Inconsistencies}} (Preprint). {PsyArXiv}. \url{https://doi.org/10.31234/osf.io/tcxaj}
+Nuijten, M. B., van Assen, M. A. L. M., Hartgerink, C. H. J., Epskamp, S., \& Wicherts, J. M. (2017). \emph{The {Validity} of the {Tool} {``statcheck''} in {Discovering Statistical Reporting Inconsistencies}} {[}Preprint{]}. {PsyArXiv}. \url{https://doi.org/10.31234/osf.io/tcxaj}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Pittelkow2021}{}}%
-Pittelkow, M.-M., Field, S. M., Isager, P. M., Veer, A. van 't, \& Ravenzwaaij, D. van. (2021). The {Process} of {Replication Target Selection}: {What} to {Consider}?
+Pittelkow, M.-M., Field, S. M., Isager, P. M., Veer, A. van 't, \& Ravenzwaaij, D. van. (2021). \emph{The {Process} of {Replication Target Selection}: {What} to {Consider}?}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Poldrack2017}{}}%
 Poldrack, R. A., Baker, C. I., Durnez, J., Gorgolewski, K. J., Matthews, P. M., Munafò, M. R., \ldots{} Yarkoni, T. (2017). Scanning the horizon: Towards transparent and reproducible neuroimaging research. \emph{Nature Reviews Neuroscience}, \emph{18}(2), 115--126. \url{https://doi.org/10.1038/nrn.2016.167}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Ram2017}{}}%
-Ram, K. (2017). {rAltmetric}: {Retrieves Altmerics Data} for {Any Published Paper} from '{Altmetric}.com'.
+Ram, K. (2017). \emph{{rAltmetric}: {Retrieves Altmerics Data} for {Any Published Paper} from '{Altmetric}.com'}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Revelle2021}{}}%
-Revelle, W. (2021). Psych: {Procedures} for {Psychological}, {Psychometric}, and {Personality Research}.
+Revelle, W. (2021). \emph{Psych: {Procedures} for {Psychological}, {Psychometric}, and {Personality Research}}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Sullivan2012}{}}%
 Sullivan, G. M., \& Feinn, R. (2012). Using {Effect Size}\textemdash or {Why} the {P Value Is Not Enough}. \emph{Journal of Graduate Medical Education}, \emph{4}(3), 279--282. \url{https://doi.org/10.4300/JGME-D-12-00156.1}
@@ -818,7 +840,7 @@ Szucs, D., \& Ioannidis, J. P. A. (2017). Empirical assessment of published effe
 Tamir, D. I., \& Mitchell, J. P. (2012). Disclosing information about the self is intrinsically rewarding. \emph{Proceedings of the National Academy of Sciences}, \emph{109}(21), 8038--8043. \url{https://doi.org/10.1073/pnas.1202129109}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Tay2020}{}}%
-Tay, A., Kramer, B., \& Waltman, L. (2020). Why openly available abstracts are important - overview of the current state of affairs. \emph{Leiden Madtrics}. https://www.leidenmadtrics.nl/articles/why-openly-available-abstracts-are-important-overview-of-the-current-state-of-affairs.
+Tay, A., Kramer, B., \& Waltman, L. (2020). Why openly available abstracts are important - overview of the current state of affairs. https://www.leidenmadtrics.nl/articles/why-openly-available-abstracts-are-important-overview-of-the-current-state-of-affairs.
 
 \leavevmode\vadjust pre{\hypertarget{ref-VanEck2010}{}}%
 van Eck, N. J., \& Waltman, L. (2010). Software survey: {VOSviewer}, a computer program for bibliometric mapping. \emph{Scientometrics}, \emph{2}(84), 523--538. \url{https://doi.org/10.1007/s11192-009-0146-3}
@@ -830,7 +852,7 @@ van Eck, N. J., \& Waltman, L. (2014). Visualizing {Bibliometric Networks}. In Y
 Waltman, L., van Eck, N. J., van Leeuwen, T. N., Visser, M. S., \& van Raan, A. F. J. (2011). Towards a new crown indicator: {Some} theoretical considerations. \emph{Journal of Informetrics}, \emph{5}(1), 37--47. \url{https://doi.org/10.1016/j.joi.2010.08.001}
 
 \leavevmode\vadjust pre{\hypertarget{ref-zotero-3943}{}}%
-Web of {Science Core Collection Help}. (n.d.). https://web.archive.org/web/20210525004218/https://images.webofknowledge.com/images/help/WOS/hp\_subject\_category\_terms\_tasca.html.
+\emph{Web of {Science Core Collection Help}}. (n.d.). https://web.archive.org/web/20210525004218/https://images.webofknowledge.com/images/help/WOS/hp\_subject\_category\_terms\_tasca.html.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Westfall2014}{}}%
 Westfall, J., Kenny, D. A., \& Judd, C. M. (2014). Statistical power and optimal design in experiments in which samples of participants respond to samples of stimuli. \emph{Journal of Experimental Psychology: General}, \emph{143}(5), 2020--2045. \url{https://doi.org/10.1037/xge0000014}

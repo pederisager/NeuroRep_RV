@@ -1,9 +1,8 @@
-################################
-# Analysis script for analyses #
-# reported in main manuscript  #
-# of Isager thesis chapter 5   #
-################################
-
+#############################################################
+# Analysis script for analyses reported in main manuscript  #
+# of Isager et al Selecting Studies for Replication in      #
+# Social Neuroscience: Exploring a Formal Approach          #
+#############################################################
 
 #### Load packages ####
 
@@ -16,15 +15,9 @@ library(knitr)
 library(pander)
 library(RVAideMemoire)
 
-
-
-
-
-
-
 #### Load data #### 
 
-setwd("C:/Users/pedisa94/Dropbox/jobb/PhD/Projects/2019_NeuroRep_Replication_Value/publications/Isager_PhD_chapter_manuscript/OSF_files/analysis/")
+#setwd("C:/Users/pedisa94/Dropbox/jobb/PhD/Projects/2019_NeuroRep_Replication_Value/publications/Isager_PhD_chapter_manuscript/OSF_files/analysis/")
 
 # source("load_and_clean_data.R")  # Can be run to generate datasets from raw data files
 
@@ -36,11 +29,7 @@ data.irr <- readRDS("../processed_data/data_irr.Rds")  # Sample size inter-rater
 # Add total citation count from Scite data to data.bib
 data.scite <- read.csv("../processed_data/data_scite.csv")  # Dataset containing total Scite citation count
 data.bib <- left_join(data.bib, data.scite[, c("target_doi", "scite_total_citation_count")], by = c("DI" = "target_doi")) %>% unique()
-
-
-
-
-
+data.all <- left_join(data.all, data.scite[, c("target_doi", "scite_total_citation_count")], by = c("DI" = "target_doi")) %>% unique()
 
 #### Journals most frequently published in ####
 
@@ -59,11 +48,6 @@ names(jou.freq) <- c("Journal", "Frequency")
 n.journals <- nrow(unique(select(data.bib, SO)))  
 perc.articlesintopjournals <- sum(jou.freq$Frequency)/nrow(data.bib)
 
-
-
-
-
-
 #### WoS research fields most frequently tagged ####
 
 # Count frequencies 
@@ -76,11 +60,6 @@ names(field.freq) <- c("Field", "Frequency")
 
 n.woscats <- nrow(unique(select(data.bib, WC)))  
 perc.articlesintopwoscats <- sum(field.freq$Frequency)/nrow(data.bib)
-
-
-
-
-
 
 #### Most frequent primary cluster labels ####
 
@@ -119,12 +98,6 @@ g.clu.siz <- ggplot(clu.siz, aes(x = n_pubs)) +
 
 clu.summary <- describe(data.bib$n_pubs)
 
-
-
-
-
-
-
 #### Citation metrics table ####
 
 metric.names <- c("WoS", "Crossref", "Scopus", "CWTS", "CWTS normalized", "scite", "Altmetric", "Total")  # Set variable names
@@ -150,11 +123,6 @@ t.cit.metrics <- data.frame("citation metric" = metric.names,
                             "N" = metric.n)  # Combine information above in a table
 
 
-
-
-
-
-
 #### Citation metric reliability across sources ####
 
 # Citation metric distributions
@@ -171,24 +139,24 @@ g.raw <- ggplot(data = data.bib) +
 g.tncs <- ggplot(data = data.bib, aes(x = tncs)) +
   geom_density() +
   theme_bw()+
-  labs(title="B", x="CWTS cluster-normalized citation score", y= "")
+  labs(title="B", x="CWTS field-normalized citation score", y= "")
 
 g.alt <- ggplot(data = data.bib, aes(x = altmetric_score)) +
   geom_density() +
   theme_bw()+
-  xlim(0,500) +
+  xlim(0,200) +
   labs(title="C", x="Altmetric score", y= "")
 
 # Citation metrics correlation matrix
 
 cor.dat.citations <- select(.data = data.bib, 
-                  TC_2020, 
-                  crossref_citations, 
-                  scopus_citations,
-                  tcs,
-                  tncs,
-                  scite_total_citation_count,
-                  altmetric_score)
+                            TC_2020, 
+                            crossref_citations, 
+                            scopus_citations,
+                            tcs,
+                            tncs,
+                            scite_total_citation_count,
+                            altmetric_score)
 names(cor.dat.citations) <- metric.names[-length(metric.names)]  # Remove "Total" from names
 cor.mat.citations <- cor(cor.dat.citations, use = "pairwise.complete.obs", method = "spearman")
 col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))  # Set color scheme for plot in manuscript
@@ -205,12 +173,6 @@ col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA")
 
 icc.cit <- ICC(data.bib[, c("TC_2020", "crossref_citations", "scopus_citations", "tcs", "scite_total_citation_count")])
 
-
-
-
-
-
-
 #### Relationship between article age and citation metrics ####
 
 # Scite data analysis
@@ -219,18 +181,18 @@ icc.cit <- ICC(data.bib[, c("TC_2020", "crossref_citations", "scopus_citations",
 p.traj_raw <- data.scite %>% 
   mutate(years_since_pub = year - PY) %>%
   ggplot(aes(x = years_since_pub, y = citation_count)) + 
-  geom_line(aes(group=target_doi)) +
+  geom_line(aes(group=target_doi), alpha =0.1) +
   scale_x_continuous(breaks = seq(0, 11, by = 1)) +
   theme_bw() +
   labs(title = "A", 
        x = "years since publication", 
        y = "yearly citations")
 
-## Ceneral log(citation+1) trajectory trend
+## General log(citation+1) trajectory trend
 p.traj_log <- data.scite %>% 
   mutate(years_since_pub = year - PY) %>%
   ggplot(aes(x = years_since_pub, y = log(citation_count+1))) + 
-  geom_line(aes(group=target_doi), col="grey")+
+  geom_line(aes(group=target_doi), col="grey", alpha = 0.1)+
   geom_boxplot(aes(group=years_since_pub)) +
   scale_x_continuous(breaks = seq(0, 11, by = 1)) +
   scale_y_continuous(breaks = log(c(0, 10, 100)+1), labels = c(0, 10, 100)) +  # need to add +1 to breaks since added +1 to citation count during log transformation
@@ -251,7 +213,7 @@ data$citations2020 <- data.scite %>%  # extract 2020 citation count
 data <- unique(left_join(data, as_tibble(data.scite[, c(1,4,6)]), by = "target_doi"))  # add publication year to summary data
 p.c2020_by_cy1 <- data %>%  # plot c/y+1) vs citations in 2020
   ggplot(aes(x = CoverYplus1, y = citations2020)) +
-  geom_point(aes(col=PY)) + 
+  geom_point(aes(col=PY), alpha = 0.5) + 
   geom_smooth(method = "lm", col="black") +
   scale_color_gradient(low = "red", high = "yellow") +
   theme_bw() +
@@ -269,9 +231,9 @@ c2020_by_age <- spearman.ci(2019-data$PY, data$citations2020, nrep = 2000, conf.
 # Age citation correlation matrix
 
 cor.dat.age <- select(.data = data.bib, 
-                  PY,
-                  scite_total_citation_count, 
-                  altmetric_score)
+                      PY,
+                      scite_total_citation_count, 
+                      altmetric_score)
 cor.dat.age$PY <- 2020-cor.dat.age$PY
 cor.dat.age$scite_by_year <- cor.dat.age$scite_total_citation_count/cor.dat.age$PY
 cor.dat.age$altmetric_score_by_year <- cor.dat.age$altmetric_score/cor.dat.age$PY
@@ -319,15 +281,15 @@ g.irr <- ggplot(data=df.irr, aes(x=sample_size_orig, y=sample_size, col=coder, s
   geom_point(alpha = 0.6, size=4) +
   theme_bw() +
   labs(col = "double-coder", shape = "double-coder") +
-  scale_x_continuous(trans='log10', name = "sample size, coded by original coder") +
-  scale_y_continuous(trans='log10', name = "double-coded sample size") +
+  scale_x_continuous(trans='log10', name = "number of participants, coded by original coder") +
+  scale_y_continuous(trans='log10', name = "double-coded number of participants") +
   scale_color_manual(values=c("#0C7BDC", "#994F00"))
 
 # Histogram of final sample size distribution
 
 g.samplesize <- ggplot(data = data.all, aes(x=sample_size)) +
   geom_histogram(bins = 100, col = "black") +
-  labs(x = "Sample size", y = "Number of studies") +
+  labs(x = "Number of participants", y = "Number of studies") +
   xlim(c(1, 500)) +
   theme_bw()
 
@@ -356,8 +318,45 @@ overhundred <- sum(data.all$sample_size>100)
 
 # Calculate RV_WoS and RV_alt for studies in data.all
 
+# We have the following variables that contain citation data:
+
+# "crossref_citations","Crossref citation counts, downloaded 2020-10-30"
+# "scopus_citations","Scopus citation counts, downloaded 2020-10-30"
+# "altmetric_score","Altmetric score, downloaded 2020-10-30"
+# "TC_2020","Web of Science Core Collection Times Cited Count, updated 2020-11-07"
+# "tcs","Total Citation Score. CWTS citation counts - excluding self-citations, downloaded 2020-10-28"
+# "tncs","Total Normalized Citation Score. CWTS citation impact of article relative to the primary cluster to which the article belongs. The score represents how many more times the article is cited relative to the average citation count of an article in its cluster from the same year. I.e. An article that is cited 10 times, and that belongs to a cluster in which articles of the same age are cited 4 times on average, will receive a tncs score of 10/4=2.5"
+
+
 data.all$RV <- (data.all$TC_2020/ (data.all$years.since.pub + 1) ) * (1/data.all$sample_size)
 data.all$RV_alt <- data.all$altmetric_score * (1/data.all$sample_size)
+
+data.all$RV_crossref <- (data.all$crossref_citations/ (data.all$years.since.pub + 1) ) * (1/data.all$sample_size)
+data.all$RV_scopus <- (data.all$scopus_citations/ (data.all$years.since.pub + 1) ) * (1/data.all$sample_size)
+data.all$RV_tcs <- (data.all$tcs/ (data.all$years.since.pub + 1) ) * (1/data.all$sample_size)
+data.all$RV_tncs <- (data.all$tncs/ (data.all$years.since.pub + 1) ) * (1/data.all$sample_size)
+data.all$RV_scite <- (data.all$scite_total_citation_count/ (data.all$years.since.pub + 1) ) * (1/data.all$sample_size)
+
+cor.dat.rv <- select(.data = data.all, 
+                     RV, 
+                     RV_crossref, 
+                     RV_scopus,
+                     RV_tcs, 
+                     RV_tncs,
+                     RV_scite,
+                     RV_alt)
+cor.mat.rv <- cor(cor.dat.rv, use = "pairwise.complete.obs", method = "spearman")
+col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))  # Set color scheme for plot in manuscript
+
+
+corrplot(corr = cor.mat.rv,
+         method = "color",
+         col = col(200),
+         addCoef.col = "black",
+         tl.col="black",
+         tl.srt=45,
+         diag = F)
+
 
 # Spearman correlation between the replication value estimators. Bootstrap confidence intervals based on 10000 simulations.
 
@@ -367,30 +366,103 @@ RVcor <- spearman.ci(data.all$RV, data.all$RV_alt, nrep = 2000, conf.level = 0.9
 # Plot relationship between RV_WoS and RV_alt
 
 ## Grab highest replication value points to be colored in the plot
+top_n <- 10 #Top how many to plot for?
 data.all$highestRV <- 0
-data.all$highestRV[which(data.all$RV >= tail(head(data.all$RV[order(-data.all$RV)], 10), 1))] <- 1  # mark 10 highest RV_WoS scores
+data.all$highestRV[which(data.all$RV >= tail(head(data.all$RV[order(-data.all$RV)], top_n), 1))] <- 1  # mark top_n highest RV_WoS scores
 data.all$highestRV_alt <- 0
-data.all$highestRV_alt[which(data.all$RV_alt >= tail(head(data.all$RV_alt[order(-data.all$RV_alt)], 10), 1))] <- 1  # mark 10 highest RV_alt scores
-highestRV <- data.all %>% filter(RV >= tail(head(data.all$RV[order(-data.all$RV)], 10), 1))
-highestRV_alt <- data.all %>% filter(RV_alt >= tail(head(data.all$RV_alt[order(-data.all$RV_alt)], 10), 1))
-highestRV_both <- highestRV %>% filter(RV_alt >= tail(head(data.all$RV_alt[order(-data.all$RV_alt)], 10), 1))
+data.all$highestRV_alt[which(data.all$RV_alt >= tail(head(data.all$RV_alt[order(-data.all$RV_alt)], top_n), 1))] <- 1  # mark top_n highest RV_alt scores
+highestRV <- data.all %>% filter(RV >= tail(head(data.all$RV[order(-data.all$RV)], top_n), 1))
+highestRV_alt <- data.all %>% filter(RV_alt >= tail(head(data.all$RV_alt[order(-data.all$RV_alt)], top_n), 1))
+highestRV_both <- highestRV %>% filter(RV_alt >= tail(head(data.all$RV_alt[order(-data.all$RV_alt)], top_n), 1))
 ## Generate plot with RV_WoS and RV_alt distributions as bars on the axes
 RVcor.p <- ggplot(data = data.all, aes(x = RV, y = RV_alt)) +
-  geom_rug() +
+  geom_rug(alpha = 0.2) +
   geom_rug(data = highestRV, color="brown1", sides="b", size=1) +
   geom_rug(data = highestRV_alt, color="cornflowerblue", sides="l", size=1) +
-  geom_point() +
-  geom_point(data = highestRV, aes(x = RV, y = RV_alt), color = "white", size = 3) +
-  geom_point(data = highestRV, aes(x = RV, y = RV_alt), color = "brown1", size = 3) +
-  geom_point(data = highestRV_alt, aes(x = RV, y = RV_alt), color = "cornflowerblue", size = 3) +
-  geom_point(data = highestRV_both, aes(x = RV, y = RV_alt), color = "darkorchid1", size = 4) +
+  geom_point(alpha = 0.2) +
+  geom_point(data = highestRV, aes(x = RV, y = RV_alt), color = "brown1", size = 2) +
+  geom_point(data = highestRV_alt, aes(x = RV, y = RV_alt), color = "cornflowerblue", size = 2) +
+  geom_point(data = highestRV_both, aes(x = RV, y = RV_alt), color = "darkorchid1", size = 2) +
   theme_bw() + 
   theme(axis.title=element_text(size=16,face="bold")) +
   labs(x=expression(RV["WoS"]), y=expression(RV["Alt"])) 
 
 
+# Repeat for RV and other RV's
 
+# Plot relationship between RV_WoS and RV_scopus
 
+## Grab highest replication value points to be colored in the plot
+
+top_n <- 10 #Top how many to plot for?
+data.all$highestRV <- 0
+data.all$highestRV[which(data.all$RV >= tail(head(data.all$RV[order(-data.all$RV)], top_n), 1))] <- 1  # mark top_n highest RV_WoS scores
+data.all$highestRV_scopus <- 0
+data.all$highestRV_scopus[which(data.all$RV_scopus >= tail(head(data.all$RV_scopus[order(-data.all$RV_scopus)], top_n), 1))] <- 1  # mark top_n highest RV_scopus scores
+highestRV <- data.all %>% filter(RV >= tail(head(data.all$RV[order(-data.all$RV)], top_n), 1))
+highestRV_scopus <- data.all %>% filter(RV_scopus >= tail(head(data.all$RV_scopus[order(-data.all$RV_scopus)], top_n), 1))
+highestRV_both <- highestRV %>% filter(RV_scopus >= tail(head(data.all$RV_scopus[order(-data.all$RV_scopus)], top_n), 1))
+
+## Generate plot with RV_WoS and RV_scopus distributions as bars on the axes
+RVcor.2 <- ggplot(data = data.all, aes(x = RV, y = RV_scopus)) +
+  geom_rug() +
+  geom_rug(data = highestRV, color="brown1", sides="b", size=1) +
+  geom_rug(data = highestRV_scopus, color="cornflowerblue", sides="l", size=1) +
+  geom_point(alpha = 0.1) +
+  geom_point(data = highestRV, aes(x = RV, y = RV_scopus), color = "brown1", size = 2) +
+  geom_point(data = highestRV_scopus, aes(x = RV, y = RV_scopus), color = "cornflowerblue", size = 2) +
+  geom_point(data = highestRV_both, aes(x = RV, y = RV_scopus), color = "darkorchid1", size = 2) +
+  theme_bw() + 
+  theme(axis.title=element_text(size=16,face="bold")) +
+  labs(x=expression(RV["WoS"]), y=expression(RV["scopus"])) 
+
+# WoS vs TNCS
+
+top_n <- 10 #Top how many to plot for?
+data.all$highestRV <- 0
+data.all$highestRV[which(data.all$RV >= tail(head(data.all$RV[order(-data.all$RV)], top_n), 1))] <- 1  # mark top_n highest RV_WoS scores
+data.all$highestRV_tncs <- 0
+data.all$highestRV_tncs[which(data.all$RV_tncs >= tail(head(data.all$RV_tncs[order(-data.all$RV_tncs)], top_n), 1))] <- 1  # mark top_n highest RV_tncs scores
+highestRV <- data.all %>% filter(RV >= tail(head(data.all$RV[order(-data.all$RV)], top_n), 1))
+highestRV_tncs <- data.all %>% filter(RV_tncs >= tail(head(data.all$RV_tncs[order(-data.all$RV_tncs)], top_n), 1))
+highestRV_both <- highestRV %>% filter(RV_tncs >= tail(head(data.all$RV_tncs[order(-data.all$RV_tncs)], top_n), 1))
+## Generate plot with RV_WoS and RV_tncs distributions as bars on the axes
+RVcor.3 <- ggplot(data = data.all, aes(x = RV, y = RV_tncs)) +
+  geom_rug() +
+  geom_rug(data = highestRV, color="brown1", sides="b", size=1) +
+  geom_rug(data = highestRV_tncs, color="cornflowerblue", sides="l", size=1) +
+  geom_point(alpha = 0.1) +
+  geom_point(data = highestRV, aes(x = RV, y = RV_tncs), color = "brown1", size = 2) +
+  geom_point(data = highestRV_tncs, aes(x = RV, y = RV_tncs), color = "cornflowerblue", size = 2) +
+  geom_point(data = highestRV_both, aes(x = RV, y = RV_tncs), color = "darkorchid1", size = 2) +
+  theme_bw() + 
+  theme(axis.title=element_text(size=16,face="bold")) +
+  labs(x=expression(RV["WoS"]), y=expression(RV["tncs"])) 
+
+# WoS vs Scite
+
+top_n <- 10 #Top how many to plot for?
+data.all$highestRV <- 0
+data.all$highestRV[which(data.all$RV >= tail(head(data.all$RV[order(-data.all$RV)], top_n), 1))] <- 1  # mark 10 highest RV_WoS scores
+data.all$highestRV_scite <- 0
+data.all$highestRV_scite[which(data.all$RV_scite >= tail(head(data.all$RV_scite[order(-data.all$RV_scite)], top_n), 1))] <- 1  # mark 10 highest RV_scite scores
+highestRV <- data.all %>% filter(RV >= tail(head(data.all$RV[order(-data.all$RV)], top_n), 1))
+highestRV_scite <- data.all %>% filter(RV_scite >= tail(head(data.all$RV_scite[order(-data.all$RV_scite)], top_n), 1))
+highestRV_both <- highestRV %>% filter(RV_scite >= tail(head(data.all$RV_scite[order(-data.all$RV_scite)], top_n), 1))
+## Generate plot with RV_WoS and RV_scite distributions as bars on the axes
+RVcor.4 <- ggplot(data = data.all, aes(x = RV, y = RV_scite)) +
+  geom_rug() +
+  geom_rug(data = highestRV, color="brown1", sides="b", size=1) +
+  geom_rug(data = highestRV_scite, color="cornflowerblue", sides="l", size=1) +
+  geom_point(alpha = 0.1) +
+  geom_point(data = highestRV, aes(x = RV, y = RV_scite), color = "brown1", size = 2) +
+  geom_point(data = highestRV_scite, aes(x = RV, y = RV_scite), color = "cornflowerblue", size = 2) +
+  geom_point(data = highestRV_both, aes(x = RV, y = RV_scite), color = "darkorchid1", size = 2) +
+  theme_bw() + 
+  theme(axis.title=element_text(size=16,face="bold")) +
+  labs(x=expression(RV["WoS"]), y=expression(RV["scite"])) 
+
+sum(data.all$highestRV)
 
 #### Supplementary material SM4 figures. ####
 
