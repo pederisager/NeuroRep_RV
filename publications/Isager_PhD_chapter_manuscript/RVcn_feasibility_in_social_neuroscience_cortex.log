@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.26)  26 FEB 2023 17:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.26)  28 FEB 2023 18:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -667,7 +667,7 @@ Package pdftex.def Info: sample_selection_process.png  used on input line 297.
 
 LaTeX Warning: Float too large for page by 58.00658pt on input line 299.
 
-<vosviewer_label_cooccurence.png, id=153, 2043.88594pt x 1044.90375pt>
+<vosviewer_label_cooccurence.png, id=152, 2043.88594pt x 1044.90375pt>
 File: vosviewer_label_cooccurence.png Graphic file (type png)
 <use vosviewer_label_cooccurence.png>
 Package pdftex.def Info: vosviewer_label_cooccurence.png  used on input line 349.
@@ -683,7 +683,7 @@ Underfull \vbox (badness 2189) has occurred while \output is active []
 <RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig4-1.pdf, id=197, 469.755pt x 325.215pt>
 File: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig4-1.pdf Graphic file (type pdf)
 <use RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig4-1.pdf>
-Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig4-1.pdf  used on input line 433.
+Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig4-1.pdf  used on input line 431.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [19]
 Underfull \vbox (badness 3623) has occurred while \output is active []
@@ -692,106 +692,99 @@ Underfull \vbox (badness 3623) has occurred while \output is active []
 <RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig5-1.pdf, id=214, 469.755pt x 325.215pt>
 File: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig5-1.pdf Graphic file (type pdf)
 <use RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig5-1.pdf>
-Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig5-1.pdf  used on input line 443.
+Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig5-1.pdf  used on input line 441.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [21 <./RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig5-1.pdf>] [22]
 <RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig6-1.pdf, id=232, 469.755pt x 325.215pt>
 File: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig6-1.pdf Graphic file (type pdf)
 <use RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig6-1.pdf>
-Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig6-1.pdf  used on input line 465.
+Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig6-1.pdf  used on input line 463.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [23]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1817) has occurred while \output is active []
 
 [24 <./RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig6-1.pdf>]
-<RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig7-1.pdf, id=258, 469.755pt x 325.215pt>
+<RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig7-1.pdf, id=259, 469.755pt x 325.215pt>
 File: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig7-1.pdf Graphic file (type pdf)
 <use RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig7-1.pdf>
-Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig7-1.pdf  used on input line 478.
+Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig7-1.pdf  used on input line 476.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [25 <./RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig7-1.pdf>] [26]
 <RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig8-1.pdf, id=280, 469.755pt x 325.215pt>
 File: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig8-1.pdf Graphic file (type pdf)
 <use RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig8-1.pdf>
-Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig8-1.pdf  used on input line 495.
+Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig8-1.pdf  used on input line 493.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-Underfull \vbox (badness 7649) has occurred while \output is active []
-
-[27]
-<RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig9-1.pdf, id=285, 469.755pt x 325.215pt>
+<RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig9-1.pdf, id=281, 469.755pt x 325.215pt>
 File: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig9-1.pdf Graphic file (type pdf)
 <use RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig9-1.pdf>
-Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig9-1.pdf  used on input line 503.
+Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig9-1.pdf  used on input line 501.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[27]
+Underfull \vbox (badness 1817) has occurred while \output is active []
 
 [28 <./RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig8-1.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[29 <./RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig9-1.pdf>]
 pdfTeX warning (ext4): destination with the same identifier (name{equation.0.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.514 \begin{equation}
+l.512 \begin{equation}
                       
 pdfTeX warning (ext4): destination with the same identifier (name{equation.0.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.514 \begin{equation}
+l.512 \begin{equation}
                       
 pdfTeX warning (ext4): destination with the same identifier (name{equation.0.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.514 \begin{equation}
+l.512 \begin{equation}
                       
 pdfTeX warning (ext4): destination with the same identifier (name{equation.0.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.514 \begin{equation}
+l.512 \begin{equation}
+                       [29 <./RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig9-1.pdf>]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.0.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.522 \begin{equation}
                       
 pdfTeX warning (ext4): destination with the same identifier (name{equation.0.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.524 \begin{equation}
+l.522 \begin{equation}
                       
 pdfTeX warning (ext4): destination with the same identifier (name{equation.0.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.524 \begin{equation}
+l.522 \begin{equation}
                       
 pdfTeX warning (ext4): destination with the same identifier (name{equation.0.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.524 \begin{equation}
+l.522 \begin{equation}
                       
-pdfTeX warning (ext4): destination with the same identifier (name{equation.0.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.524 \begin{equation}
-                       [30]
-<RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig10-1.pdf, id=317, 469.755pt x 325.215pt>
+<RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig10-1.pdf, id=312, 469.755pt x 325.215pt>
 File: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig10-1.pdf Graphic file (type pdf)
 <use RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig10-1.pdf>
-Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig10-1.pdf  used on input line 538.
+Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig10-1.pdf  used on input line 536.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[31] [32 <./RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig10-1.pdf>]
-<RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig11-1.pdf, id=339, 469.755pt x 325.215pt>
+[30] [31 <./RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig10-1.pdf>]
+<RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig11-1.pdf, id=335, 469.755pt x 325.215pt>
 File: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig11-1.pdf Graphic file (type pdf)
 <use RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig11-1.pdf>
-Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig11-1.pdf  used on input line 548.
+Package pdftex.def Info: RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig11-1.pdf  used on input line 546.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Underfull \vbox (badness 7291) has occurred while \output is active []
-
-[33 <./RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig11-1.pdf>]
-Underfull \vbox (badness 1838) has occurred while \output is active []
-
-[34] [35] [36]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[37] [38] [39]
+[32] [33 <./RVcn_feasibility_in_social_neuroscience_cortex_files/figure-latex/fig11-1.pdf>] [34] [35] [36]
+Underfull \vbox (badness 3977) has occurred while \output is active []
+
+[37] [38]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[39]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [40]
@@ -800,26 +793,23 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [41]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[42]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[43] AED endfloat: Processing end Figures and Tables [44] (./RVcn_feasibility_in_social_neuroscience_cortex.aux)
+[42] AED endfloat: Processing end Figures and Tables [43] (./RVcn_feasibility_in_social_neuroscience_cortex.aux)
 Package rerunfilecheck Info: File `RVcn_feasibility_in_social_neuroscience_cortex.out' has not changed.
 (rerunfilecheck)             Checksum: CD33765641AA3E8021C3B9B833ED8D0C;4705.
  ) 
 Here is how much of TeX's memory you used:
- 16066 strings out of 477984
- 269638 string characters out of 5837577
- 1861382 words of memory out of 5000000
+ 16063 strings out of 477984
+ 269602 string characters out of 5837577
+ 1862382 words of memory out of 5000000
  35812 multiletter control sequences out of 15000+600000
  562928 words of font info for 69 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,12n,77p,2489b,625s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,77p,2504b,632s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/Users/dlakens/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/Users/dlakens/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/dlakens/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/dlakens/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/dlakens/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}<c:/Users/dlakens/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/dlakens/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/Users/dlakens/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/Users/dlakens/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/Users/dlakens/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/dlakens/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/dlakens/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/Users/dlakens/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/Users/dlakens/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on RVcn_feasibility_in_social_neuroscience_cortex.pdf (44 pages, 2695063 bytes).
+Output written on RVcn_feasibility_in_social_neuroscience_cortex.pdf (43 pages, 2693322 bytes).
 PDF statistics:
- 569 PDF objects out of 1000 (max. 8388607)
- 475 compressed objects within 5 object streams
- 151 named destinations out of 1000 (max. 500000)
+ 560 PDF objects out of 1000 (max. 8388607)
+ 467 compressed objects within 5 object streams
+ 148 named destinations out of 1000 (max. 500000)
  200 words of extra memory for PDF output out of 10000 (max. 10000000)
 
